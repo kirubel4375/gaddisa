@@ -299,7 +299,20 @@
 // Alternative emergency button handler (fallback)
 function handleEmergencyClick() {
     console.log('Emergency button clicked via onclick!');
-    const userId = user?.id || new URLSearchParams(window.location.search).get('user_id');
+    
+    // Safely get user ID without depending on user variable
+    let userId = null;
+    try {
+        userId = (typeof user !== 'undefined' && user) ? user.id : null;
+    } catch (e) {
+        console.log('User variable not available, trying URL params');
+    }
+    
+    // Fallback to URL parameter
+    if (!userId) {
+        userId = new URLSearchParams(window.location.search).get('user_id');
+    }
+    
     const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
     console.log('Navigating to:', reportUrl);
     window.location.href = reportUrl;
@@ -375,11 +388,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (emergencyBtn) {
         emergencyBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Emergency button clicked!');
+            console.log('Emergency button clicked via event listener!');
             
-            const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+            // Safely get user ID
+            let userId = null;
+            try {
+                userId = (typeof user !== 'undefined' && user) ? user.id : null;
+            } catch (e) {
+                console.log('User variable not available, trying URL params');
+            }
+            
+            // Fallback to URL parameter
+            if (!userId) {
+                userId = new URLSearchParams(window.location.search).get('user_id');
+            }
+            
             const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
-            
             console.log('Navigating to:', reportUrl);
             window.location.href = reportUrl;
         });
@@ -632,7 +656,18 @@ document.addEventListener('DOMContentLoaded', function() {
         currentUrl.searchParams.set('lang', language);
         
         // Save to user profile in background (optional, no waiting)
-        const userId = user.id || currentUrl.searchParams.get('user_id');
+        let userId = null;
+        try {
+            userId = (typeof user !== 'undefined' && user) ? user.id : null;
+        } catch (e) {
+            console.log('User variable not available for language save');
+        }
+        
+        // Fallback to URL parameter
+        if (!userId) {
+            userId = currentUrl.searchParams.get('user_id');
+        }
+        
         if (userId) {
             // Save language preference asynchronously
             fetch('/webapp/api/frontend/update-language/', {

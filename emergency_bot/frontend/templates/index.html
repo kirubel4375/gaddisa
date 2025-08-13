@@ -291,9 +291,20 @@
     </div>
 </div>
 
-<button class="emergency-button" id="emergencyBtn">
+<button class="emergency-button" id="emergencyBtn" onclick="handleEmergencyClick()">
     <i class="material-icons">warning</i> {% trans "Emergency Help" %}
 </button>
+
+<script>
+// Alternative emergency button handler (fallback)
+function handleEmergencyClick() {
+    console.log('Emergency button clicked via onclick!');
+    const userId = user?.id || new URLSearchParams(window.location.search).get('user_id');
+    const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
+    console.log('Navigating to:', reportUrl);
+    window.location.href = reportUrl;
+}
+</script>
 {% endblock %}
 
 {% block extra_js %}
@@ -335,18 +346,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize language selector
     initializeLanguageSelector();
     
-    // Service selection handlers
-    document.getElementById('policeBtn').addEventListener('click', () => showNearbyServices('police'));
-    document.getElementById('healthBtn').addEventListener('click', () => showNearbyServices('hospital'));
-    document.getElementById('womenBtn').addEventListener('click', () => showNearbyServices('women'));
-    document.getElementById('psychiatryBtn').addEventListener('click', () => showNearbyServices('psychiatry'));
-    document.getElementById('marriageBtn').addEventListener('click', () => showNearbyServices('marriage'));
-    document.getElementById('legalBtn').addEventListener('click', () => showNearbyServices('legal'));
+    // Service selection handlers with debugging
+    const serviceButtons = [
+        { id: 'policeBtn', type: 'police' },
+        { id: 'healthBtn', type: 'hospital' },
+        { id: 'womenBtn', type: 'women' },
+        { id: 'psychiatryBtn', type: 'psychiatry' },
+        { id: 'marriageBtn', type: 'marriage' },
+        { id: 'legalBtn', type: 'legal' }
+    ];
     
-    document.getElementById('emergencyBtn').addEventListener('click', function() {
-        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
-        window.location.href = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
+    serviceButtons.forEach(({ id, type }) => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`Service button clicked: ${id} (${type})`);
+                showNearbyServices(type);
+            });
+            console.log(`Event listener attached to ${id}`);
+        } else {
+            console.error(`Button not found: ${id}`);
+        }
     });
+    
+    // Emergency button click handler
+    const emergencyBtn = document.getElementById('emergencyBtn');
+    if (emergencyBtn) {
+        emergencyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Emergency button clicked!');
+            
+            const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+            const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
+            
+            console.log('Navigating to:', reportUrl);
+            window.location.href = reportUrl;
+        });
+        console.log('Emergency button event listener attached successfully');
+    } else {
+        console.error('Emergency button not found!');
+    }
     
     // Translatable services data using translation strings
     const servicesData = {
@@ -572,73 +612,38 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
     };
     
-    // Language selector functions
+    // Simple language selector functions
     function initializeLanguageSelector() {
         const languageSelect = document.getElementById('languageSelect');
         
-        // Set current language from Django context or get from user profile
+        // Set current language from page
         const pageLang = currentLanguage || 'en';
         languageSelect.value = pageLang;
-        console.log('Initialized language selector with page language:', pageLang);
         
-        // Also try to get from user profile to make sure they match
-        if (user.id) {
-            getUserLanguage().then(userLanguage => {
-                console.log('User profile language:', userLanguage);
-                languageSelect.value = userLanguage || 'en';
-            }).catch(error => {
-                console.log('Could not fetch user language, using current page language');
-            });
-        }
-        
-        // Add change event listener
+        // Simple change event listener
         languageSelect.addEventListener('change', function() {
-            console.log('Language dropdown changed to:', this.value);
             changeLanguage(this.value);
         });
     }
     
     function changeLanguage(language) {
-        // Show loading indicator
-        const languageSelect = document.getElementById('languageSelect');
-        const originalValue = languageSelect.value;
-        languageSelect.disabled = true;
+        // Simple approach: just reload the page with language parameter
+        const currentUrl = new URL(window.location);
+        currentUrl.searchParams.set('lang', language);
         
-        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
-        
-        if (!userId) {
-            // If no user ID, just reload with language parameter
-            window.location.href = `${window.location.pathname}?lang=${language}`;
-            return;
+        // Save to user profile in background (optional, no waiting)
+        const userId = user.id || currentUrl.searchParams.get('user_id');
+        if (userId) {
+            // Save language preference asynchronously
+            fetch('/webapp/api/frontend/update-language/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ language: language, telegram_id: userId })
+            }).catch(e => console.log('Language save failed:', e));
         }
         
-        // Send language update request using the API helper from base.html
-        apiPost('/api/frontend/update-language/', {
-            language: language,
-            telegram_id: userId
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Language updated successfully to:', language);
-                // Simply reload the page to apply the new language
-                // The backend will detect the user's new language preference and activate it
-                window.location.reload();
-            } else {
-                // Revert selection if failed
-                console.error('Failed to update language:', data.error);
-                languageSelect.value = originalValue;
-                languageSelect.disabled = false;
-                alert('Failed to change language. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error changing language:', error);
-            // Revert selection if failed
-            languageSelect.value = originalValue;
-            languageSelect.disabled = false;
-            alert('Failed to change language. Please try again.');
-        });
+        // Immediately reload with new language
+        window.location.href = currentUrl.toString();
     }
 });
 </script>

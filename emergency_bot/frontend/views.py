@@ -63,21 +63,31 @@ def index(request):
     # Get user profile and activate language
     user_profile = get_user_profile(request)
     
-    if user_profile:
-        # Set default language if not set
-        if not user_profile.language:
+    # Check for language parameter in URL (highest priority)
+    lang_param = request.GET.get('lang')
+    
+    # Determine which language to use
+    if lang_param and lang_param in ['en', 'am', 'om']:
+        # Use language from URL parameter
+        active_language = lang_param
+        # Update user profile if they have one
+        if user_profile:
+            user_profile.language = lang_param
+            user_profile.save()
+    elif user_profile and user_profile.language:
+        # Use user's saved language preference
+        active_language = user_profile.language
+    else:
+        # Default to English
+        active_language = 'en'
+        if user_profile:
             user_profile.language = 'en'
             user_profile.save()
-        
-        # Activate the user's preferred language
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
-        logger.info(f"Activated language: {user_profile.language} for user {user_profile.telegram_id}")
-    else:
-        # Default to English for anonymous users
-        translation.activate('en')
-        request.LANGUAGE_CODE = 'en'
-        logger.info("No user profile found, using English")
+    
+    # Activate the determined language
+    translation.activate(active_language)
+    request.LANGUAGE_CODE = active_language
+    logger.info(f"Activated language: {active_language} for user {user_profile.telegram_id if user_profile else 'anonymous'}")
     
     return render(request, 'index.html')
 

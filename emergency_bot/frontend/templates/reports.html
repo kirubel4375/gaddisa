@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "My Reports" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% trans "My Reports" %}</h2>
+    
+    {% if reports %}
+        <div class="list-group mt-3">
+            {% for report in reports %}
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ report.get_type_display }}</h5>
+                        <small>{{ report.submitted_at|date:"M d, Y H:i" }}</small>
+                    </div>
+                    {% if report.description %}
+                        <p class="mb-1">{{ report.description|truncatechars:100 }}</p>
+                    {% endif %}
+                    <p class="mb-0">
+                        <small class="text-muted">
+                            <strong>{% trans "Location" %}:</strong> {{ report.location }}
+                        </small>
+                    </p>
+                    <div class="mt-2">
+                        {% if report.voice_note_url %}
+                            <audio controls class="mt-2 w-100">
+                                <source src="{{ report.voice_note_url }}" type="audio/mpeg">
+                                {% trans "Your browser does not support the audio element." %}
+                            </audio>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info mt-3">
+            {% trans "You haven't submitted any reports yet" %}
+        </div>
+    {% endif %}
+    
+    <div class="d-grid gap-2 mt-4">
+        <a href="{% url 'report_incident' %}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> {% trans "Submit New Report" %}
+        </a>
+        <a href="{% url 'webapp_index' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-house"></i> {% trans "Back to Home" %}
+        </a>
+    </div>
+</div>
+{% endblock %} 

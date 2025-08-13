@@ -1,0 +1,554 @@
+# Afaan Oromo translations for Django.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-08 14:40+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: om\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: emergency_bot/settings.py:118
+msgid "English"
+msgstr "Ingiliffaa"
+
+#: emergency_bot/settings.py:119
+msgid "Amharic"
+msgstr "Amaariffaa"
+
+#: emergency_bot/settings.py:120
+msgid "Afaan Oromo"
+msgstr "Afaan Oromoo"
+
+#: emergency_bot/frontend/templates/index.html:10
+msgid "Emergency Reporting System"
+msgstr "Sirna Gabaasa Muddamaa"
+
+#: emergency_bot/frontend/templates/index.html:15
+msgid "Report an Emergency"
+msgstr "Muddama Gabaasi"
+
+#: emergency_bot/frontend/templates/index.html:20
+msgid "Find Help"
+msgstr "Gargaarsa Barbaadi"
+
+#: emergency_bot/reports/models.py:15
+msgid "Assault"
+msgstr "Rukuttaa"
+
+#: emergency_bot/reports/models.py:16
+msgid "Rape"
+msgstr "Gudeenya"
+
+#: emergency_bot/reports/models.py:17
+msgid "Domestic Violence"
+msgstr "Miidhaa Maatii"
+
+#: emergency_bot/reports/models.py:18
+msgid "Harassment"
+msgstr "Ijaajjii"
+
+#: emergency_bot/reports/models.py:19
+msgid "Other"
+msgstr "Kan Biraa"
+
+msgid "Emergency Services"
+msgstr "Tajaajila Muddamaa"
+
+msgid "Police"
+msgstr "Poolisii"
+
+msgid "Find nearby police stations"
+msgstr "Buufata poolisii dhihoo jiran barbaadi"
+
+msgid "Health Facilities"
+msgstr "Dhaabbata Fayyaa"
+
+msgid "Hospitals and clinics"
+msgstr "Hospitaala fi kiliniika"
+
+msgid "Women & Child"
+msgstr "Dubartootaa fi Daa'ima"
+
+msgid "Support & protection services"
+msgstr "Tajaajila deeggaraa fi eegubaa"
+
+msgid "Psychiatrists"
+msgstr "Hakiima sammuu"
+
+msgid "Mental health support"
+msgstr "Deeggarsa fayyaa sammuu"
+
+msgid "Marriage Council"
+msgstr "Gorsaa Gaa'eelaa"
+
+msgid "Relationship support"
+msgstr "Deeggarsa walitti dhufeenya"
+
+msgid "Legal Aid"
+msgstr "Gargaarsa Seeraa"
+
+msgid "Lawyers and legal support"
+msgstr "Seera beektotaa fi deeggarsa seeraa"
+
+msgid "Nearby Services"
+msgstr "Tajaajila Dhihoo"
+
+msgid "Finding nearby services..."
+msgstr "Tajaajila dhihoo jiran barbaadaa jira..."
+
+msgid "Unable to get your location. Please allow location access to see nearby services."
+msgstr "Bakka keessan argachuu hin danda'amne. Tajaajila dhihoo jiran arguuf hayyama bakka keenyaa kennaa."
+
+msgid "No nearby services found in your area."
+msgstr "Naannoo keessanii keessatti tajaajilni dhihoo jiru hin argamne."
+
+msgid "Call"
+msgstr "Bilbilaa"
+
+msgid "Directions"
+msgstr "Kallattii"
+
+msgid "View All Services"
+msgstr "Tajaajila Hunda Ilaali"
+
+msgid "Emergency Help"
+msgstr "Gargaarsa Muddamaa"
+
+msgid "Language & Privacy"
+msgstr "Afaan fi Iccitii"
+
+msgid "You can use the app in English, Amharic, or Afaan Oromo. Your data is secure and only used to provide emergency services."
+msgstr "Appii kana Ingiliffaa, Amaariffaa ykn Afaan Oromooon fayyadamuu dandeessa. Daataan kee nageenya qaba fi tajaajila muddamaaf qofa fayyadama."
+
+msgid "Choose your preferred language:"
+msgstr "Afaan filatte filadhu:"
+
+msgid "I consent to the processing of my data for emergency services"
+msgstr "Tajaajila muddamaaf daataa koo akka itti fayyadaman walii gala"
+
+msgid "Previous"
+msgstr "Kan Darbe"
+
+msgid "Next"
+msgstr "Itti Aanee"
+
+msgid "Get Started"
+msgstr "Jalqabi"
+
+msgid "In case of immediate danger, please call emergency services directly."
+msgstr "Muddamni battalumatti yoo jiraate, maaloo tajaajila muddamaa kallattiin bilbilaa."
+
+msgid "Welcome to Emergency Support"
+msgstr "Baga Deeggarsa Muddamaatti Nagaan Dhufte"
+
+msgid "Your safety matters to us"
+msgstr "Nageenya kee nuuf barbaachisaa dha"
+
+msgid "This app helps you report emergency incidents and find support services in your area. Your safety is our priority."
+msgstr "Appiin kun muddama gabaasuu fi naannoo kee keessatti tajaajila deeggaraa argachuutti si gargaara. Nageenya kee dursa nu kennineerra."
+
+msgid "Report Incidents"
+msgstr "Muddama Gabaasi"
+
+msgid "Quickly report incidents like assault, harassment, or other emergencies. Share your location to get help faster."
+msgstr "Akka rukuttaa, ijaajjii ykn muddama biroo saffisaan gabaasi. Gargaarsa saffisaan argachuuf bakka kee qooddadhu."
+
+msgid "Find Support Nearby"
+msgstr "Deeggarsa Dhihoo Barbaadi"
+
+msgid "Locate nearby police stations, hospitals, and support organizations that can help you during emergencies."
+msgstr "Yeroo muddamaa si gargaaruu danda'an buufata poolisii, hospitaala fi dhaabbata deeggaraa dhihoo jiran barbaadi."
+
+# Report form specific translations
+msgid "back"
+msgstr "Duubatti"
+
+msgid "report_emergency_incident"
+msgstr "Muddama Gabaasi"
+
+msgid "incident_type"
+msgstr "Gosa Muddamaa"
+
+msgid "select_incident_type"
+msgstr "Gosa muddamaa filadhu"
+
+msgid "kidnapping"
+msgstr "Hatuu"
+
+msgid "description"
+msgstr "Ibsa"
+
+msgid "description_optional"
+msgstr "Ibsa (Filannoo)"
+
+msgid "describe_what_happened"
+msgstr "Maal akka ta'e ibsi..."
+
+msgid "description_encrypted_notice"
+msgstr "Ibsi kee iccitii eeguuf ni dhokfama."
+
+msgid "voice_note_optional"
+msgstr "Yaadannoo Sagalee (Filannoo)"
+
+msgid "record"
+msgstr "Galmeessi"
+
+msgid "stop"
+msgstr "Dhaabbi"
+
+msgid "recording"
+msgstr "Galmee jira..."
+
+msgid "re_record"
+msgstr "Ammas galmeessi"
+
+msgid "use_recording"
+msgstr "Galmee fayyadami"
+
+msgid "uploaded"
+msgstr "Fe'ame"
+
+msgid "location"
+msgstr "Bakka"
+
+msgid "gps_location"
+msgstr "Bakka GPS"
+
+msgid "by_region"
+msgstr "Naannoo Irraan"
+
+msgid "get_my_current_location"
+msgstr "Bakka Ammaa Koo Argadhu"
+
+msgid "location_captured"
+msgstr "Bakki Qabame"
+
+msgid "select_region"
+msgstr "Naannoo Filadhu"
+
+msgid "select_zone"
+msgstr "Zoonii Filadhu"
+
+msgid "addis_ababa"
+msgstr "Finfinnee"
+
+msgid "oromia"
+msgstr "Oromiyaa"
+
+msgid "amhara"
+msgstr "Amaaraa"
+
+msgid "tigray"
+msgstr "Tigiraay"
+
+msgid "sidama"
+msgstr "Sidaamaa"
+
+msgid "submit_report"
+msgstr "Gabaasa Galchi"
+
+msgid "submitting"
+msgstr "Galchaa jira..."
+
+# Messages and notifications
+msgid "report_submitted_successfully"
+msgstr "Gabaasni kee milkaa'inaan galchame."
+
+msgid "failed_to_submit_report"
+msgstr "Gabaasa galchuun hin milkoofne. Maaloo ammas yaali."
+
+msgid "please_select_incident_type"
+msgstr "Maaloo gosa muddamaa filadhu."
+
+msgid "please_provide_location"
+msgstr "Maaloo GPS ykn filannoo naannoo fayyadamuun bakka kee kenni."
+
+msgid "could_not_access_microphone"
+msgstr "Maaykiroofooniitti dhufachuu hin danda'amne. Maaloo hayyama daawwannaa kee mirkaneessi."
+
+msgid "could_not_get_location"
+msgstr "Bakka kee argachuu hin danda'amne. Maaloo ammas yaali ykn filannoo naannoo fayyadami."
+
+msgid "geolocation_not_supported"
+msgstr "Jiiolokeeshiniin daawwannaa kana keessatti hin deeggaramu."
+
+msgid "voice_note_uploaded_successfully"
+msgstr "Yaadannoon sagalee milkaa'inaan fe'ame!"
+
+msgid "failed_to_upload_voice_recording"
+msgstr "Galmee sagalee fe'uun hin milkoofne. Maaloo ammas yaali."
+
+msgid "uploading"
+msgstr "Fe'aa jira..."
+
+# New template translations
+msgid "Emergency Support Services"
+msgstr "Tajaajila Deeggarsa Muddamaa"
+
+msgid "Back"
+msgstr "Duubatti"
+
+msgid "Support Services"
+msgstr "Tajaajila Deeggarsa"
+
+msgid "Find emergency support services near you"
+msgstr "Tajaajila deeggarsa muddamaa dhihoo kee jiran barbaadi"
+
+msgid "Using your current location"
+msgstr "Bakka ammaa kee fayyadamuun"
+
+msgid "Fetching location..."
+msgstr "Bakka barbaadaa..."
+
+msgid "Use My Location"
+msgstr "Bakka Koo Fayyadami"
+
+msgid "Select Location"
+msgstr "Bakka Filadhu"
+
+msgid "Select Region"
+msgstr "Naannoo Filadhu"
+
+msgid "Apply Location"
+msgstr "Bakka Hojiirra Olchi"
+
+msgid "Search agencies..."
+msgstr "Dhaabbata barbaadi..."
+
+msgid "Loading agencies..."
+msgstr "Dhaabbata fe'aa jira..."
+
+msgid "Get Directions"
+msgstr "Kallattii Argadhu"
+
+msgid "No services found for the selected criteria."
+msgstr "Ulaagaalee filatamaniif tajaajilni hin argamne."
+
+msgid "services found"
+msgstr "tajaajilni argame"
+
+msgid "Unable to get your current location"
+msgstr "Bakka ammaa kee argachuu hin danda'amu"
+
+msgid "Location access denied. Please allow location access or select manually."
+msgstr "Hayyamni bakka dhorkame. Maaloo hayyama bakka kennaa ykn harkaan filadhu."
+
+msgid "Searching for nearby services..."
+msgstr "Tajaajila dhihoo jiran barbaadaa..."
+
+msgid "km away"
+msgstr "kiiloo miitara fagoo"
+
+msgid "Select Zone"
+msgstr "Zoonii Filadhu"
+
+msgid "Using selected location"
+msgstr "Bakka filatame fayyadamuun"
+
+msgid "Please select at least Region and Zone"
+msgstr "Maaloo yoo xiqqaate Naannoo fi Zoonii filadhu"
+
+msgid "My Profile"
+msgstr "Piroofayila Koo"
+
+msgid "Health Services"
+msgstr "Tajaajila Fayyaa"
+
+msgid "Women & Social Affairs"
+msgstr "Dubartootii fi Dhimma Hawaasaa"
+
+msgid "Psychosocial"
+msgstr "Sammuu-Hawaasummaa"
+
+msgid "Important Informations"
+msgstr "Odeeffannoo Barbaachisoo"
+
+msgid "Any related informations"
+msgstr "Odeeffannoo walqabataa kamiyyuu"
+
+msgid "No services found for this category."
+msgstr "Gosa kanaaf tajaajilni hin argamne."
+
+# Zone names in Addis Ababa
+msgid "Addis Ketema"
+msgstr "Addis Ketema"
+
+msgid "Akaky Kaliti"
+msgstr "Akaky Kaliti"
+
+msgid "Arada"
+msgstr "Arada"
+
+msgid "Bole"
+msgstr "Bole"
+
+msgid "Gulele"
+msgstr "Gulele"
+
+msgid "Kirkos"
+msgstr "Kirkos"
+
+msgid "Zone 1"
+msgstr "Zoonii 1"
+
+msgid "Zone 2"
+msgstr "Zoonii 2"
+
+msgid "Zone 3"
+msgstr "Zoonii 3"
+
+# Administrative levels
+msgid "select_woreda"
+msgstr "Aanaa filadhu"
+
+msgid "select_kebele"
+msgstr "Gandaa filadhu"
+
+# New strings for templates
+msgid "Location"
+msgstr "Bakka"
+
+msgid "Your browser does not support the audio element."
+msgstr "Boroojii keessan sagalee dhageeffachuu hin danda'u."
+
+msgid "Submit New Report"
+msgstr "Gabaasa Haaraa Galchi"
+
+msgid "Back to Home"
+msgstr "Gara Manatti Deebi'i"
+
+msgid "Error"
+msgstr "Dogoggora"
+
+msgid "Oops! Something went wrong"
+msgstr "Yaa! Waan tokko dogoggorame!"
+
+msgid "We're sorry, but there was an error processing your request."
+msgstr "Dhiifama, gaaffii keessan adeemsisuu keessatti dogoggorri uumame."
+
+msgid "Go Back"
+msgstr "Duubatti Deebi'i"
+
+msgid "Please provide consent to continue"
+msgstr "Itti fufuuf icciitii kennaa"
+
+msgid "User"
+msgstr "Fayyadamaa"
+
+msgid "Telegram ID"
+msgstr "ID Telegram"
+
+msgid "Loading..."
+msgstr "Fe'aa jira..."
+
+msgid "Reports"
+msgstr "Gabaasota"
+
+msgid "Settings Saved"
+msgstr "Qindaa'inni Olkaawame"
+
+msgid "Your profile settings have been updated successfully."
+msgstr "Qindaa'inni piroofayila keessanii milkaa'inaan haaromfame."
+
+msgid "Settings"
+msgstr "Qindaa'ina"
+
+msgid "Preferred Language"
+msgstr "Afaan Filatamaa"
+
+msgid "Notifications"
+msgstr "Beeksisa"
+
+msgid "Receive important notifications"
+msgstr "Beeksisa barbaachisaa fudhachuu"
+
+msgid "Save Settings"
+msgstr "Qindaa'ina Olkaa'i"
+
+msgid "View All"
+msgstr "Hunda Ilaali"
+
+msgid "New"
+msgstr "Haaraa"
+
+msgid "Processing"
+msgstr "Adeemsifamaa"
+
+msgid "Resolved"
+msgstr "Furmaata Argame"
+
+msgid "Unknown"
+msgstr "Hin Beekamu"
+
+msgid "Reported on"
+msgstr "Gabaafame"
+
+# Service names and locations
+msgid "Bole Police Station"
+msgstr "Buufata Poolisii Bole"
+
+msgid "Arada Police Station"
+msgstr "Buufata Poolisii Arada"
+
+msgid "Black Lion Hospital"  
+msgstr "Hospitaala Black Lion"
+
+msgid "St. Paul's Hospital"
+msgstr "Hospitaala Qiddus Phawlos"
+
+msgid "Ethiopian Women Lawyers Association"
+msgstr "Waldaa Seerbeektotaa Dubartootaa Itoophiyaa"
+
+msgid "Amanuel Mental Specialized Hospital"
+msgstr "Hospitaala Addaa Fayyaa Sammuu Amaanueel"
+
+msgid "Legal Aid Center of Addis Ababa"
+msgstr "Giddugala Gargaarsa Seeraa Finfinnee"
+
+# Service descriptions
+msgid "Main police station in Bole area with 24/7 service"
+msgstr "Buufata poolisii guddaa naannoo Bole keessatti tajaajila 24/7 qabu"
+
+msgid "Police station serving Arada sub-city"
+msgstr "Buufata poolisii magaalaa-xiqqaa Arada tajaajilu"
+
+msgid "Major referral hospital with emergency services"
+msgstr "Hospitaala ergaa guddaa tajaajila muddamaa qabu"
+
+msgid "Millennium Medical College with 24/7 emergency care"
+msgstr "Koleejjii Yaalaa Millennium kunuunsa muddamaa 24/7 qabu"
+
+msgid "Legal aid and support for women and children"
+msgstr "Gargaarsa seeraa fi deeggarsa dubartootaa fi ijoollee"
+
+msgid "Specialized mental health hospital"
+msgstr "Hospitaala fayyaa sammuu addaa"
+
+msgid "Free legal services for vulnerable populations"
+msgstr "Tajaajila seeraa bilisaa ummata saaxilamaaf"
+
+# Addresses
+msgid "Bole Road, near Edna Mall, Addis Ababa"
+msgstr "Daandii Bole, Edna Mall bira, Finfinnee"
+
+msgid "Piazza, Churchill Ave, Addis Ababa"
+msgstr "Piazza, Churchill Ave, Finfinnee"
+
+msgid "Zambia St, Addis Ababa"
+msgstr "Daandii Zambia, Finfinnee"
+
+msgid "Swaziland St, Addis Ababa"
+msgstr "Daandii Swaziland, Finfinnee"
+
+msgid "Mexico Square, Addis Ababa"
+msgstr "Oromtoo Mexico, Finfinnee" 

@@ -1,0 +1,985 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% trans "Emergency Support Services" %}</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --success-color: #4caf50;
+            --info-color: #2196f3;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --card-bg-color: white;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--tg-theme-hint-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .back-button .material-icons {
+            margin-right: 4px;
+        }
+
+        .location-container {
+            background-color: #f5f5f5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .location-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .location-icon {
+            margin-right: 12px;
+            color: var(--primary-color);
+        }
+
+        .location-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .location-button .material-icons {
+            margin-right: 4px;
+            font-size: 18px;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            background-color: white;
+            color: var(--tg-theme-text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .filter-dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            background-color: white;
+            color: var(--tg-theme-text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .agency-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agency-header {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .agency-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .agency-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .agency-icon.health {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .agency-details {
+            flex-grow: 1;
+        }
+
+        .agency-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0 0 4px 0;
+            color: var(--tg-theme-text-color);
+        }
+
+        .agency-address {
+            color: var(--tg-theme-hint-color);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .agency-distance {
+            margin-left: auto;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--tg-theme-hint-color);
+            white-space: nowrap;
+        }
+
+        .agency-services {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .agency-actions {
+            display: flex;
+            margin-top: 12px;
+        }
+
+        .agency-action {
+            flex: 1;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            cursor: pointer;
+            color: var(--tg-theme-text-color);
+        }
+
+        .agency-action:last-child {
+            margin-right: 0;
+        }
+
+        .agency-action .material-icons {
+            margin-right: 4px;
+            font-size: 16px;
+        }
+
+        .agency-action.call {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .agency-action.directions {
+            background-color: var(--info-color);
+            color: white;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: var(--danger-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--tg-theme-hint-color);
+        }
+
+        .empty-state .material-icons {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+            color: var(--tg-theme-text-color);
+            box-sizing: border-box;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--tg-theme-hint-color);
+        }
+
+        /* Dark mode */
+        body.dark {
+            --card-bg-color: #333333;
+        }
+
+        body.dark .location-container {
+            background-color: #2a2a2a;
+        }
+
+        body.dark .dropdown,
+        body.dark .filter-dropdown {
+            background-color: #2a2a2a;
+            border-color: #444444;
+        }
+
+        body.dark .agency-card {
+            background-color: var(--card-bg-color);
+        }
+
+        body.dark .agency-button {
+            border-color: #444444;
+            color: var(--tg-theme-button-color);
+        }
+        
+        body.dark .search-box {
+            background-color: #2a2a2a;
+            border-color: #444444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="content">
+            <a href="{% url 'index_html' %}" class="back-button">
+                    <i class="material-icons">arrow_back</i> {% trans "Back" %}
+                </a>
+                
+            <h2 id="pageTitle">{% trans "Support Services" %}</h2>
+            <p class="subtitle" id="pageSubtitle">{% trans "Find emergency support services near you" %}</p>
+                
+                <div class="location-container">
+                    <div class="location-row">
+                    <i class="material-icons location-icon">my_location</i>
+                    <div style="flex-grow: 1;">
+                        <div id="currentLocation" style="margin-bottom: 4px;">{% trans "Using your current location" %}</div>
+                        <div id="locationDetails" style="font-size: 14px; color: var(--tg-theme-hint-color);">{% trans "Fetching location..." %}</div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                    <button id="useLocationBtn" class="location-button">
+                            <i class="material-icons">my_location</i> {% trans "Use My Location" %}
+                        </button>
+                    <button id="selectLocationBtn" class="location-button" style="background-color: #f0f0f0; color: var(--tg-theme-text-color);">
+                        <i class="material-icons">edit_location</i> {% trans "Select Location" %}
+                    </button>
+                </div>
+                    </div>
+                    
+            <div id="locationSelectionContainer" style="display: none;">
+                <div class="section-title">{% trans "Select Location" %}</div>
+                <select id="regionDropdown" class="dropdown">
+                    <option value="">{% trans "Select Region" %}</option>
+                    <option value="Addis Ababa">Addis Ababa</option>
+                    <option value="Oromia">Oromia</option>
+                    <option value="Amhara">Amhara</option>
+                    <option value="Tigray">Tigray</option>
+                    <option value="SNNPR">SNNPR</option>
+                    </select>
+                <select id="zoneDropdown" class="dropdown" disabled>
+                    <option value="">{% trans "Select Zone" %}</option>
+                    </select>
+                <select id="woredaDropdown" class="dropdown" disabled>
+                    <option value="">{% trans "select_woreda" %}</option>
+                        </select>
+                <select id="kebeleDropdown" class="dropdown" disabled>
+                    <option value="">{% trans "select_kebele" %}</option>
+                        </select>
+                <button id="applyLocationBtn" class="location-button" style="width: 100%; justify-content: center; margin-top: 8px;">
+                    {% trans "Apply Location" %}
+                    </button>
+                </div>
+                
+            <div class="search-container">
+                <i class="material-icons search-icon">search</i>
+                <input type="text" id="searchInput" class="search-input" placeholder="{% trans 'Search agencies...' %}">
+                    </div>
+                    
+            <div id="agenciesContainer">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div>{% trans "Loading agencies..." %}</div>
+                            </div>
+                            </div>
+            </div>
+        </div>
+
+    <script>
+        // Translation strings for JavaScript
+        const translations = {
+            'call': '{% trans "Call" %}',
+            'get_directions': '{% trans "Get Directions" %}',
+            'no_services_found': '{% trans "No services found for the selected criteria." %}',
+            'services_found': '{% trans "services found" %}',
+            'unable_to_get_location': '{% trans "Unable to get your current location" %}',
+            'location_access_denied': '{% trans "Location access denied. Please allow location access or select manually." %}',
+            'searching_nearby': '{% trans "Searching for nearby services..." %}',
+            'km_away': '{% trans "km away" %}',
+            'select_zone': '{% trans "Select Zone" %}',
+            'select_woreda': '{% trans "select_woreda" %}',
+            'select_kebele': '{% trans "select_kebele" %}',
+            'using_selected_location': '{% trans "Using selected location" %}',
+            'please_select_region_zone': '{% trans "Please select at least Region and Zone" %}'
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme based on Telegram's color scheme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                    
+                    // Apply Telegram's theme colors to CSS variables
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
+                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
+                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
+                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
+                }
+            }
+            
+            // Hard-coded agencies data
+            const agenciesData = [
+                // Police Stations
+                {
+                    id: "1",
+                    name: "Bole Police Station",
+                    type: "police",
+                    description: "Main police station in Bole area with 24/7 service",
+                    region: "Addis Ababa",
+                    zone: "Bole",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+251114670001",
+                    address: "Bole Road, near Edna Mall, Addis Ababa",
+                    latitude: 8.9936,
+                    longitude: 38.7870,
+                    distance: 1.2
+                },
+                {
+                    id: "2",
+                    name: "Arada Police Station",
+                    type: "police",
+                    description: "Police station serving Arada sub-city",
+                    region: "Addis Ababa",
+                    zone: "Arada",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+251114456789",
+                    address: "Piazza, Churchill Ave, Addis Ababa",
+                    latitude: 9.0370,
+                    longitude: 38.7510,
+                    distance: 2.5
+                },
+                {
+                    id: "3",
+                    name: "Ginci Police Station",
+                    type: "police",
+                    description: "Main police station in Ginci town, Dandi woreda",
+                    region: "Oromia",
+                    zone: "West Shewa",
+                    woreda: "Dandi",
+                    kebele: "01",
+                    phone: "+251911123456",
+                    address: "Main Street, Ginci, Dandi woreda",
+                    latitude: 9.0167,
+                    longitude: 38.0833,
+                    distance: 5.3
+                },
+                // Hospitals
+                {
+                    id: "4",
+                    name: "Black Lion Hospital",
+                    type: "hospital",
+                    description: "Major referral hospital with emergency services",
+                    region: "Addis Ababa",
+                    zone: "Kirkos",
+                    woreda: "04",
+                    kebele: "05",
+                    phone: "+251115517011",
+                    address: "Zambia St, Addis Ababa",
+                    latitude: 9.0107,
+                    longitude: 38.7476,
+                    distance: 0.8
+                },
+                {
+                    id: "5",
+                    name: "St. Paul's Hospital",
+                    type: "hospital",
+                    description: "Millennium Medical College with 24/7 emergency care",
+                    region: "Addis Ababa",
+                    zone: "Gulele",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+251115533666",
+                    address: "Swaziland St, Addis Ababa",
+                    latitude: 9.0036,
+                    longitude: 38.7468,
+                    distance: 1.5
+                },
+                {
+                    id: "6",
+                    name: "Dandi Woreda Hospital",
+                    type: "hospital",
+                    description: "Woreda level hospital with emergency services",
+                    region: "Oromia",
+                    zone: "West Shewa",
+                    woreda: "Dandi",
+                    kebele: "01",
+                    phone: "+251911456789",
+                    address: "Hospital Road, Ginci, Dandi woreda",
+                    latitude: 9.0160,
+                    longitude: 38.0850,
+                    distance: 4.2
+                },
+                // Women & Child Affairs
+                {
+                    id: "7",
+                    name: "Ethiopian Women Lawyers Association",
+                    type: "women_child_affair",
+                    description: "Legal aid and support for women and children",
+                    region: "Addis Ababa",
+                    zone: "Kirkos",
+                    woreda: "02",
+                    kebele: "03",
+                    phone: "+251115505050",
+                    address: "Kirkos, Addis Ababa",
+                    latitude: 9.0145,
+                    longitude: 38.7632,
+                    distance: 1.7
+                },
+                {
+                    id: "8",
+                    name: "Women and Children Affairs Bureau",
+                    type: "women_child_affair",
+                    description: "Government office for women and children protection",
+                    region: "Addis Ababa",
+                    zone: "Arada",
+                    woreda: "01",
+                    kebele: "02",
+                    phone: "+251115252525",
+                    address: "Arada, Addis Ababa",
+                    latitude: 9.0336,
+                    longitude: 38.7504,
+                    distance: 2.3
+                },
+                {
+                    id: "9",
+                    name: "Ginci Women Support Center",
+                    type: "women_child_affair",
+                    description: "Support center for women and children in Ginci town",
+                    region: "Oromia",
+                    zone: "West Shewa",
+                    woreda: "Dandi",
+                    kebele: "02",
+                    phone: "+251911678901",
+                    address: "Community Center, Ginci, Dandi woreda",
+                    latitude: 9.0155,
+                    longitude: 38.0835,
+                    distance: 5.1
+                },
+                // Mental Health
+                {
+                    id: "10",
+                    name: "Amanuel Mental Specialized Hospital",
+                    type: "hospital",
+                    description: "Specialized mental health hospital",
+                    region: "Addis Ababa",
+                    zone: "Addis Ketema",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+251111223344",
+                    address: "Mexico Square, Addis Ababa",
+                    latitude: 9.0382,
+                    longitude: 38.7611,
+                    distance: 3.2
+                },
+                {
+                    id: "11",
+                    name: "Ginci Mental Health Clinic",
+                    type: "hospital",
+                    description: "Mental health services in Ginci town",
+                    region: "Oromia",
+                    zone: "West Shewa",
+                    woreda: "Dandi",
+                    kebele: "03",
+                    phone: "+251911345678",
+                    address: "Health Center Road, Ginci, Dandi woreda",
+                    latitude: 9.0240,
+                    longitude: 38.2550,
+                    distance: 4.8
+                },
+                // Legal Aid
+                {
+                    id: "12",
+                    name: "Legal Aid Center of Addis Ababa",
+                    type: "legal",
+                    description: "Free legal services for vulnerable populations",
+                    region: "Addis Ababa",
+                    zone: "Kirkos",
+                    woreda: "03",
+                    kebele: "04",
+                    phone: "+251115606060",
+                    address: "Kirkos, Addis Ababa",
+                    latitude: 9.0220,
+                    longitude: 38.7705,
+                    distance: 1.9
+                },
+                {
+                    id: "13",
+                    name: "Ginci Legal Aid Clinic",
+                    type: "legal",
+                    description: "Legal aid clinic providing free services",
+                    region: "Oromia",
+                    zone: "West Shewa",
+                    woreda: "Dandi",
+                    kebele: "02",
+                    phone: "+251911567890",
+                    address: "Justice Complex, Ginci, Dandi woreda",
+                    latitude: 9.0280,
+                    longitude: 38.2590,
+                    distance: 5.5
+                }
+            ];
+            
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type');
+            
+            // Set initial filter based on URL parameter
+            if (typeParam) {
+                document.getElementById('serviceTypeSelect').value = typeParam;
+            }
+            
+            // Populate region dropdown
+            populateRegionDropdown();
+            
+            // Display agencies (filtered by type if specified in URL)
+            displayAgencies(filterAgenciesByType(agenciesData, typeParam));
+            
+            // Region selection handler
+            document.getElementById('regionDropdown').addEventListener('change', function() {
+                const region = this.value;
+                const zoneDropdown = document.getElementById('zoneDropdown');
+                
+                if (region) {
+                    // Enable zone dropdown
+                    zoneDropdown.disabled = false;
+                    
+                    // Clear existing options
+                    zoneDropdown.innerHTML = `<option value="" selected disabled>${translations.select_zone}</option>`;
+                    
+                    // Get unique zones for this region from agency data
+                    const zones = [...new Set(
+                        agenciesData
+                            .filter(agency => agency.region.toLowerCase() === region.toLowerCase())
+                            .map(agency => agency.zone)
+                    )];
+                    
+                    // Add options
+                    zones.forEach(zone => {
+                        const option = document.createElement('option');
+                        option.value = zone.toLowerCase().replace(/\s+/g, '_');
+                        option.textContent = zone;
+                        zoneDropdown.appendChild(option);
+                    });
+                } else {
+                    zoneDropdown.disabled = true;
+                }
+            });
+            
+            // Zone selection handler
+            document.getElementById('zoneDropdown').addEventListener('change', function() {
+                const region = document.getElementById('regionDropdown').value;
+                const zone = this.value;
+                const woredaDropdown = document.getElementById('woredaDropdown');
+                
+                if (zone) {
+                    // Enable woreda dropdown
+                    woredaDropdown.disabled = false;
+                    
+                    // Clear existing options
+                    woredaDropdown.innerHTML = `<option value="" selected disabled>${translations.select_woreda}</option>`;
+                    
+                    // Get unique woredas for this region and zone from agency data
+                    const woredas = [...new Set(
+                        agenciesData
+                            .filter(agency => 
+                                agency.region.toLowerCase() === region.toLowerCase() && 
+                                agency.zone.toLowerCase() === zone.toLowerCase().replace(/_/g, ' ')
+                            )
+                            .map(agency => agency.woreda)
+                    )].sort();
+                    
+                    // Add options
+                    woredas.forEach(woreda => {
+                        const option = document.createElement('option');
+                        option.value = woreda;
+                        option.textContent = woreda;
+                        woredaDropdown.appendChild(option);
+                    });
+                } else {
+                    woredaDropdown.disabled = true;
+                }
+            });
+            
+            // Woreda selection handler
+            document.getElementById('woredaDropdown').addEventListener('change', function() {
+                const region = document.getElementById('regionDropdown').value;
+                const zone = document.getElementById('zoneDropdown').value.replace(/_/g, ' ');
+                const woreda = this.value;
+                const kebeleDropdown = document.getElementById('kebeleDropdown');
+                
+                if (woreda) {
+                    // Enable kebele dropdown
+                    kebeleDropdown.disabled = false;
+                    
+                    // Clear existing options
+                    kebeleDropdown.innerHTML = `<option value="" selected disabled>${translations.select_kebele}</option>`;
+                    
+                    // Get unique kebeles for this region, zone, and woreda from agency data
+                    const kebeles = [...new Set(
+                        agenciesData
+                            .filter(agency => 
+                                agency.region.toLowerCase() === region.toLowerCase() && 
+                                agency.zone.toLowerCase() === zone.toLowerCase() &&
+                                agency.woreda === woreda
+                            )
+                            .map(agency => agency.kebele)
+                    )].sort();
+                    
+                    // Add options
+                    kebeles.forEach(kebele => {
+                        const option = document.createElement('option');
+                        option.value = kebele;
+                        option.textContent = kebele;
+                        kebeleDropdown.appendChild(option);
+                    });
+                } else {
+                    kebeleDropdown.disabled = true;
+                }
+            });
+            
+            // Service type filter handler
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const agencyCards = document.querySelectorAll('.agency-card');
+                
+                agencyCards.forEach(card => {
+                    const name = card.querySelector('.agency-name').textContent.toLowerCase();
+                    const address = card.querySelector('.agency-address').textContent.toLowerCase();
+                    
+                    if (name.includes(searchTerm) || address.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Apply location button
+            document.getElementById('applyLocationBtn').addEventListener('click', () => {
+                const region = document.getElementById('regionDropdown').value;
+                const zone = document.getElementById('zoneDropdown').value;
+                const woreda = document.getElementById('woredaDropdown').value;
+                
+                if (region && zone) {
+                    document.getElementById('currentLocation').textContent = translations.using_selected_location;
+                    document.getElementById('locationDetails').textContent = `${region}, ${zone}${woreda ? ', ' + woreda : ''}`;
+                    document.getElementById('locationSelectionContainer').style.display = 'none';
+                    
+                    // Fetch agencies by administrative division
+                    fetchAgenciesByLocation(region, zone, woreda);
+                    } else {
+                    alert(translations.please_select_region_zone);
+                }
+            });
+            
+            // Back button handler
+            document.getElementById('backButton').addEventListener('click', function() {
+                window.location.href = '/';
+            });
+            
+            // Emergency button handler
+            document.getElementById('emergencyBtn').addEventListener('click', function() {
+                window.location.href = '/report';
+            });
+        });
+        
+        // Function to populate region dropdown
+        function populateRegionDropdown() {
+            const regionSelect = document.getElementById('regionDropdown');
+            const agenciesData = getAgenciesData();
+            
+            // Get unique regions from agency data
+            const regions = [...new Set(agenciesData.map(agency => agency.region))].sort();
+            
+            // Add options
+            regions.forEach(region => {
+                const option = document.createElement('option');
+                option.value = region.toLowerCase().replace(/\s+/g, '_');
+                option.textContent = region;
+                regionSelect.appendChild(option);
+            });
+        }
+        
+        // Function to filter agencies by type
+        function filterAgenciesByType(agencies, type) {
+            if (!type || type === 'all') {
+                return agencies;
+            }
+            
+            // Map type parameter to actual type in data
+            const mappedType = type === 'health' ? 'hospital' : 
+                              type === 'women' ? 'women_child_affair' : 
+                              type === 'psychiatry' ? 'hospital' : type;
+            
+            // Special case for psychiatry (filter hospitals with mental health in description)
+            if (type === 'psychiatry') {
+                return agencies.filter(agency => 
+                    agency.type === mappedType && 
+                    (agency.description.toLowerCase().includes('mental') || 
+                     agency.description.toLowerCase().includes('psychiatric'))
+                );
+            }
+            
+            return agencies.filter(agency => agency.type === mappedType);
+        }
+        
+        // Function to filter agencies by location
+        function filterAgenciesByLocation(agencies, region, zone, woreda, kebele) {
+            let filteredAgencies = agencies;
+            
+            if (region) {
+                const regionText = document.getElementById('regionDropdown').options[document.getElementById('regionDropdown').selectedIndex].text;
+                filteredAgencies = filteredAgencies.filter(agency => 
+                    agency.region.toLowerCase() === regionText.toLowerCase()
+                );
+                
+                if (zone) {
+                    const zoneText = zone.replace(/_/g, ' ');
+                    filteredAgencies = filteredAgencies.filter(agency => 
+                        agency.zone.toLowerCase() === zoneText.toLowerCase()
+                    );
+                    
+                    if (woreda) {
+                        filteredAgencies = filteredAgencies.filter(agency => 
+                            agency.woreda === woreda
+                        );
+                        
+                        if (kebele) {
+                            filteredAgencies = filteredAgencies.filter(agency => 
+                                agency.kebele === kebele
+                            );
+                        }
+                    }
+                }
+            }
+            
+            return filteredAgencies;
+        }
+        
+        // Function to display agencies
+        function displayAgencies(agencies) {
+            const agenciesContainer = document.getElementById('agenciesContainer');
+            
+            // Clear existing content
+            agenciesContainer.innerHTML = '';
+            
+            // Check if we have any agencies
+            if (agencies.length === 0) {
+                agenciesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="material-icons">search_off</i>
+                        <p>${translations.no_services_found}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort agencies by distance
+            agencies.sort((a, b) => a.distance - b.distance);
+            
+            // Add each agency to the container
+            agencies.forEach(agency => {
+                const card = document.createElement('div');
+                card.className = 'agency-card';
+                
+                // Determine icon based on type
+                let iconClass = 'police';
+                let iconName = 'shield';
+                
+                if (agency.type === 'hospital') {
+                    iconClass = 'health';
+                    iconName = 'local_hospital';
+                } else if (agency.type === 'women_child_affair') {
+                    iconClass = 'women';
+                    iconName = 'people';
+                } else if (agency.type === 'legal') {
+                    iconClass = 'legal';
+                    iconName = 'gavel';
+                }
+                
+                card.innerHTML = `
+                    <div class="agency-header">
+                        <div class="agency-icon ${iconClass}">
+                            <i class="material-icons">${iconName}</i>
+                        </div>
+                        <div class="agency-details">
+                            <h3 class="agency-name">${agency.name}</h3>
+                            <p class="agency-address">${agency.address}</p>
+                        </div>
+                        ${agency.distance !== null && agency.distance !== undefined ? `<div class="agency-distance">${agency.distance.toFixed(1)} ${translations.km_away}</div>` : ''}
+                    </div>
+                    ${agency.services ? `<div class="agency-services">${agency.services}</div>` : ''}
+                    <div class="agency-actions">
+                        <button class="agency-action call" onclick="makeCall('${agency.phone}')">
+                            <i class="material-icons">call</i> ${translations.call}
+                        </button>
+                        <button class="agency-action directions" onclick="getDirections(${agency.latitude}, ${agency.longitude})">
+                            <i class="material-icons">directions</i> ${translations.get_directions}
+                        </button>
+                    </div>
+                `;
+                
+                agenciesContainer.appendChild(card);
+            });
+        }
+        
+        // Function to get agencies data
+        function getAgenciesData() {
+            // This would normally be fetched from an API
+            return window.agenciesData || [];
+        }
+        
+        // Utility functions
+        function makeCall(phoneNumber) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        function getDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+    </script>
+</body>
+</html> 

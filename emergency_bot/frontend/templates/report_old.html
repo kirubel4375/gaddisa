@@ -1,0 +1,889 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% trans "report_emergency_incident" %}</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --danger-color: #f44336;
+            --card-bg-color: white;
+            --input-bg-color: white;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            padding-bottom: 80px; /* Space for the submit button */
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .back-button .material-icons {
+            margin-right: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--input-bg-color);
+            color: var(--tg-theme-text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--input-bg-color);
+            color: var(--tg-theme-text-color);
+            height: 120px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color);
+            margin-top: 4px;
+        }
+
+        .voice-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .voice-button {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: var(--input-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+
+        .voice-button.record {
+            color: var(--danger-color);
+        }
+
+        .voice-button.stop {
+            color: var(--tg-theme-hint-color);
+            background-color: #f5f5f5;
+        }
+
+        .voice-button .material-icons {
+            margin-right: 8px;
+        }
+
+        .location-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+
+        .location-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--tg-theme-hint-color);
+        }
+
+        .location-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .location-content {
+            display: none;
+        }
+
+        .location-content.active {
+            display: block;
+        }
+
+        .location-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .location-button .material-icons {
+            margin-right: 8px;
+        }
+
+        .submit-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--danger-color);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-button .material-icons {
+            margin-right: 8px;
+        }
+
+        /* Dark mode styles */
+        body.dark {
+            --card-bg-color: #333333;
+            --input-bg-color: #2a2a2a;
+        }
+
+        body.dark .form-select,
+        body.dark .form-textarea {
+            background-color: var(--input-bg-color);
+            border-color: #444444;
+        }
+
+        body.dark .voice-button {
+            background-color: var(--input-bg-color);
+            border-color: #444444;
+        }
+        
+        body.dark .voice-button.record {
+            color: var(--danger-color);
+        }
+
+        body.dark .voice-button.stop {
+            color: var(--tg-theme-hint-color);
+            background-color: #222222;
+        }
+
+        body.dark .location-tab {
+            color: var(--tg-theme-hint-color);
+        }
+        
+        body.dark .location-tab.active {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <a href="{% url 'index_html' %}" class="back-button">
+                <i class="material-icons">arrow_back</i> {% trans "back" %}
+            </a>
+            
+            <h2>{% trans "report_emergency_incident" %}</h2>
+            
+            <form id="reportForm">
+                <div class="form-group">
+                    <label class="form-label" for="incidentType">{% trans "incident_type" %}</label>
+                    <select class="form-select" id="incidentType" required>
+                        <option value="" selected disabled>{% trans "select_incident_type" %}</option>
+                        <option value="assault">{% trans "Assault" %}</option>
+                        <option value="rape">{% trans "Rape" %}</option>
+                        <option value="domestic_violence">{% trans "Domestic Violence" %}</option>
+                        <option value="harassment">{% trans "Harassment" %}</option>
+                        <option value="kidnapping">{% trans "kidnapping" %}</option>
+                        <option value="other">{% trans "Other" %}</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="description">{% trans "description_optional" %}</label>
+                    <textarea class="form-textarea" id="description" placeholder="{% trans 'describe_what_happened' %}"></textarea>
+                    <div class="form-hint">{% trans "description_encrypted_notice" %}</div>
+                </div>
+                
+                <!-- Voice recording section with playback functionality -->
+                <div class="form-group">
+                    <label class="form-label">{% trans "voice_note_optional" %}</label>
+                    <div class="voice-controls">
+                        <button type="button" class="voice-button record" id="recordBtn">
+                            <i class="material-icons">mic</i> {% trans "record" %}
+                        </button>
+                        <button type="button" class="voice-button stop" id="stopBtn" disabled>
+                            <i class="material-icons">stop</i> {% trans "stop" %}
+                        </button>
+                    </div>
+                    <!-- Audio playback section -->
+                    <div id="audioPreview" style="display: none; margin-top: 12px;">
+                        <audio id="audioPlayer" controls style="width: 100%; margin-top: 8px;"></audio>
+                        <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                            <button type="button" class="voice-button" id="reRecordBtn">
+                                <i class="material-icons">refresh</i> {% trans "re_record" %}
+                            </button>
+                            <button type="button" class="voice-button" id="confirmRecordingBtn" style="background-color: #4caf50; color: white;">
+                                <i class="material-icons">check_circle</i> {% trans "use_recording" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">{% trans "location" %}</label>
+                    
+                    <div class="location-tabs">
+                        <div class="location-tab active" data-tab="gps">{% trans "gps_location" %}</div>
+                        <div class="location-tab" data-tab="region">{% trans "by_region" %}</div>
+                    </div>
+                    
+                    <div class="location-content active" id="gps-content">
+                        <button type="button" class="location-button" id="getLocationBtn">
+                            <i class="material-icons">my_location</i> {% trans "get_my_current_location" %}
+                        </button>
+                    </div>
+                    
+                    <div class="location-content" id="region-content">
+                        <select class="form-select" id="regionSelect" style="margin-bottom: 12px;">
+                            <option value="" selected disabled>{% trans "select_region" %}</option>
+                            <option value="addis_ababa">{% trans "addis_ababa" %}</option>
+                            <option value="oromia">{% trans "oromia" %}</option>
+                            <option value="amhara">{% trans "amhara" %}</option>
+                            <option value="tigray">{% trans "tigray" %}</option>
+                            <option value="sidama">{% trans "sidama" %}</option>
+                        </select>
+                        
+                        <select class="form-select" id="zoneSelect" disabled>
+                            <option value="" selected disabled>{% trans "select_zone" %}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+                <input type="hidden" id="voiceNoteUrl" name="voiceNoteUrl">
+            </form>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-button" id="submitBtn">
+        <i class="material-icons">warning</i> {% trans "submit_report" %}
+    </button>
+
+    <script>
+        // Translation strings for JavaScript
+        const translations = {
+            recording: "{% trans 'recording' %}",
+            uploaded: "{% trans 'uploaded' %}",
+            uploading: "{% trans 'uploading' %}",
+            location_captured: "{% trans 'location_captured' %}",
+            submitting: "{% trans 'submitting' %}",
+            report_submitted_successfully: "{% trans 'report_submitted_successfully' %}",
+            failed_to_submit_report: "{% trans 'failed_to_submit_report' %}",
+            please_select_incident_type: "{% trans 'please_select_incident_type' %}",
+            please_provide_location: "{% trans 'please_provide_location' %}",
+            could_not_access_microphone: "{% trans 'could_not_access_microphone' %}",
+            could_not_get_location: "{% trans 'could_not_get_location' %}",
+            geolocation_not_supported: "{% trans 'geolocation_not_supported' %}",
+            voice_note_uploaded_successfully: "{% trans 'voice_note_uploaded_successfully' %}",
+            failed_to_upload_voice_recording: "{% trans 'failed_to_upload_voice_recording' %}",
+            use_recording: "{% trans 'use_recording' %}",
+            record: "{% trans 'record' %}",
+            select_zone: "{% trans 'select_zone' %}"
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme based on Telegram's color scheme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                    
+                    // Apply Telegram's theme colors to CSS variables
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
+                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
+                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
+                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
+                    document.documentElement.style.setProperty('--input-bg-color', '#2a2a2a');
+                }
+                
+                // Store user data
+                const user = {
+                    id: tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id'),
+                    first_name: tg.initDataUnsafe?.user?.first_name || '',
+                    last_name: tg.initDataUnsafe?.user?.last_name || '',
+                    username: tg.initDataUnsafe?.user?.username || '',
+                    language: tg.initDataUnsafe?.user?.language_code || 'en'
+                };
+
+                // Current page language (set by Django)
+                const currentLanguage = '{{ LANGUAGE_CODE }}';
+                
+                // Function to get user's current language preference from backend
+                async function getUserLanguage() {
+                    try {
+                        const response = await fetch(`/api/frontend/get-user-language/?user_id=${user.id}`);
+                        const data = await response.json();
+                        if (data.success) {
+                            return data.language;
+                        } else {
+                            console.error('Failed to get user language:', data.error);
+                            return 'en';
+                        }
+                    } catch (error) {
+                        console.error('Error getting user language:', error);
+                        return 'en';
+                    }
+                }
+
+                // Function to update user language preference
+                async function updateUserLanguage(languageCode) {
+                    try {
+                        const response = await fetch('/api/frontend/update-language/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                language: languageCode
+                            })
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                            // Activate Django language for this session
+                            activateLanguage(languageCode);
+                        } else {
+                            console.error('Failed to update language:', data.error);
+                        }
+                    } catch (error) {
+                        console.error('Error updating language:', error);
+                    }
+                }
+
+                // Function to activate language in Django
+                function activateLanguage(languageCode) {
+                    // Use Django's set_language view if available, otherwise reload with language parameter
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/i18n/setlang/';
+                    
+                    // Add CSRF token
+                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+                    if (csrfToken) {
+                        const csrfInput = document.createElement('input');
+                        csrfInput.type = 'hidden';
+                        csrfInput.name = 'csrfmiddlewaretoken';
+                        csrfInput.value = csrfToken;
+                        form.appendChild(csrfInput);
+                    }
+                    
+                    // Add language input
+                    const langInput = document.createElement('input');
+                    langInput.type = 'hidden';
+                    langInput.name = 'language';
+                    langInput.value = languageCode;
+                    form.appendChild(langInput);
+                    
+                    // Add next URL
+                    const nextInput = document.createElement('input');
+                    nextInput.type = 'hidden';
+                    nextInput.name = 'next';
+                    nextInput.value = window.location.pathname + window.location.search;
+                    form.appendChild(nextInput);
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+
+                // Auto-sync language on page load
+                async function syncUserLanguage() {
+                    if (user.id) {
+                        try {
+                            // Get user's current language preference from backend
+                            const userLanguage = await getUserLanguage();
+                            
+                            // If user's language preference is different from current page language
+                            if (userLanguage && userLanguage !== currentLanguage) {
+                                console.log(`Syncing language from ${currentLanguage} to ${userLanguage}`);
+                                await updateUserLanguage(userLanguage);
+                            }
+                        } catch (error) {
+                            console.error('Error syncing user language:', error);
+                        }
+                    }
+                }
+
+                // Update user language preference if needed
+                if (user.id && user.language && user.language !== currentLanguage) {
+                    updateUserLanguage(user.language);
+                }
+
+                // Sync user language on page load
+                syncUserLanguage();
+                
+                // Tab switching
+                const tabs = document.querySelectorAll('.location-tab');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        // Remove active class from all tabs
+                        tabs.forEach(t => t.classList.remove('active'));
+                        
+                        // Add active class to clicked tab
+                        this.classList.add('active');
+                        
+                        // Hide all tab contents
+                        document.querySelectorAll('.location-content').forEach(content => {
+                            content.classList.remove('active');
+                        });
+                        
+                        // Show the selected tab content
+                        const tabId = this.getAttribute('data-tab');
+                        document.getElementById(tabId + '-content').classList.add('active');
+                    });
+                });
+                
+                // Voice recording
+                let mediaRecorder = null;
+                let audioChunks = [];
+                let audioBlob = null;
+                let audioUrl = null;
+                
+                document.getElementById('recordBtn').addEventListener('click', function() {
+                    // Request microphone access
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(stream => {
+                            mediaRecorder = new MediaRecorder(stream);
+                            
+                            // Set up event listeners before starting recording
+                            mediaRecorder.addEventListener("dataavailable", event => {
+                                audioChunks.push(event.data);
+                            });
+                            
+                            mediaRecorder.addEventListener("stop", async () => {
+                                try {
+                                    // Create audio blob and URL
+                                    audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                                    audioUrl = URL.createObjectURL(audioBlob);
+                                    
+                                    // Set up audio player
+                                    const audioPlayer = document.getElementById('audioPlayer');
+                                    audioPlayer.src = audioUrl;
+                                    
+                                    // Show audio preview section
+                                    document.getElementById('audioPreview').style.display = 'block';
+                                    
+                                    // Hide recording controls
+                                    document.getElementById('recordBtn').style.display = 'none';
+                                    document.getElementById('stopBtn').style.display = 'none';
+                                    
+                                } catch (error) {
+                                    console.error("Error processing recording:", error);
+                                    alert(translations.failed_to_upload_voice_recording);
+                                    resetRecordingUI();
+                                }
+                            });
+                            
+                            // Start recording after setting up event listeners
+                            mediaRecorder.start();
+                            
+                            // Enable stop button, disable record button
+                            document.getElementById('recordBtn').disabled = true;
+                            document.getElementById('stopBtn').disabled = false;
+                            document.getElementById('recordBtn').innerHTML = 
+                                '<i class="material-icons">mic</i> ' + translations.recording;
+                            document.getElementById('recordBtn').style.backgroundColor = '#ff9800';
+                        })
+                        .catch(error => {
+                            console.error("Error accessing microphone:", error);
+                            alert(translations.could_not_access_microphone);
+                        });
+                });
+                
+                document.getElementById('stopBtn').addEventListener('click', function() {
+                    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                        try {
+                            mediaRecorder.stop();
+                            
+                            // Stop all tracks in the stream to release the microphone
+                            if (mediaRecorder.stream) {
+                                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                            }
+                        } catch (error) {
+                            console.error("Error stopping recording:", error);
+                        }
+                    }
+                    
+                    // Enable record button, disable stop button
+                    document.getElementById('recordBtn').disabled = false;
+                    document.getElementById('stopBtn').disabled = true;
+                });
+                
+                // Re-record button handler
+                document.getElementById('reRecordBtn').addEventListener('click', function() {
+                    resetRecordingUI();
+                    
+                    // Clear previous recording data
+                    audioChunks = [];
+                    if (audioUrl) {
+                        URL.revokeObjectURL(audioUrl);
+                        audioUrl = null;
+                    }
+                    audioBlob = null;
+                    document.getElementById('voiceNoteUrl').value = '';
+                });
+                
+                // Confirm recording button handler
+                document.getElementById('confirmRecordingBtn').addEventListener('click', async function() {
+                    if (!audioBlob) {
+                        alert("No recording available. Please record again.");
+                        return;
+                    }
+                    
+                    try {
+                        // Show uploading state
+                        this.innerHTML = '<i class="material-icons">hourglass_empty</i> Uploading...';
+                        this.disabled = true;
+                        
+                        // Create a FormData object to upload the voice recording
+                        const formData = new FormData();
+                        formData.append('voice_note', audioBlob, 'voice_note.wav');
+                        
+                        // Upload the voice recording
+                        const response = await fetch('{% url "upload_voice_note" %}', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            document.getElementById('voiceNoteUrl').value = data.voice_note_url;
+                            
+                            // Show success message
+                            this.innerHTML = '<i class="material-icons">check_circle</i> Uploaded';
+                            this.style.backgroundColor = '#4caf50';
+                            
+                            // Disable re-record button
+                            document.getElementById('reRecordBtn').disabled = true;
+                            
+                            // Show a message that recording is ready
+                            alert(translations.voice_note_uploaded_successfully);
+                        } else {
+                            console.error("Error uploading voice note:", await response.text());
+                            alert(translations.failed_to_upload_voice_recording);
+                            this.innerHTML = '<i class="material-icons">check_circle</i> ' + translations.use_recording;
+                            this.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error("Error uploading voice note:", error);
+                        alert("Failed to upload voice recording. Please try again.");
+                        this.innerHTML = '<i class="material-icons">check_circle</i> Use Recording';
+                        this.disabled = false;
+                    }
+                });
+                
+                // Function to reset recording UI
+                function resetRecordingUI() {
+                    // Hide audio preview
+                    document.getElementById('audioPreview').style.display = 'none';
+                    
+                    // Show recording controls
+                    document.getElementById('recordBtn').style.display = 'block';
+                    document.getElementById('stopBtn').style.display = 'block';
+                    
+                    // Reset record button
+                    document.getElementById('recordBtn').innerHTML = '<i class="material-icons">mic</i> Record';
+                    document.getElementById('recordBtn').style.backgroundColor = '';
+                    document.getElementById('recordBtn').disabled = false;
+                    
+                    // Reset stop button
+                    document.getElementById('stopBtn').disabled = true;
+                    
+                    // Reset confirm button
+                    document.getElementById('confirmRecordingBtn').innerHTML = 
+                        '<i class="material-icons">check_circle</i> Use Recording';
+                    document.getElementById('confirmRecordingBtn').disabled = false;
+                    document.getElementById('confirmRecordingBtn').style.backgroundColor = '#4caf50';
+                    
+                    // Reset re-record button
+                    document.getElementById('reRecordBtn').disabled = false;
+                }
+                
+                // Check for saved location on page load
+                initializeSavedLocation();
+                
+                // Get location handler
+                document.getElementById('getLocationBtn').addEventListener('click', function() {
+                    requestCurrentLocation();
+                });
+                
+                // Region selection handler
+                document.getElementById('regionSelect').addEventListener('change', function() {
+                    const region = this.value;
+                    const zoneSelect = document.getElementById('zoneSelect');
+                    
+                    if (region) {
+                        // Enable zone dropdown
+                        zoneSelect.disabled = false;
+                        
+                        // Clear existing options
+                        zoneSelect.innerHTML = '<option value="" selected disabled>Select Zone</option>';
+                        
+                        // Add new options based on region
+                        if (region === 'addis_ababa') {
+                            const zones = ['Addis Ketema', 'Akaky Kaliti', 'Arada', 'Bole', 'Gulele', 'Kirkos'];
+                            zones.forEach(zone => {
+                                const option = document.createElement('option');
+                                option.value = zone.toLowerCase().replace(' ', '_');
+                                option.textContent = zone;
+                                zoneSelect.appendChild(option);
+                            });
+                        } else {
+                            // Add dummy zones for other regions
+                            ['Zone 1', 'Zone 2', 'Zone 3'].forEach(zone => {
+                                const option = document.createElement('option');
+                                option.value = zone.toLowerCase().replace(' ', '_');
+                                option.textContent = zone;
+                                zoneSelect.appendChild(option);
+                            });
+                        }
+                    } else {
+                        zoneSelect.disabled = true;
+                    }
+                });
+                
+                // Form submission
+                document.getElementById('submitBtn').addEventListener('click', function() {
+                    const incidentType = document.getElementById('incidentType').value;
+                    const description = document.getElementById('description').value;
+                    const latitude = document.getElementById('latitude').value;
+                    const longitude = document.getElementById('longitude').value;
+                    const voiceNoteUrl = document.getElementById('voiceNoteUrl').value;
+                    
+                    // Validate form
+                    if (!incidentType) {
+                        alert("Please select an incident type.");
+                        return;
+                    }
+                    
+                    if (!latitude && !longitude) {
+                        alert("Please provide your location using GPS or region selection.");
+                        return;
+                    }
+                    
+                    // Prepare data for submission
+                    const reportData = {
+                        incident_type: incidentType,
+                        description: description,
+                        latitude: parseFloat(latitude),
+                        longitude: parseFloat(longitude),
+                        voice_note_url: voiceNoteUrl,
+                        timestamp: new Date().toISOString(),
+                        telegram_id: tg ? tg.initDataUnsafe?.user?.id : null
+                    };
+                    
+                    // Show loading state
+                    const submitBtn = document.getElementById('submitBtn');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="material-icons">hourglass_empty</i> Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    // Send data to server
+                    fetch('{% url "submit_report_direct" %}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(reportData)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert("Your report has been submitted successfully.");
+                            window.location.href = '{% url "index_html" %}';
+                        } else {
+                            alert("Error submitting report: " + data.message);
+                            submitBtn.innerHTML = originalBtnText;
+                            submitBtn.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error submitting report:", error);
+                        alert("Failed to submit report. Please try again.");
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            } else {
+                console.log("WebApp initialization failed");
+            }
+        });
+
+        // Location management functions
+        async function initializeSavedLocation() {
+            const tg = window.Telegram && window.Telegram.WebApp;
+            const userId = tg?.initDataUnsafe?.user?.id;
+            
+            if (!userId) {
+                console.log('No user ID available, skipping location initialization');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/frontend/get-location-status/?user_id=${userId}`);
+                const data = await response.json();
+                
+                if (data.success && data.has_location && !data.needs_permission) {
+                    // Use saved location
+                    document.getElementById('latitude').value = data.latitude;
+                    document.getElementById('longitude').value = data.longitude;
+                    
+                    // Update button to show location is already available
+                    const locationBtn = document.getElementById('getLocationBtn');
+                    locationBtn.innerHTML = '<i class="material-icons">check_circle</i> {% trans "location_captured" %}';
+                    locationBtn.style.backgroundColor = '#4caf50';
+                    
+                    console.log('Using saved location data for report');
+                }
+            } catch (error) {
+                console.error('Error checking saved location:', error);
+            }
+        }
+
+        async function requestCurrentLocation() {
+            const tg = window.Telegram && window.Telegram.WebApp;
+            const userId = tg?.initDataUnsafe?.user?.id;
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        // Update form fields
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lng;
+                        
+                        // Save location if user ID is available
+                        if (userId) {
+                            try {
+                                const response = await fetch('/api/frontend/save-location/', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({
+                                        latitude: lat,
+                                        longitude: lng,
+                                        telegram_id: userId
+                                    })
+                                });
+                                
+                                const data = await response.json();
+                                if (data.success) {
+                                    console.log('Location saved successfully');
+                                }
+                            } catch (error) {
+                                console.error('Error saving location:', error);
+                            }
+                        }
+                        
+                        // Update button text to show success
+                        document.getElementById('getLocationBtn').innerHTML = 
+                            '<i class="material-icons">check_circle</i> {% trans "location_captured" %}';
+                        document.getElementById('getLocationBtn').style.backgroundColor = '#4caf50';
+                    },
+                    function(error) {
+                        console.error("Error getting location:", error);
+                        alert(translations.could_not_get_location);
+                    }
+                );
+            } else {
+                alert(translations.geolocation_not_supported);
+            }
+        }
+    </script>
+</body>
+</html> 

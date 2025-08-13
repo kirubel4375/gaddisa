@@ -1,0 +1,292 @@
+# English translations for Django.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-08 14:40+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: emergency_bot/settings.py:118
+msgid "English"
+msgstr "English"
+
+#: emergency_bot/settings.py:119
+msgid "Amharic"
+msgstr "Amharic"
+
+#: emergency_bot/settings.py:120
+msgid "Afaan Oromo"
+msgstr "Afaan Oromo"
+
+#: emergency_bot/frontend/templates/index.html:10
+msgid "Emergency Reporting System"
+msgstr "Emergency Reporting System"
+
+#: emergency_bot/frontend/templates/index.html:15
+msgid "Report an Emergency"
+msgstr "Report an Emergency"
+
+#: emergency_bot/frontend/templates/index.html:20
+msgid "Find Help"
+msgstr "Find Help"
+
+#: emergency_bot/reports/models.py:15
+msgid "Assault"
+msgstr "Assault"
+
+#: emergency_bot/reports/models.py:16
+msgid "Rape"
+msgstr "Rape"
+
+#: emergency_bot/reports/models.py:17
+msgid "Domestic Violence"
+msgstr "Domestic Violence"
+
+#: emergency_bot/reports/models.py:18
+msgid "Harassment"
+msgstr "Harassment"
+
+#: emergency_bot/reports/models.py:19
+msgid "Other"
+msgstr "Other" 
+
+msgid "Emergency Services"
+msgstr "Emergency Services"
+
+msgid "Police"
+msgstr "Police"
+
+msgid "Find nearby police stations"
+msgstr "Find nearby police stations"
+
+msgid "Health Facilities"
+msgstr "Health Facilities"
+
+msgid "Hospitals and clinics"
+msgstr "Hospitals and clinics"
+
+msgid "Women & Child"
+msgstr "Women & Child"
+
+msgid "Support & protection services"
+msgstr "Support & protection services"
+
+msgid "Psychiatrists"
+msgstr "Psychiatrists"
+
+msgid "Mental health support"
+msgstr "Mental health support"
+
+msgid "Marriage Council"
+msgstr "Marriage Council"
+
+msgid "Relationship support"
+msgstr "Relationship support"
+
+msgid "Legal Aid"
+msgstr "Legal Aid"
+
+msgid "Lawyers and legal support"
+msgstr "Lawyers and legal support"
+
+msgid "Nearby Services"
+msgstr "Nearby Services"
+
+msgid "Finding nearby services..."
+msgstr "Finding nearby services..."
+
+msgid "Unable to get your location. Please allow location access to see nearby services."
+msgstr "Unable to get your location. Please allow location access to see nearby services."
+
+msgid "No nearby services found in your area."
+msgstr "No nearby services found in your area."
+
+msgid "Call"
+msgstr "Call"
+
+msgid "Directions"
+msgstr "Directions"
+
+msgid "View All Services"
+msgstr "View All Services"
+
+msgid "Emergency Help"
+msgstr "Emergency Help"
+
+msgid "Language & Privacy"
+msgstr "Language & Privacy"
+
+msgid "You can use the app in English, Amharic, or Afaan Oromo. Your data is secure and only used to provide emergency services."
+msgstr "You can use the app in English, Amharic, or Afaan Oromo. Your data is secure and only used to provide emergency services."
+
+msgid "Choose your preferred language:"
+msgstr "Choose your preferred language:"
+
+msgid "I consent to the processing of my data for emergency services"
+msgstr "I consent to the processing of my data for emergency services"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Get Started"
+msgstr "Get Started"
+
+msgid "In case of immediate danger, please call emergency services directly."
+msgstr "In case of immediate danger, please call emergency services directly."
+
+msgid "Welcome to Emergency Support"
+msgstr "Welcome to Emergency Support"
+
+msgid "Your safety matters to us"
+msgstr "Your safety matters to us"
+
+msgid "This app helps you report emergency incidents and find support services in your area. Your safety is our priority."
+msgstr "This app helps you report emergency incidents and find support services in your area. Your safety is our priority."
+
+msgid "Report Incidents"
+msgstr "Report Incidents"
+
+msgid "Quickly report incidents like assault, harassment, or other emergencies. Share your location to get help faster."
+msgstr "Quickly report incidents like assault, harassment, or other emergencies. Share your location to get help faster."
+
+msgid "Find Support Nearby"
+msgstr "Find Support Nearby"
+
+msgid "Locate nearby police stations, hospitals, and support organizations that can help you during emergencies."
+msgstr "Locate nearby police stations, hospitals, and support organizations that can help you during emergencies."
+
+# Report form specific translations
+msgid "back"
+msgstr "Back"
+
+msgid "report_emergency_incident"
+msgstr "Report Emergency Incident"
+
+msgid "incident_type"
+msgstr "Incident Type"
+
+msgid "select_incident_type"
+msgstr "Select incident type"
+
+msgid "kidnapping"
+msgstr "Kidnapping"
+
+msgid "description"
+msgstr "Description"
+
+msgid "description_optional"
+msgstr "Description (Optional)"
+
+msgid "describe_what_happened"
+msgstr "Describe what happened..."
+
+msgid "description_encrypted_notice"
+msgstr "Your description will be encrypted for privacy."
+
+msgid "voice_note_optional"
+msgstr "Voice Note (Optional)"
+
+msgid "record"
+msgstr "Record"
+
+msgid "stop"
+msgstr "Stop"
+
+msgid "recording"
+msgstr "Recording..."
+
+msgid "re_record"
+msgstr "Re-record"
+
+msgid "use_recording"
+msgstr "Use Recording"
+
+msgid "uploaded"
+msgstr "Uploaded"
+
+msgid "location"
+msgstr "Location"
+
+msgid "gps_location"
+msgstr "GPS Location"
+
+msgid "by_region"
+msgstr "By Region"
+
+msgid "get_my_current_location"
+msgstr "Get My Current Location"
+
+msgid "location_captured"
+msgstr "Location Captured"
+
+msgid "select_region"
+msgstr "Select Region"
+
+msgid "select_zone"
+msgstr "Select Zone"
+
+msgid "addis_ababa"
+msgstr "Addis Ababa"
+
+msgid "oromia"
+msgstr "Oromia"
+
+msgid "amhara"
+msgstr "Amhara"
+
+msgid "tigray"
+msgstr "Tigray"
+
+msgid "sidama"
+msgstr "Sidama"
+
+msgid "submit_report"
+msgstr "Submit Report"
+
+msgid "submitting"
+msgstr "Submitting..."
+
+# Messages and notifications
+msgid "report_submitted_successfully"
+msgstr "Your report has been submitted successfully."
+
+msgid "failed_to_submit_report"
+msgstr "Failed to submit report. Please try again."
+
+msgid "please_select_incident_type"
+msgstr "Please select an incident type."
+
+msgid "please_provide_location"
+msgstr "Please provide your location using GPS or region selection."
+
+msgid "could_not_access_microphone"
+msgstr "Could not access microphone. Please check your browser permissions."
+
+msgid "could_not_get_location"
+msgstr "Could not get your location. Please try again or use the region selection."
+
+msgid "geolocation_not_supported"
+msgstr "Geolocation is not supported by this browser."
+
+msgid "voice_note_uploaded_successfully"
+msgstr "Voice note uploaded successfully!"
+
+msgid "failed_to_upload_voice_recording"
+msgstr "Failed to upload voice recording. Please try again."
+
+msgid "uploading"
+msgstr "Uploading..." 

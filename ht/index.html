@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Emergency Reporting System</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --success-color: #4caf50;
+            --info-color: #2196f3;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .service-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .service-icon.health {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .service-icon.women {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .service-icon.psychiatry {
+            background-color: #00bcd4;
+            color: white;
+        }
+
+        .service-icon.marriage {
+            background-color: #ffb300;
+            color: white;
+        }
+
+        .service-icon.legal {
+            background-color: #757575;
+            color: white;
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: var(--tg-theme-hint-color);
+            margin: 0;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .emergency-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #f44336;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emergency-button .material-icons {
+            margin-right: 8px;
+        }
+
+        .material-icons {
+            font-size: 24px;
+        }
+
+        /* Form-specific styles will be added in separate files */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main-screen">
+            <div class="content">
+                <h2>Emergency Services</h2>
+                
+                <div class="service-grid">
+                    <div class="service-card" id="policeBtn">
+                        <div class="service-icon police">
+                            <i class="material-icons">shield</i>
+                        </div>
+                        <div class="service-title">Police</div>
+                        <p class="service-desc">Find nearby police stations</p>
+                    </div>
+                    
+                    <div class="service-card" id="healthBtn">
+                        <div class="service-icon health">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="service-title">Health Facilities</div>
+                        <p class="service-desc">Hospitals and clinics</p>
+                    </div>
+                    
+                    <div class="service-card" id="womenBtn">
+                        <div class="service-icon women">
+                            <i class="material-icons">people</i>
+                        </div>
+                        <div class="service-title">Women & Child</div>
+                        <p class="service-desc">Support & protection services</p>
+                    </div>
+                    
+                    <div class="service-card" id="psychiatryBtn">
+                        <div class="service-icon psychiatry">
+                            <i class="material-icons">psychology</i>
+                        </div>
+                        <div class="service-title">Psychiatrists</div>
+                        <p class="service-desc">Mental health support</p>
+                    </div>
+                    
+                    <div class="service-card" id="marriageBtn">
+                        <div class="service-icon marriage">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="service-title">Marriage Council</div>
+                        <p class="service-desc">Relationship support</p>
+                    </div>
+                    
+                    <div class="service-card" id="legalBtn">
+                        <div class="service-icon legal">
+                            <i class="material-icons">gavel</i>
+                        </div>
+                        <div class="service-title">Legal Aid</div>
+                        <p class="service-desc">Lawyers and legal support</p>
+                    </div>
+                </div>
+                
+                <!-- Nearby Services Section -->
+                <div class="nearby-services-section" id="nearbyServicesSection" style="margin-top: 30px; display: none;">
+                    <h3 style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
+                        <i class="material-icons" style="margin-right: 8px;">location_on</i>
+                        Nearby Services
+                    </h3>
+                    <div id="nearbyServicesList" style="margin-bottom: 80px;">
+                        <div class="loading-indicator" style="text-align: center; padding: 20px;">
+                            <div style="width: 40px; height: 40px; border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-color); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+                            <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">Finding nearby services...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="emergency-button" id="emergencyBtn">
+        <i class="material-icons">warning</i> Emergency Help
+    </button>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .nearby-service-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-type-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .service-type-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+        
+        .service-type-icon.hospital {
+            background-color: #e53935;
+            color: white;
+        }
+        
+        .service-info {
+            flex-grow: 1;
+        }
+        
+        .service-name {
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            font-size: 16px;
+        }
+        
+        .service-address {
+            margin: 0;
+            color: var(--tg-theme-hint-color);
+            font-size: 14px;
+        }
+        
+        .service-distance {
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+        
+        .service-actions {
+            display: flex;
+            margin-top: 8px;
+        }
+        
+        .service-action-btn {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .service-action-btn i {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+        
+        body.dark .nearby-service-card {
+            background-color: #333333;
+        }
+        
+        body.dark .service-action-btn {
+            border-color: #444444;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                }
+                
+                // Add click event listeners
+                document.getElementById('policeBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=police';
+                });
+                
+                document.getElementById('healthBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=health';
+                });
+                
+                document.getElementById('womenBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=women';
+                });
+                
+                document.getElementById('psychiatryBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=psychiatry';
+                });
+                
+                document.getElementById('marriageBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=marriage';
+                });
+                
+                document.getElementById('legalBtn').addEventListener('click', function() {
+                    window.location.href = 'agencies.html?type=legal';
+                });
+                
+                document.getElementById('emergencyBtn').addEventListener('click', function() {
+                    window.location.href = 'report.html';
+                });
+                
+                // Get nearby services if geolocation is available
+                if (navigator.geolocation) {
+                    // Show the nearby services section
+                    document.getElementById('nearbyServicesSection').style.display = 'block';
+                    
+                    // Try to get location
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        // Fetch nearby services
+                        fetchNearbyServices(lat, lng);
+                    }, function(error) {
+                        // Error getting location
+                        const nearbyServicesList = document.getElementById('nearbyServicesList');
+                        nearbyServicesList.innerHTML = `
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">location_off</i>
+                                <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                                    Unable to get your location. Please allow location access to see nearby services.
+                                </p>
+                            </div>
+                        `;
+                    });
+                }
+            } else {
+                console.log("WebApp initialization failed");
+            }
+        });
+        
+        // Function to fetch nearby services
+        function fetchNearbyServices(lat, lng) {
+            // In a real app, this would be an API call
+            // For now, we'll use our hardcoded data
+            
+            // Hardcoded agency data from agencies_addis_ababa.json
+            const agenciesData = [
+                {
+                    id: "1a1a1a1a-0000-0000-0000-000000000001",
+                    name: "Bole Police Station",
+                    type: "police",
+                    description: "Main police station in Bole.",
+                    region: "Addis Ababa",
+                    zone: "Bole",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+251114670001",
+                    address: "Bole Road, near Edna Mall, Addis Ababa",
+                    latitude: 8.9936,
+                    longitude: 38.7870,
+                    services: "Law enforcement, emergency response"
+                },
+                {
+                    id: "1a1a1a1a-0000-0000-0000-000000000003",
+                    name: "Bole General Hospital",
+                    type: "hospital",
+                    description: "Major hospital serving Bole area.",
+                    region: "Addis Ababa",
+                    zone: "Bole",
+                    woreda: "04",
+                    kebele: "05",
+                    phone: "+251114670003",
+                    address: "Bole Medhanialem, Addis Ababa",
+                    latitude: 8.9950,
+                    longitude: 38.7800,
+                    services: "Emergency, surgery, maternity"
+                },
+                {
+                    id: "2b2b2b2b-0000-0000-0000-000000000001",
+                    name: "Arada Police Station",
+                    type: "police",
+                    description: "Main police station in Arada.",
+                    region: "Addis Ababa",
+                    zone: "Arada",
+                    woreda: "01",
+                    kebele: "01",
+                    phone: "+25111230001",
+                    address: "Piazza, Churchill Ave, Addis Ababa",
+                    latitude: 9.0370,
+                    longitude: 38.7510,
+                    services: "Law enforcement, emergency response"
+                },
+                {
+                    id: "4d4d4d4d-0000-0000-0000-000000000001",
+                    name: "Adama Police Department",
+                    type: "police",
+                    description: "Main police department in Adama city.",
+                    region: "Oromia",
+                    zone: "East Shewa",
+                    woreda: "Adama",
+                    kebele: "01",
+                    phone: "+251221110511",
+                    address: "Adama, Oromia",
+                    latitude: 8.5400,
+                    longitude: 39.2700,
+                    services: "Law enforcement, emergency response"
+                },
+                {
+                    id: "4d4d4d4d-0000-0000-0000-000000000004",
+                    name: "Jimma University Specialized Hospital",
+                    type: "hospital",
+                    description: "Major teaching and referral hospital in Jimma.",
+                    region: "Oromia",
+                    zone: "Jimma",
+                    woreda: "Jimma",
+                    kebele: "01",
+                    phone: "+251471111458",
+                    address: "Jimma University, Jimma, Oromia",
+                    latitude: 7.6700,
+                    longitude: 36.8300,
+                    services: "Emergency, surgery, specialized care, teaching"
+                }
+            ];
+            
+            // Calculate distance for each agency
+            const agenciesWithDistance = agenciesData.map(agency => {
+                const distance = calculateDistance(lat, lng, agency.latitude, agency.longitude);
+                return { ...agency, distance };
+            });
+            
+            // Sort by distance
+            agenciesWithDistance.sort((a, b) => a.distance - b.distance);
+            
+            // Take only the closest 3 agencies
+            const nearbyAgencies = agenciesWithDistance.slice(0, 3);
+            
+            // Display the nearby agencies
+            displayNearbyServices(nearbyAgencies);
+        }
+        
+        // Function to calculate distance between two points using Haversine formula
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the earth in km
+            const dLat = deg2rad(lat2 - lat1);
+            const dLon = deg2rad(lon2 - lon1);
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2); 
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            const distance = R * c; // Distance in km
+            return distance;
+        }
+        
+        function deg2rad(deg) {
+            return deg * (Math.PI/180);
+        }
+        
+        // Function to display nearby services
+        function displayNearbyServices(agencies) {
+            const nearbyServicesList = document.getElementById('nearbyServicesList');
+            
+            // Clear loading indicator
+            nearbyServicesList.innerHTML = '';
+            
+            // Check if we have any agencies
+            if (agencies.length === 0) {
+                nearbyServicesList.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
+                        <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                            No nearby services found in your area.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Add each agency to the list
+            agencies.forEach(agency => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'nearby-service-card';
+                
+                // Determine icon based on type
+                const iconClass = agency.type === 'police' ? 'police' : 'hospital';
+                const iconName = agency.type === 'police' ? 'shield' : 'local_hospital';
+                
+                serviceCard.innerHTML = `
+                    <div class="service-type-icon ${iconClass}">
+                        <i class="material-icons">${iconName}</i>
+                    </div>
+                    <div class="service-info">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <h4 class="service-name">${agency.name}</h4>
+                            <span class="service-distance">${agency.distance.toFixed(1)} km</span>
+                        </div>
+                        <p class="service-address">${agency.address}</p>
+                        <div class="service-actions">
+                            <button class="service-action-btn" onclick="makeCall('${agency.phone}')">
+                                <i class="material-icons">call</i> Call
+                            </button>
+                            <button class="service-action-btn" onclick="getDirections(${agency.latitude}, ${agency.longitude})">
+                                <i class="material-icons">directions</i> Directions
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                nearbyServicesList.appendChild(serviceCard);
+            });
+            
+            // Add a "View All" button
+            const viewAllBtn = document.createElement('div');
+            viewAllBtn.style.textAlign = 'center';
+            viewAllBtn.style.marginTop = '16px';
+            viewAllBtn.innerHTML = `
+                <button onclick="window.location.href='agencies.html'" style="
+                    background-color: var(--primary-color);
+                    color: white;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 8px 16px;
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    margin: 0 auto;
+                    cursor: pointer;
+                ">
+                    <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
+                    View All Services
+                </button>
+            `;
+            nearbyServicesList.appendChild(viewAllBtn);
+        }
+        
+        // Utility functions
+        function makeCall(phoneNumber) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        function getDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+    </script>
+</body>
+</html> 

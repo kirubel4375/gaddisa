@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Emergency Reporting System" %}{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+    .service-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+    .service-card {
+        background-color: var(--card-bg-color, white);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        color: white;
+    }
+
+    .service-icon.police { background-color: #2196f3; }
+    .service-icon.health { background-color: #e53935; }
+    .service-icon.women { background-color: #4caf50; }
+    .service-icon.psychiatry { background-color: #00bcd4; }
+    .service-icon.marriage { background-color: #ffb300; }
+    .service-icon.legal { background-color: #757575; }
+
+    .service-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .service-desc {
+        font-size: 14px;
+        color: var(--tg-theme-hint-color, #999);
+        margin: 0;
+    }
+
+    .emergency-button {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #f44336;
+        color: white;
+        padding: 16px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .emergency-button .material-icons {
+        margin-right: 8px;
+    }
+
+    .nearby-services-section {
+        margin-top: 30px;
+        margin-bottom: 80px;
+    }
+
+    .nearby-service-card {
+        background-color: var(--card-bg-color, white);
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 16px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .service-type-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        flex-shrink: 0;
+        color: white;
+    }
+
+    .service-type-icon.police { background-color: #2196f3; }
+    .service-type-icon.hospital { background-color: #e53935; }
+
+    .service-info {
+        flex-grow: 1;
+    }
+
+    .service-name {
+        font-weight: 600;
+        margin: 0 0 4px 0;
+        font-size: 16px;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .service-address {
+        margin: 0;
+        color: var(--tg-theme-hint-color, #999);
+        font-size: 14px;
+    }
+
+    .service-distance {
+        font-size: 14px;
+        font-weight: 500;
+        margin-left: 8px;
+        white-space: nowrap;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .service-actions {
+        display: flex;
+        margin-top: 8px;
+    }
+
+    .service-action-btn {
+        background: none;
+        border: 1px solid #ddd;
+        border-radius: 16px;
+        padding: 4px 12px;
+        font-size: 12px;
+        color: var(--primary-color, #007aff);
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .service-action-btn i {
+        font-size: 16px;
+        margin-right: 4px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Dark mode adaptations */
+    body.dark .service-card,
+    body.dark .nearby-service-card {
+        background-color: #333333;
+    }
+
+    body.dark .service-desc,
+    body.dark .service-address {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    body.dark .service-action-btn {
+        border-color: #444444;
+        color: var(--tg-theme-button-color, #50a8eb);
+    }
+
+    /* Language selector styling */
+    .language-selector select {
+        background-color: var(--tg-theme-secondary-bg-color, #f8f9fa);
+        border: 1px solid var(--tg-theme-hint-color, #dee2e6);
+        color: var(--tg-theme-text-color, #212529);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 14px;
+        min-width: 120px;
+    }
+
+    .language-selector select:focus {
+        outline: none;
+        border-color: var(--tg-theme-button-color, #007aff);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+    }
+
+    body.dark .language-selector select {
+        background-color: #333333;
+        border-color: #444444;
+        color: white;
+    }
+
+    body.dark .language-selector select:focus {
+        border-color: var(--tg-theme-button-color, #50a8eb);
+        box-shadow: 0 0 0 2px rgba(80, 168, 235, 0.2);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-3">
+    <!-- Language Selector -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">{% trans "Emergency Services" %}</h2>
+        <div class="language-selector">
+            <select id="languageSelect" class="form-select form-select-sm" style="width: auto;">
+                <option value="en">English</option>
+                <option value="am">አማርኛ</option>
+                <option value="om">Afaan Oromo</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="service-grid">
+        <div class="service-card" id="policeBtn">
+            <div class="service-icon police">
+                <i class="material-icons">shield</i>
+            </div>
+            <div class="service-title">{% trans "Police" %}</div>
+            <p class="service-desc">{% trans "Find nearby police stations" %}</p>
+        </div>
+        
+        <div class="service-card" id="healthBtn">
+            <div class="service-icon health">
+                <i class="material-icons">local_hospital</i>
+            </div>
+            <div class="service-title">{% trans "Health Services" %}</div>
+            <p class="service-desc">{% trans "Hospitals and clinics" %}</p>
+        </div>
+        
+        <div class="service-card" id="womenBtn">
+            <div class="service-icon women">
+                <i class="material-icons">people</i>
+            </div>
+            <div class="service-title">{% trans "Women & Social Affairs" %}</div>
+            <p class="service-desc">{% trans "Support & protection services" %}</p>
+        </div>
+        
+        <div class="service-card" id="psychiatryBtn">
+            <div class="service-icon psychiatry">
+                <i class="material-icons">psychology</i>
+            </div>
+            <div class="service-title">{% trans "Psychosocial" %}</div>
+            <p class="service-desc">{% trans "Mental health support" %}</p>
+        </div>
+        
+        <div class="service-card" id="marriageBtn">
+            <div class="service-icon marriage">
+                <i class="material-icons">favorite</i>
+            </div>
+            <div class="service-title">{% trans "Important Informations" %}</div>
+            <p class="service-desc">{% trans "Any related informations" %}</p>
+        </div>
+        
+        <div class="service-card" id="legalBtn">
+            <div class="service-icon legal">
+                <i class="material-icons">gavel</i>
+            </div>
+            <div class="service-title">{% trans "Legal Aid" %}</div>
+            <p class="service-desc">{% trans "Lawyers and legal support" %}</p>
+        </div>
+    </div>
+    
+    <!-- Nearby Services Section -->
+    <div class="nearby-services-section" id="nearbyServicesSection" style="display: none;">
+        <h3 style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
+            <i class="material-icons" style="margin-right: 8px;">location_on</i>
+            {% trans "Nearby Services" %}
+        </h3>
+        <div id="nearbyServicesList">
+            <div class="loading-indicator" style="text-align: center; padding: 20px;">
+                <div style="width: 40px; height: 40px; border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-color, #007aff); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 10px; color: var(--tg-theme-hint-color, #999);">{% trans "Finding nearby services..." %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="emergency-button" id="emergencyBtn">
+    <i class="material-icons">warning</i> {% trans "Emergency Help" %}
+</button>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Translation strings for JavaScript
+const translations = {
+    no_services_category: "{% trans 'No services found for this category.' %}",
+    km_away: "{% trans 'km away' %}",
+    call: "{% trans 'Call' %}",
+    directions: "{% trans 'Directions' %}",
+    view_all_services: "{% trans 'View All Services' %}",
+    // Service names
+    bole_police: "{% trans 'Bole Police Station' %}",
+    arada_police: "{% trans 'Arada Police Station' %}",
+    black_lion_hospital: "{% trans 'Black Lion Hospital' %}",
+    st_pauls_hospital: "{% trans 'St. Paul Hospital' %}",
+    women_lawyers_assoc: "{% trans 'Ethiopian Women Lawyers Association' %}",
+    amanuel_hospital: "{% trans 'Amanuel Mental Specialized Hospital' %}",
+    legal_aid_center: "{% trans 'Legal Aid Center of Addis Ababa' %}",
+    // Service descriptions
+    bole_police_desc: "{% trans 'Main police station in Bole area with 24/7 service' %}",
+    arada_police_desc: "{% trans 'Police station serving Arada sub-city' %}",
+    black_lion_desc: "{% trans 'Major referral hospital with emergency services' %}",
+    st_pauls_desc: "{% trans 'Millennium Medical College with 24/7 emergency care' %}",
+    women_lawyers_desc: "{% trans 'Legal aid and support for women and children' %}",
+    amanuel_desc: "{% trans 'Specialized mental health hospital' %}",
+    legal_aid_desc: "{% trans 'Free legal services for vulnerable populations' %}",
+    // Addresses
+    bole_address: "{% trans 'Bole Road, near Edna Mall, Addis Ababa' %}",
+    arada_address: "{% trans 'Piazza, Churchill Ave, Addis Ababa' %}",
+    black_lion_address: "{% trans 'Zambia St, Addis Ababa' %}",
+    st_pauls_address: "{% trans 'Swaziland St, Addis Ababa' %}",
+    women_lawyers_address: "{% trans 'Kirkos, Addis Ababa' %}",
+    amanuel_address: "{% trans 'Mexico Square, Addis Ababa' %}",
+    legal_aid_address: "{% trans 'Kirkos, Addis Ababa' %}"
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize language selector
+    initializeLanguageSelector();
+    
+    // Service selection handlers
+    document.getElementById('policeBtn').addEventListener('click', () => showNearbyServices('police'));
+    document.getElementById('healthBtn').addEventListener('click', () => showNearbyServices('hospital'));
+    document.getElementById('womenBtn').addEventListener('click', () => showNearbyServices('women'));
+    document.getElementById('psychiatryBtn').addEventListener('click', () => showNearbyServices('psychiatry'));
+    document.getElementById('marriageBtn').addEventListener('click', () => showNearbyServices('marriage'));
+    document.getElementById('legalBtn').addEventListener('click', () => showNearbyServices('legal'));
+    
+    document.getElementById('emergencyBtn').addEventListener('click', function() {
+        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+        window.location.href = `{% url "report_html" %}${userId ? '?user_id=' + userId : ''}`;
+    });
+    
+    // Translatable services data using translation strings
+    const servicesData = {
+        'police': [
+            {
+                id: "1",
+                name: translations.bole_police,
+                type: "police",
+                description: translations.bole_police_desc,
+                phone: "+251114670001",
+                address: translations.bole_address,
+                distance: 1.2
+            },
+            {
+                id: "2",
+                name: translations.arada_police,
+                type: "police",
+                description: translations.arada_police_desc,
+                phone: "+251114456789",
+                address: translations.arada_address,
+                distance: 2.5
+            }
+        ],
+        'hospital': [
+            {
+                id: "4",
+                name: translations.black_lion_hospital,
+                type: "hospital",
+                description: translations.black_lion_desc,
+                phone: "+251115517011",
+                address: translations.black_lion_address,
+                distance: 0.8
+            },
+            {
+                id: "5",
+                name: translations.st_pauls_hospital,
+                type: "hospital",
+                description: translations.st_pauls_desc,
+                phone: "+251115533666",
+                address: translations.st_pauls_address,
+                distance: 1.5
+            }
+        ],
+        'women': [
+            {
+                id: "7",
+                name: translations.women_lawyers_assoc,
+                type: "women_child_affair",
+                description: translations.women_lawyers_desc,
+                phone: "+251115505050",
+                address: translations.women_lawyers_address,
+                distance: 1.7
+            }
+        ],
+        'psychiatry': [
+            {
+                id: "10",
+                name: translations.amanuel_hospital,
+                type: "hospital",
+                description: translations.amanuel_desc,
+                phone: "+251111223344",
+                address: translations.amanuel_address,
+                distance: 3.2
+            }
+        ],
+        'legal': [
+            {
+                id: "12",
+                name: translations.legal_aid_center,
+                type: "legal",
+                description: translations.legal_aid_desc,
+                phone: "+251115606060",
+                address: translations.legal_aid_address,
+                distance: 1.9
+            }
+        ]
+    };
+    
+    function showNearbyServices(serviceType) {
+        document.getElementById('nearbyServicesSection').style.display = 'block';
+        const nearbyServicesList = document.getElementById('nearbyServicesList');
+        nearbyServicesList.innerHTML = '';
+        
+        const services = servicesData[serviceType] || [];
+        
+        if (services.length === 0) {
+            nearbyServicesList.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
+                    <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                        ${translations.no_services_category}
+                    </p>
+                </div>
+            `;
+            return;
+        }
+        
+        services.sort((a, b) => a.distance - b.distance);
+        
+        services.forEach(service => {
+            const serviceCard = document.createElement('div');
+            serviceCard.className = 'nearby-service-card';
+            
+            const iconClass = service.type === 'police' ? 'police' : 'hospital';
+            const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
+            
+            serviceCard.innerHTML = `
+                <div class="service-type-icon ${iconClass}">
+                    <i class="material-icons">${iconName}</i>
+                </div>
+                <div class="service-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h4 class="service-name">${service.name}</h4>
+                        <span class="service-distance">${service.distance.toFixed(1)} ${translations.km_away}</span>
+                    </div>
+                    <p class="service-address">${service.address}</p>
+                    <div class="service-actions">
+                        <button class="service-action-btn" onclick="makeCall('${service.phone}')">
+                            <i class="material-icons">call</i> ${translations.call}
+                        </button>
+                        <button class="service-action-btn" onclick="getDirections(${service.latitude || 9.0107}, ${service.longitude || 38.7476})">
+                            <i class="material-icons">directions</i> ${translations.directions}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            nearbyServicesList.appendChild(serviceCard);
+        });
+        
+        const viewAllBtn = document.createElement('div');
+        viewAllBtn.style.textAlign = 'center';
+        viewAllBtn.style.marginTop = '16px';
+        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+        viewAllBtn.innerHTML = `
+            <button onclick="window.location.href='{% url "agencies_html" %}?type=${serviceType}${userId ? '&user_id=' + userId : ''}'" style="
+                background-color: var(--primary-color, #007aff);
+                color: white;
+                border: none;
+                border-radius: 20px;
+                padding: 8px 16px;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+                cursor: pointer;
+            ">
+                <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
+                ${translations.view_all_services}
+            </button>
+        `;
+        nearbyServicesList.appendChild(viewAllBtn);
+        
+        document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Utility functions
+    window.makeCall = function(phoneNumber) {
+        window.location.href = `tel:${phoneNumber}`;
+    };
+    
+    window.getDirections = function(lat, lng) {
+        window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+    };
+    
+    // Language selector functions
+    function initializeLanguageSelector() {
+        const languageSelect = document.getElementById('languageSelect');
+        
+        // Set current language from Django context or get from user profile
+        languageSelect.value = currentLanguage || 'en';
+        
+        // Also try to get from user profile to make sure they match
+        if (user.id) {
+            getUserLanguage().then(userLanguage => {
+                languageSelect.value = userLanguage || 'en';
+            }).catch(error => {
+                console.log('Could not fetch user language, using current page language');
+            });
+        }
+        
+        // Add change event listener
+        languageSelect.addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+    }
+    
+    function changeLanguage(language) {
+        // Show loading indicator
+        const languageSelect = document.getElementById('languageSelect');
+        const originalValue = languageSelect.value;
+        languageSelect.disabled = true;
+        
+        // Use the existing updateUserLanguage function from base.html
+        // which handles both updating the backend and activating the language
+        updateUserLanguage(language);
+        
+        // The activateLanguage function in base.html will reload the page automatically
+        // So we don't need to handle success/error here as the page will change
+    }
+});
+</script>
+{% endblock %}

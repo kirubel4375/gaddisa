@@ -1,0 +1,828 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% trans "Emergency Reporting System" %}</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --success-color: #4caf50;
+            --info-color: #2196f3;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --card-bg-color: white;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .service-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .service-icon.health {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .service-icon.women {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .service-icon.psychiatry {
+            background-color: #00bcd4;
+            color: white;
+        }
+
+        .service-icon.marriage {
+            background-color: #ffb300;
+            color: white;
+        }
+
+        .service-icon.legal {
+            background-color: #757575;
+            color: white;
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--tg-theme-text-color);
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: var(--tg-theme-hint-color);
+            margin: 0;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .emergency-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #f44336;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emergency-button .material-icons {
+            margin-right: 8px;
+        }
+
+        .material-icons {
+            font-size: 24px;
+        }
+
+        .nearby-service-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-type-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .service-type-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+        
+        .service-type-icon.hospital {
+            background-color: #e53935;
+            color: white;
+        }
+        
+        .service-info {
+            flex-grow: 1;
+        }
+        
+        .service-name {
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            color: var(--tg-theme-text-color);
+        }
+        
+        .service-address {
+            margin: 0;
+            color: var(--tg-theme-hint-color);
+            font-size: 14px;
+        }
+        
+        .service-distance {
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 8px;
+            white-space: nowrap;
+            color: var(--tg-theme-text-color);
+        }
+        
+        .service-actions {
+            display: flex;
+            margin-top: 8px;
+        }
+        
+        .service-action-btn {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .service-action-btn i {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+
+        /* Dark mode styles */
+        body.dark {
+            --card-bg-color: #333333;
+        }
+        
+        body.dark .service-card {
+            background-color: var(--card-bg-color);
+        }
+        
+        body.dark .service-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        body.dark .nearby-service-card {
+            background-color: #333333;
+        }
+        
+        body.dark .service-action-btn {
+            border-color: #444444;
+            color: var(--tg-theme-button-color);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main-screen">
+            <div class="content">
+                <h2>{% trans "Emergency Services" %}</h2>
+                
+                <div class="service-grid">
+                    <div class="service-card" id="policeBtn">
+                        <div class="service-icon police">
+                            <i class="material-icons">shield</i>
+                        </div>
+                        <div class="service-title">{% trans "Police" %}</div>
+                        <p class="service-desc">{% trans "Find nearby police stations" %}</p>
+                    </div>
+                    
+                    <div class="service-card" id="healthBtn">
+                        <div class="service-icon health">
+                            <i class="material-icons">local_hospital</i>
+                        </div>
+                        <div class="service-title">{% trans "Health Services" %}</div>
+                        <p class="service-desc">{% trans "Hospitals and clinics" %}</p>
+                    </div>
+                    
+                    <div class="service-card" id="womenBtn">
+                        <div class="service-icon women">
+                            <i class="material-icons">people</i>
+                        </div>
+                        <div class="service-title">{% trans "Women & Social Affairs" %}</div>
+                        <p class="service-desc">{% trans "Support & protection services" %}</p>
+                    </div>
+                    
+                    <div class="service-card" id="psychiatryBtn">
+                        <div class="service-icon psychiatry">
+                            <i class="material-icons">psychology</i>
+                        </div>
+                        <div class="service-title">{% trans "Psychosocial" %}</div>
+                        <p class="service-desc">{% trans "Mental health support" %}</p>
+                    </div>
+                    
+                    <div class="service-card" id="marriageBtn">
+                        <div class="service-icon marriage">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="service-title">{% trans "Important Informations" %}</div>
+                        <p class="service-desc">{% trans "Any related informations" %}</p>
+                    </div>
+                    
+                    <div class="service-card" id="legalBtn">
+                        <div class="service-icon legal">
+                            <i class="material-icons">gavel</i>
+                        </div>
+                        <div class="service-title">{% trans "Legal Aid" %}</div>
+                        <p class="service-desc">{% trans "Lawyers and legal support" %}</p>
+                    </div>
+                </div>
+                
+                <!-- Nearby Services Section -->
+                <div class="nearby-services-section" id="nearbyServicesSection" style="margin-top: 30px; display: none;">
+                    <h3 style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
+                        <i class="material-icons" style="margin-right: 8px;">location_on</i>
+                        {% trans "Nearby Services" %}
+                    </h3>
+                    <div id="nearbyServicesList" style="margin-bottom: 80px;">
+                        <div class="loading-indicator" style="text-align: center; padding: 20px;">
+                            <div style="width: 40px; height: 40px; border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-color); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+                            <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">{% trans "Finding nearby services..." %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="emergency-button" id="emergencyBtn">
+        <i class="material-icons">warning</i> {% trans "Emergency Help" %}
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme based on Telegram's color scheme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                    
+                    // Apply Telegram's theme colors to CSS variables
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
+                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
+                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
+                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
+                }
+                
+                // Store user data
+                const user = {
+                    id: tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id'),
+                    first_name: tg.initDataUnsafe?.user?.first_name || '',
+                    last_name: tg.initDataUnsafe?.user?.last_name || '',
+                    username: tg.initDataUnsafe?.user?.username || '',
+                    language: tg.initDataUnsafe?.user?.language_code || 'en'
+                };
+
+                // Current page language (set by Django)
+                const currentLanguage = '{{ LANGUAGE_CODE }}';
+                
+                // Function to get user's current language preference from backend
+                async function getUserLanguage() {
+                    try {
+                        const response = await fetch(`/api/frontend/get-user-language/?user_id=${user.id}`);
+                        const data = await response.json();
+                        if (data.success) {
+                            return data.language;
+                        } else {
+                            console.error('Failed to get user language:', data.error);
+                            return 'en';
+                        }
+                    } catch (error) {
+                        console.error('Error getting user language:', error);
+                        return 'en';
+                    }
+                }
+
+                // Function to update user language preference
+                async function updateUserLanguage(languageCode) {
+                    try {
+                        const response = await fetch('/api/frontend/update-language/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                language: languageCode
+                            })
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                            // Activate Django language for this session
+                            activateLanguage(languageCode);
+                        } else {
+                            console.error('Failed to update language:', data.error);
+                        }
+                    } catch (error) {
+                        console.error('Error updating language:', error);
+                    }
+                }
+
+                // Function to activate language in Django
+                function activateLanguage(languageCode) {
+                    // Use Django's set_language view if available, otherwise reload with language parameter
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/i18n/setlang/';
+                    
+                    // Add CSRF token
+                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+                    if (csrfToken) {
+                        const csrfInput = document.createElement('input');
+                        csrfInput.type = 'hidden';
+                        csrfInput.name = 'csrfmiddlewaretoken';
+                        csrfInput.value = csrfToken;
+                        form.appendChild(csrfInput);
+                    }
+                    
+                    // Add language input
+                    const langInput = document.createElement('input');
+                    langInput.type = 'hidden';
+                    langInput.name = 'language';
+                    langInput.value = languageCode;
+                    form.appendChild(langInput);
+                    
+                    // Add next URL
+                    const nextInput = document.createElement('input');
+                    nextInput.type = 'hidden';
+                    nextInput.name = 'next';
+                    nextInput.value = window.location.pathname + window.location.search;
+                    form.appendChild(nextInput);
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+
+                // Auto-sync language on page load
+                async function syncUserLanguage() {
+                    if (user.id) {
+                        try {
+                            // Get user's current language preference from backend
+                            const userLanguage = await getUserLanguage();
+                            
+                            // If user's language preference is different from current page language
+                            if (userLanguage && userLanguage !== currentLanguage) {
+                                console.log(`Syncing language from ${currentLanguage} to ${userLanguage}`);
+                                await updateUserLanguage(userLanguage);
+                            }
+                        } catch (error) {
+                            console.error('Error syncing user language:', error);
+                        }
+                    }
+                }
+
+                // Update user language preference if needed
+                if (user.id && user.language && user.language !== currentLanguage) {
+                    updateUserLanguage(user.language);
+                }
+
+                // Sync user language on page load
+                syncUserLanguage();
+                
+                // Hard-coded services data
+                const servicesData = {
+                    'police': [
+                        {
+                            id: "1",
+                            name: "Bole Police Station",
+                            type: "police",
+                            description: "Main police station in Bole area with 24/7 service",
+                            region: "Addis Ababa",
+                            zone: "Bole",
+                            woreda: "01",
+                            kebele: "01",
+                            phone: "+251114670001",
+                            address: "Bole Road, near Edna Mall, Addis Ababa",
+                            latitude: 8.9936,
+                            longitude: 38.7870,
+                            distance: 1.2
+                        },
+                        {
+                            id: "2",
+                            name: "Arada Police Station",
+                            type: "police",
+                            description: "Police station serving Arada sub-city",
+                            region: "Addis Ababa",
+                            zone: "Arada",
+                            woreda: "01",
+                            kebele: "01",
+                            phone: "+251114456789",
+                            address: "Piazza, Churchill Ave, Addis Ababa",
+                            latitude: 9.0370,
+                            longitude: 38.7510,
+                            distance: 2.5
+                        },
+                        {
+                            id: "3",
+                            name: "Ginci Police Station",
+                            type: "police",
+                            description: "Main police station in Ginci town, Dandi woreda",
+                            region: "Oromia",
+                            zone: "West Shewa",
+                            woreda: "Dandi",
+                            kebele: "01",
+                            phone: "+251911123456",
+                            address: "Main Street, Ginci, Dandi woreda",
+                            latitude: 9.0167,
+                            longitude: 38.0833,
+                            distance: 5.3
+                        }
+                    ],
+                    'hospital': [
+                        {
+                            id: "4",
+                            name: "Black Lion Hospital",
+                            type: "hospital",
+                            description: "Major referral hospital with emergency services",
+                            region: "Addis Ababa",
+                            zone: "Kirkos",
+                            woreda: "04",
+                            kebele: "05",
+                            phone: "+251115517011",
+                            address: "Zambia St, Addis Ababa",
+                            latitude: 9.0107,
+                            longitude: 38.7476,
+                            distance: 0.8
+                        },
+                        {
+                            id: "5",
+                            name: "St. Paul's Hospital",
+                            type: "hospital",
+                            description: "Millennium Medical College with 24/7 emergency care",
+                            region: "Addis Ababa",
+                            zone: "Gulele",
+                            woreda: "01",
+                            kebele: "01",
+                            phone: "+251115533666",
+                            address: "Swaziland St, Addis Ababa",
+                            latitude: 9.0036,
+                            longitude: 38.7468,
+                            distance: 1.5
+                        },
+                        {
+                            id: "6",
+                            name: "Dandi Woreda Hospital",
+                            type: "hospital",
+                            description: "Woreda level hospital with emergency services",
+                            region: "Oromia",
+                            zone: "West Shewa",
+                            woreda: "Dandi",
+                            kebele: "01",
+                            phone: "+251911456789",
+                            address: "Hospital Road, Ginci, Dandi woreda",
+                            latitude: 9.0160,
+                            longitude: 38.0850,
+                            distance: 4.2
+                        }
+                    ],
+                    'women': [
+                        {
+                            id: "7",
+                            name: "Ethiopian Women Lawyers Association",
+                            type: "women_child_affair",
+                            description: "Legal aid and support for women and children",
+                            region: "Addis Ababa",
+                            zone: "Kirkos",
+                            woreda: "02",
+                            kebele: "03",
+                            phone: "+251115505050",
+                            address: "Kirkos, Addis Ababa",
+                            latitude: 9.0145,
+                            longitude: 38.7632,
+                            distance: 1.7
+                        },
+                        {
+                            id: "8",
+                            name: "Women and Children Affairs Bureau",
+                            type: "women_child_affair",
+                            description: "Government office for women and children protection",
+                            region: "Addis Ababa",
+                            zone: "Arada",
+                            woreda: "01",
+                            kebele: "02",
+                            phone: "+251115252525",
+                            address: "Arada, Addis Ababa",
+                            latitude: 9.0336,
+                            longitude: 38.7504,
+                            distance: 2.3
+                        },
+                        {
+                            id: "9",
+                            name: "Ginci Women Support Center",
+                            type: "women_child_affair",
+                            description: "Support center for women and children in Ginci town",
+                            region: "Oromia",
+                            zone: "West Shewa",
+                            woreda: "Dandi",
+                            kebele: "02",
+                            phone: "+251911678901",
+                            address: "Community Center, Ginci, Dandi woreda",
+                            latitude: 9.0155,
+                            longitude: 38.0835,
+                            distance: 5.1
+                        }
+                    ],
+                    'psychiatry': [
+                        {
+                            id: "10",
+                            name: "Amanuel Mental Specialized Hospital",
+                            type: "hospital",
+                            description: "Specialized mental health hospital",
+                            region: "Addis Ababa",
+                            zone: "Addis Ketema",
+                            woreda: "01",
+                            kebele: "01",
+                            phone: "+251111223344",
+                            address: "Mexico Square, Addis Ababa",
+                            latitude: 9.0382,
+                            longitude: 38.7611,
+                            distance: 3.2
+                        },
+                        {
+                            id: "11",
+                            name: "Ginci Mental Health Clinic",
+                            type: "hospital",
+                            description: "Mental health services in Ginci town",
+                            region: "Oromia",
+                            zone: "West Shewa",
+                            woreda: "Dandi",
+                            kebele: "03",
+                            phone: "+251911345678",
+                            address: "Health Center Road, Ginci, Dandi woreda",
+                            latitude: 9.0240,
+                            longitude: 38.2550,
+                            distance: 4.8
+                        }
+                    ],
+                    'legal': [
+                        {
+                            id: "12",
+                            name: "Legal Aid Center of Addis Ababa",
+                            type: "legal",
+                            description: "Free legal services for vulnerable populations",
+                            region: "Addis Ababa",
+                            zone: "Kirkos",
+                            woreda: "03",
+                            kebele: "04",
+                            phone: "+251115606060",
+                            address: "Kirkos, Addis Ababa",
+                            latitude: 9.0220,
+                            longitude: 38.7705,
+                            distance: 1.9
+                        },
+                        {
+                            id: "13",
+                            name: "Ginci Legal Aid Clinic",
+                            type: "legal",
+                            description: "Legal aid clinic providing free services",
+                            region: "Oromia",
+                            zone: "West Shewa",
+                            woreda: "Dandi",
+                            kebele: "02",
+                            phone: "+251911567890",
+                            address: "Justice Complex, Ginci, Dandi woreda",
+                            latitude: 9.0280,
+                            longitude: 38.2590,
+                            distance: 5.5
+                        }
+                    ]
+                };
+                
+                // Add click event listeners
+                document.getElementById('policeBtn').addEventListener('click', function() {
+                    showNearbyServices('police');
+                });
+                
+                document.getElementById('healthBtn').addEventListener('click', function() {
+                    showNearbyServices('hospital');
+                });
+                
+                document.getElementById('womenBtn').addEventListener('click', function() {
+                    showNearbyServices('women');
+                });
+                
+                document.getElementById('psychiatryBtn').addEventListener('click', function() {
+                    showNearbyServices('psychiatry');
+                });
+                
+                document.getElementById('marriageBtn').addEventListener('click', function() {
+                    showNearbyServices('marriage');
+                });
+                
+                document.getElementById('legalBtn').addEventListener('click', function() {
+                    showNearbyServices('legal');
+                });
+                
+                document.getElementById('emergencyBtn').addEventListener('click', function() {
+                    window.location.href = '{% url "report_html" %}';
+                });
+                
+                // Function to show nearby services
+                function showNearbyServices(serviceType) {
+                    // Show the nearby services section
+                    document.getElementById('nearbyServicesSection').style.display = 'block';
+                    
+                    // Get the services list container
+                    const nearbyServicesList = document.getElementById('nearbyServicesList');
+                    
+                    // Clear any existing content
+                    nearbyServicesList.innerHTML = '';
+                    
+                    // Get services for the selected type
+                    const services = servicesData[serviceType] || [];
+                    
+                    if (services.length === 0) {
+                        nearbyServicesList.innerHTML = `
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
+                                <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                                    {% trans "No services found for this category." %}
+                                </p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Sort services by distance
+                    services.sort((a, b) => a.distance - b.distance);
+                    
+                    // Add each service to the list
+                    services.forEach(service => {
+                        const serviceCard = document.createElement('div');
+                        serviceCard.className = 'nearby-service-card';
+                        
+                        // Determine icon based on type
+                        const iconClass = service.type === 'police' ? 'police' : 'hospital';
+                        const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
+                        
+                        serviceCard.innerHTML = `
+                            <div class="service-type-icon ${iconClass}">
+                                <i class="material-icons">${iconName}</i>
+                            </div>
+                            <div class="service-info">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                    <h4 class="service-name">${service.name}</h4>
+                                    <span class="service-distance">${service.distance.toFixed(1)} km</span>
+                                </div>
+                                <p class="service-address">${service.address}</p>
+                                <div class="service-actions">
+                                    <button class="service-action-btn" onclick="makeCall('${service.phone}')">
+                                        <i class="material-icons">call</i> {% trans "Call" %}
+                                    </button>
+                                    <button class="service-action-btn" onclick="getDirections(${service.latitude}, ${service.longitude})">
+                                        <i class="material-icons">directions</i> {% trans "Directions" %}
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        nearbyServicesList.appendChild(serviceCard);
+                    });
+                    
+                    // Add a "View All" button
+                    const viewAllBtn = document.createElement('div');
+                    viewAllBtn.style.textAlign = 'center';
+                    viewAllBtn.style.marginTop = '16px';
+                    viewAllBtn.innerHTML = `
+                        <button onclick="window.location.href='{% url "agencies_html" %}?type=${serviceType}'" style="
+                            background-color: var(--primary-color);
+                            color: white;
+                            border: none;
+                            border-radius: 20px;
+                            padding: 8px 16px;
+                            font-size: 14px;
+                            display: flex;
+                            align-items: center;
+                            margin: 0 auto;
+                            cursor: pointer;
+                        ">
+                            <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
+                            {% trans "View All Services" %}
+                        </button>
+                    `;
+                    nearbyServicesList.appendChild(viewAllBtn);
+                    
+                    // Scroll to the services section
+                    document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                console.log("WebApp initialization failed");
+            }
+        });
+        
+        // Utility functions
+        function makeCall(phoneNumber) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        function getDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,396 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}{% trans "Emergency Reporting System" %}{% endblock %}</title>
+    
+    <!-- Telegram Mini App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --card-bg-color: white;
+        }
+        
+        body {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+        
+        /* Dark mode styles */
+        body.dark {
+            --card-bg-color: #333333;
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% csrf_token %}
+    <div id="app" class="container-fluid p-0">
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Telegram Mini App Initialization -->
+    <script>
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        // Set theme based on Telegram color scheme
+        document.documentElement.className = tg.colorScheme;
+        
+        // Store user data
+        const user = {
+            id: tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id'),
+            first_name: tg.initDataUnsafe?.user?.first_name || '',
+            last_name: tg.initDataUnsafe?.user?.last_name || '',
+            username: tg.initDataUnsafe?.user?.username || '',
+            language: tg.initDataUnsafe?.user?.language_code || 'en'
+        };
+
+        // Current page language (set by Django)
+        const currentLanguage = '{{ LANGUAGE_CODE }}';
+        
+        // Update user language preference if needed
+        if (user.id && user.language && user.language !== currentLanguage) {
+            updateUserLanguage(user.language);
+        }
+
+        // Verify user authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add user_id to all links if not already present
+            if (user.id) {
+                const links = document.querySelectorAll('a');
+                links.forEach(link => {
+                    const url = new URL(link.href, window.location.origin);
+                    if (!url.searchParams.has('user_id')) {
+                        url.searchParams.set('user_id', user.id);
+                        link.href = url.toString();
+                    }
+                });
+
+                // Authenticate with backend
+                verifyTelegramAuth();
+            }
+        });
+
+        // Function to authenticate with backend
+        function verifyTelegramAuth() {
+            fetch('/api/accounts/verify/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-ID': user.id.toString(),
+                    'X-Telegram-Init-Data': tg.initData || ''
+                },
+                body: JSON.stringify({
+                    user_id: user.id,
+                    init_data: tg.initData || ''
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Authentication failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Authentication successful:', data);
+            })
+            .catch(error => {
+                console.error('Error during authentication:', error);
+            });
+        }
+        
+        // Function to close the app
+        function closeApp() {
+            tg.close();
+        }
+        
+        // Function to show a loading indicator
+        function showLoading() {
+            tg.MainButton.showProgress();
+        }
+        
+        // Function to hide the loading indicator
+        function hideLoading() {
+            tg.MainButton.hideProgress();
+        }
+        
+        // Function to show a main button
+        function showMainButton(text, callback) {
+            tg.MainButton.setText(text);
+            tg.MainButton.onClick(callback);
+            tg.MainButton.show();
+        }
+        
+        // Function to hide the main button
+        function hideMainButton() {
+            tg.MainButton.hide();
+        }
+        
+        // Function to send data back to the Telegram bot
+        function sendData(data) {
+            tg.sendData(JSON.stringify(data));
+        }
+        
+        // Function to show alert
+        function showAlert(message) {
+            tg.showAlert(message);
+        }
+        
+        // Function to get user's current language preference
+        function getUserLanguage() {
+            if (!user.id) return Promise.resolve('en');
+            
+            return apiGet('/api/frontend/get-user-language/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        return data.language;
+                    } else {
+                        console.error('Failed to get user language:', data.error);
+                        return 'en';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error getting user language:', error);
+                    return 'en';
+                });
+        }
+
+        // Function to update user language preference
+        function updateUserLanguage(languageCode) {
+            if (!user.id) return;
+            
+            apiPost('/api/frontend/update-language/', {
+                language: languageCode
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Activate Django language for this session
+                    activateLanguage(languageCode);
+                } else {
+                    console.error('Failed to update language:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error updating language:', error);
+            });
+        }
+
+        // Function to activate language in Django
+        function activateLanguage(languageCode) {
+            // Use Django's set_language view if available, otherwise reload with language parameter
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/i18n/setlang/';
+            
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+            
+            const langInput = document.createElement('input');
+            langInput.type = 'hidden';
+            langInput.name = 'language';
+            langInput.value = languageCode;
+            
+            const nextInput = document.createElement('input');
+            nextInput.type = 'hidden';
+            nextInput.name = 'next';
+            nextInput.value = window.location.pathname + window.location.search;
+            
+            form.appendChild(csrfInput);
+            form.appendChild(langInput);
+            form.appendChild(nextInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        // Language sync for shared hosting using polling
+        let languageSyncInterval = null;
+        let lastLanguageCheck = null;
+        let currentLanguage = '{{ LANGUAGE_CODE|default:"en" }}';
+        
+        function startLanguageSync() {
+            if (!user.id) return;
+            
+            console.log('Starting language sync polling for shared hosting');
+            
+            // Check immediately on start
+            checkLanguageSync();
+            
+            // Then check every 3 seconds
+            languageSyncInterval = setInterval(checkLanguageSync, 3000);
+        }
+        
+        function checkLanguageSync() {
+            if (!user.id) return;
+            
+            const url = new URL('/api/frontend/check-language-sync/', window.location.origin);
+            url.searchParams.set('user_id', user.id);
+            if (lastLanguageCheck) {
+                url.searchParams.set('last_check', lastLanguageCheck);
+            }
+            
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'X-Telegram-Init-Data': tg.initData || '',
+                    'X-User-ID': user.id ? user.id.toString() : ''
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    lastLanguageCheck = data.timestamp;
+                    
+                    if (data.language_changed && data.language !== currentLanguage) {
+                        console.log('Language changed in Telegram to:', data.language);
+                        console.log('Updating mini app language...');
+                        activateLanguage(data.language);
+                    }
+                } else {
+                    console.error('Language sync check failed:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Language sync check error:', error);
+            });
+        }
+        
+        function stopLanguageSync() {
+            if (languageSyncInterval) {
+                clearInterval(languageSyncInterval);
+                languageSyncInterval = null;
+                console.log('Language sync polling stopped');
+            }
+        }
+        
+        // Initialize language detection and sync on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (user.id) {
+                // First, get the user's preferred language and activate it
+                getUserLanguage().then(userLanguage => {
+                    console.log('User preferred language:', userLanguage);
+                    
+                    // Check if current page language differs from user preference  
+                    console.log('Current page language:', currentLanguage);
+                    
+                    if (userLanguage && userLanguage !== currentLanguage) {
+                        console.log('Activating user preferred language:', userLanguage);
+                        activateLanguage(userLanguage);
+                    } else {
+                        // If languages match, start the sync polling
+                        startLanguageSync();
+                    }
+                }).catch(error => {
+                    console.error('Error getting user language preference:', error);
+                    // Fallback to sync polling
+                    startLanguageSync();
+                });
+            }
+        });
+        
+        // Stop polling when page is unloaded
+        window.addEventListener('beforeunload', function() {
+            stopLanguageSync();
+        });
+    </script>
+    
+    <!-- Telegram WebApp API Helper: Always send initData for authentication -->
+    <script>
+        /**
+         * Use this function for all API requests to the backend.
+         * It automatically includes the Telegram initData for authentication.
+         * Example usage:
+         *   apiPost('/api/your-endpoint/', { foo: 'bar' })
+         *     .then(response => ...)
+         */
+        function apiPost(url, data) {
+            const tg = window.Telegram.WebApp;
+            const initData = tg.initData || '';
+            const userId = tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id');
+            
+            // Add user_id to URL if not already present
+            if (userId) {
+                const urlObj = new URL(url, window.location.origin);
+                if (!urlObj.searchParams.has('user_id')) {
+                    urlObj.searchParams.set('user_id', userId);
+                    url = urlObj.toString();
+                }
+            }
+            
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Telegram-Init-Data': initData,
+                    'X-User-ID': userId ? userId.toString() : ''
+                },
+                body: JSON.stringify(data)
+            });
+        }
+
+        /**
+         * Use this function for GET requests to the backend.
+         * It automatically includes the Telegram user ID in the query parameters.
+         * Example usage:
+         *   apiGet('/api/your-endpoint/')
+         *     .then(response => ...)
+         */
+        function apiGet(url) {
+            const tg = window.Telegram.WebApp;
+            const initData = tg.initData || '';
+            const userId = tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id');
+            
+            // Add user_id to URL if not already present
+            if (userId) {
+                const urlObj = new URL(url, window.location.origin);
+                if (!urlObj.searchParams.has('user_id')) {
+                    urlObj.searchParams.set('user_id', userId);
+                    url = urlObj.toString();
+                }
+            }
+            
+            return fetch(url, {
+                method: 'GET',
+                headers: {
+                    'X-Telegram-Init-Data': initData,
+                    'X-User-ID': userId ? userId.toString() : ''
+                }
+            });
+        }
+    </script>
+    
+    <!-- Custom JavaScript -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

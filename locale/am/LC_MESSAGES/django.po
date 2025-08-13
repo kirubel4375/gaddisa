@@ -1,0 +1,554 @@
+# Amharic translations for Django.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-08 14:40+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: am\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: emergency_bot/settings.py:118
+msgid "English"
+msgstr "እንግሊዝኛ"
+
+#: emergency_bot/settings.py:119
+msgid "Amharic"
+msgstr "አማርኛ"
+
+#: emergency_bot/settings.py:120
+msgid "Afaan Oromo"
+msgstr "ኦሮምኛ"
+
+#: emergency_bot/frontend/templates/index.html:10
+msgid "Emergency Reporting System"
+msgstr "የአደጋ ሪፖርት ስርዓት"
+
+#: emergency_bot/frontend/templates/index.html:15
+msgid "Report an Emergency"
+msgstr "አደጋ ሪፖርት አድርግ"
+
+#: emergency_bot/frontend/templates/index.html:20
+msgid "Find Help"
+msgstr "እርዳታ ፈልግ"
+
+#: emergency_bot/reports/models.py:15
+msgid "Assault"
+msgstr "ድብደባ"
+
+#: emergency_bot/reports/models.py:16
+msgid "Rape"
+msgstr "አስገድዶ መድፈር"
+
+#: emergency_bot/reports/models.py:17
+msgid "Domestic Violence"
+msgstr "የቤት ውስጥ ጥቃት"
+
+#: emergency_bot/reports/models.py:18
+msgid "Harassment"
+msgstr "ትንኮሳ"
+
+#: emergency_bot/reports/models.py:19
+msgid "Other"
+msgstr "ሌላ" 
+
+msgid "Emergency Services"
+msgstr "የአደጋ አገልግሎቶች"
+
+msgid "Police"
+msgstr "ፖሊስ"
+
+msgid "Find nearby police stations"
+msgstr "በአቅራቢያዎ ያሉ የፖሊስ ጣቢያዎችን ያግኙ"
+
+msgid "Health Facilities"
+msgstr "የጤና ተቋማት"
+
+msgid "Hospitals and clinics"
+msgstr "ሆስፒታሎች እና ክሊኒኮች"
+
+msgid "Women & Child"
+msgstr "ሴቶች እና ህጻናት"
+
+msgid "Support & protection services"
+msgstr "የድጋፍ እና የጥበቃ አገልግሎቶች"
+
+msgid "Psychiatrists"
+msgstr "የአእምሮ ሐኪሞች"
+
+msgid "Mental health support"
+msgstr "የአእምሮ ጤና ድጋፍ"
+
+msgid "Marriage Council"
+msgstr "የጋብቻ ምክር"
+
+msgid "Relationship support"
+msgstr "የግንኙነት ድጋፍ"
+
+msgid "Legal Aid"
+msgstr "የህግ እርዳታ"
+
+msgid "Lawyers and legal support"
+msgstr "ጠበቃዎች እና የህግ ድጋፍ"
+
+msgid "Nearby Services"
+msgstr "በአቅራቢያ ያሉ አገልግሎቶች"
+
+msgid "Finding nearby services..."
+msgstr "በአቅራቢያ ያሉ አገልግሎቶችን በመፈለግ ላይ..."
+
+msgid "Unable to get your location. Please allow location access to see nearby services."
+msgstr "አካባቢዎን ማግኘት አልተቻለም። በአቅራቢያዎ ያሉ አገልግሎቶችን ለማየት የአካባቢ መዳረሻን ይፍቀዱ።"
+
+msgid "No nearby services found in your area."
+msgstr "በአካባቢዎ ያሉ አገልግሎቶች አልተገኙም።"
+
+msgid "Call"
+msgstr "ይደውሉ"
+
+msgid "Directions"
+msgstr "አቅጣጫ"
+
+msgid "View All Services"
+msgstr "ሁሉንም አገልግሎቶች ይመልከቱ"
+
+msgid "Emergency Help"
+msgstr "የአደጋ እርዳታ"
+
+msgid "Language & Privacy"
+msgstr "ቋንቋ እና ግላዊነት"
+
+msgid "You can use the app in English, Amharic, or Afaan Oromo. Your data is secure and only used to provide emergency services."
+msgstr "መተግበሪያውን በእንግሊዝኛ፣ በአማርኛ ወይም በአፋን ኦሮሞ መጠቀም ይችላሉ። ውሂብዎ ደህና ይጠበቃል እና ለአደጋ አገልግሎት ብቻ ይጠቀማል።"
+
+msgid "Choose your preferred language:"
+msgstr "የሚመርጡትን ቋንቋ ይምረጡ:"
+
+msgid "I consent to the processing of my data for emergency services"
+msgstr "ለአደጋ አገልግሎት ውሂቤን እንዲያስተናግዱ እስማማለሁ"
+
+msgid "Previous"
+msgstr "ወደ ኋላ"
+
+msgid "Next"
+msgstr "ቀጣይ"
+
+msgid "Get Started"
+msgstr "መጀመር"
+
+msgid "In case of immediate danger, please call emergency services directly."
+msgstr "አደጋ በቅርብ ሲኖር እባክዎን የአደጋ አገልግሎት በቀጥታ ይደውሉ።"
+
+msgid "Welcome to Emergency Support"
+msgstr "ወደ የአደጋ ድጋፍ በደህና መጡ"
+
+msgid "Your safety matters to us"
+msgstr "ደህናነትዎ ለእኛ አስፈላጊ ነው"
+
+msgid "This app helps you report emergency incidents and find support services in your area. Your safety is our priority."
+msgstr "ይህ መተግበሪያ አደጋዎችን ሪፖርት ማድረግ እና በአካባቢዎ ያሉ የድጋፍ አገልግሎቶችን ማግኘት ይረዳዎታል። ደህናነትዎ ለእኛ ቅድሚያ ነው።"
+
+msgid "Report Incidents"
+msgstr "አደጋዎችን ያሳውቁ"
+
+msgid "Quickly report incidents like assault, harassment, or other emergencies. Share your location to get help faster."
+msgstr "እንደ ድፍረተ ሰው፣ ማንቀሳቀስ ወይም ሌሎች አደጋዎች በፍጥነት ያሳውቁ። እርዳታ በፍጥነት ለማግኘት አካባቢዎን ያጋሩ።"
+
+msgid "Find Support Nearby"
+msgstr "በአቅራቢያዎ ያለ ድጋፍ ያግኙ"
+
+msgid "Locate nearby police stations, hospitals, and support organizations that can help you during emergencies."
+msgstr "በአደጋ ጊዜ የሚረዱዎትን በአቅራቢያዎ ያሉ የፖሊስ ጣቢያዎች፣ ሆስፒታሎች እና ድጋፍ ድርጅቶችን ያግኙ።"
+
+# Report form specific translations
+msgid "back"
+msgstr "ተመለስ"
+
+msgid "report_emergency_incident"
+msgstr "የአደጋ ክስተት ሪፖርት ያድርጉ"
+
+msgid "incident_type"
+msgstr "የክስተት አይነት"
+
+msgid "select_incident_type"
+msgstr "የክስተት አይነት ይምረጡ"
+
+msgid "kidnapping"
+msgstr "አፈናዎች"
+
+msgid "description"
+msgstr "መግለጫ"
+
+msgid "description_optional"
+msgstr "መግለጫ (አማራጭ)"
+
+msgid "describe_what_happened"
+msgstr "ምን እንደተከሰተ ይግለጹ..."
+
+msgid "description_encrypted_notice"
+msgstr "መግለጫዎት ለግላዊነት ይመሳጠራል።"
+
+msgid "voice_note_optional"
+msgstr "የድምጽ ማስታወሻ (አማራጭ)"
+
+msgid "record"
+msgstr "ቅዳ"
+
+msgid "stop"
+msgstr "አቁም"
+
+msgid "recording"
+msgstr "በመቅዳት ላይ..."
+
+msgid "re_record"
+msgstr "እንደገና ቅዳ"
+
+msgid "use_recording"
+msgstr "ቅዳትን ተጠቀም"
+
+msgid "uploaded"
+msgstr "ተሰቅሏል"
+
+msgid "location"
+msgstr "አድራሻ"
+
+msgid "gps_location"
+msgstr "GPS አድራሻ"
+
+msgid "by_region"
+msgstr "በክልል"
+
+msgid "get_my_current_location"
+msgstr "የአሁኑን አድራሻዬን አግኝ"
+
+msgid "location_captured"
+msgstr "አድራሻ ተይዟል"
+
+msgid "select_region"
+msgstr "ክልል ይምረጡ"
+
+msgid "select_zone"
+msgstr "ዞን ይምረጡ"
+
+msgid "addis_ababa"
+msgstr "አዲስ አበባ"
+
+msgid "oromia"
+msgstr "ኦሮሚያ"
+
+msgid "amhara"
+msgstr "አማራ"
+
+msgid "tigray"
+msgstr "ትግራይ"
+
+msgid "sidama"
+msgstr "ሲዳማ"
+
+msgid "submit_report"
+msgstr "ሪፖርት አስገባ"
+
+msgid "submitting"
+msgstr "በማስገባት ላይ..."
+
+# Messages and notifications
+msgid "report_submitted_successfully"
+msgstr "ሪፖርትዎ በተሳካ ሁኔታ ተገብሯል።"
+
+msgid "failed_to_submit_report"
+msgstr "ሪፖርት ማስገባት አልተሳካም። እባክዎን እንደገና ይሞክሩ።"
+
+msgid "please_select_incident_type"
+msgstr "እባክዎን የክስተት አይነት ይምረጡ።"
+
+msgid "please_provide_location"
+msgstr "እባክዎን GPS ወይም የክልል ምርጫን በመጠቀም አድራሻዎን ያቅርቡ።"
+
+msgid "could_not_access_microphone"
+msgstr "ማይክሮፎን መድረስ አልተቻለም። እባክዎን የአሳሽዎን ፈቃዶች ይፈትሹ።"
+
+msgid "could_not_get_location"
+msgstr "አድራሻዎን ማግኘት አልተቻለም። እባክዎን እንደገና ይሞክሩ ወይም የክልል ምርጫን ይጠቀሙ።"
+
+msgid "geolocation_not_supported"
+msgstr "የጂኦሎኬሽን በዚህ አሳሽ ውስጥ አይደገፍም።"
+
+msgid "voice_note_uploaded_successfully"
+msgstr "የድምጽ ማስታወሻ በተሳካ ሁኔታ ተሰቅሏል!"
+
+msgid "failed_to_upload_voice_recording"
+msgstr "የድምጽ ቅዳት ስቀላ አልተሳካም። እባክዎን እንደገና ይሞክሩ።"
+
+msgid "uploading"
+msgstr "በመስቀል ላይ..."
+
+# New template translations
+msgid "Emergency Support Services"
+msgstr "የአደጋ ጊዜ ድጋፍ አገልግሎቶች"
+
+msgid "Back"
+msgstr "ተመለስ"
+
+msgid "Support Services"
+msgstr "የድጋፍ አገልግሎቶች"
+
+msgid "Find emergency support services near you"
+msgstr "በአቅራቢያዎ ያሉ የአደጋ ጊዜ ድጋፍ አገልግሎቶችን ያግኙ"
+
+msgid "Using your current location"
+msgstr "የአሁን አካባቢዎን እየተጠቀሙ"
+
+msgid "Fetching location..."
+msgstr "አካባቢ እየተፈለገ..."
+
+msgid "Use My Location"
+msgstr "የእኔን አካባቢ ተጠቀም"
+
+msgid "Select Location"
+msgstr "አካባቢ ምረጥ"
+
+msgid "Select Region"
+msgstr "ክልል ምረጥ"
+
+msgid "Apply Location"
+msgstr "አካባቢን ተግብር"
+
+msgid "Search agencies..."
+msgstr "ድርጅቶችን ፈልግ..."
+
+msgid "Loading agencies..."
+msgstr "ድርጅቶች እየተጫኑ..."
+
+msgid "Get Directions"
+msgstr "መስመር አግኝ"
+
+msgid "No services found for the selected criteria."
+msgstr "ለተመረጠው መስፈርት ምንም አገልግሎት አልተገኘም።"
+
+msgid "services found"
+msgstr "አገልግሎቶች ተገኝተዋል"
+
+msgid "Unable to get your current location"
+msgstr "የአሁን አካባቢዎን ማግኘት አልተቻለም"
+
+msgid "Location access denied. Please allow location access or select manually."
+msgstr "የአካባቢ መዳረሻ ተከልክሏል። እባክዎ የአካባቢ መዳረሻን ይፍቀዱ ወይም በእጅ ይምረጡ።"
+
+msgid "Searching for nearby services..."
+msgstr "በአቅራቢያ ያሉ አገልግሎቶች እየተፈለጉ..."
+
+msgid "km away"
+msgstr "ኪሎ ሜትር ርቀት"
+
+msgid "Select Zone"
+msgstr "ዞን ምረጥ"
+
+msgid "Using selected location"
+msgstr "የተመረጠውን አካባቢ እየተጠቀሙ"
+
+msgid "Please select at least Region and Zone"
+msgstr "እባክዎ ቢያንስ ክልል እና ዞን ይምረጡ"
+
+msgid "My Profile"
+msgstr "የእኔ መገለጫ"
+
+msgid "Health Services"
+msgstr "የጤና አገልግሎቶች"
+
+msgid "Women & Social Affairs"
+msgstr "ሴቶች እና ማህበራዊ ጉዳዮች"
+
+msgid "Psychosocial"
+msgstr "ሳይኮሶሻል"
+
+msgid "Important Informations"
+msgstr "አስፈላጊ መረጃዎች"
+
+msgid "Any related informations"
+msgstr "ማንኛውም ተያያዥ መረጃዎች"
+
+msgid "No services found for this category."
+msgstr "ለዚህ ምድብ ምንም አገልግሎት አልተገኘም።"
+
+# Zone names in Addis Ababa
+msgid "Addis Ketema"
+msgstr "አዲስ ከተማ"
+
+msgid "Akaky Kaliti"
+msgstr "አቃቂ ቃሊቲ"
+
+msgid "Arada"
+msgstr "አራዳ"
+
+msgid "Bole"
+msgstr "ቦሌ"
+
+msgid "Gulele"
+msgstr "ጉለሌ"
+
+msgid "Kirkos"
+msgstr "ኪርቆስ"
+
+msgid "Zone 1"
+msgstr "ዞን 1"
+
+msgid "Zone 2"
+msgstr "ዞን 2"
+
+msgid "Zone 3"
+msgstr "ዞን 3"
+
+# Administrative levels
+msgid "select_woreda"
+msgstr "ወረዳ ይምረጡ"
+
+msgid "select_kebele"
+msgstr "ቀበሌ ይምረጡ"
+
+# New strings for templates
+msgid "Location"
+msgstr "አድራሻ"
+
+msgid "Your browser does not support the audio element."
+msgstr "የእርስዎ ብራውዘር የድምጽ ዓይነት አይደግፍም።"
+
+msgid "Submit New Report"
+msgstr "አዲስ ሪፖርት ያስገቡ"
+
+msgid "Back to Home"
+msgstr "ወደ መነሻ ገጽ ተመለስ"
+
+msgid "Error"
+msgstr "ስህተት"
+
+msgid "Oops! Something went wrong"
+msgstr "ሆይ! የሆነ ችግር ተከስቷል"
+
+msgid "We're sorry, but there was an error processing your request."
+msgstr "ያዝናል፣ ግን ጥያቄዎን ሲያስኬዱ ስህተት ተከስቷል።"
+
+msgid "Go Back"
+msgstr "ተመለስ"
+
+msgid "Please provide consent to continue"
+msgstr "ለመቀጠል እባክዎን ስምምነትዎን ይስጡ"
+
+msgid "User"
+msgstr "ተጠቃሚ"
+
+msgid "Telegram ID"
+msgstr "የቴሌግራም መታወቂያ"
+
+msgid "Loading..."
+msgstr "እየተጫነ..."
+
+msgid "Reports"
+msgstr "ሪፖርቶች"
+
+msgid "Settings Saved"
+msgstr "ማስተካከያዎች ተቀምጠዋል"
+
+msgid "Your profile settings have been updated successfully."
+msgstr "የአንተ መገለጫ ማስተካከያዎች በተሳካ ሁኔታ ተዘምነዋል።"
+
+msgid "Settings"
+msgstr "ማስተካከያዎች"
+
+msgid "Preferred Language"
+msgstr "የተመረጠ ቋንቋ"
+
+msgid "Notifications"
+msgstr "ማሳወቂያዎች"
+
+msgid "Receive important notifications"
+msgstr "አስፈላጊ ማሳወቂያዎችን ይቀበሉ"
+
+msgid "Save Settings"
+msgstr "ማስተካከያዎችን አስቀምጥ"
+
+msgid "View All"
+msgstr "ሁሉንም ይመልከቱ"
+
+msgid "New"
+msgstr "አዲስ"
+
+msgid "Processing"
+msgstr "በሂደት ላይ"
+
+msgid "Resolved"
+msgstr "ተፈትቷል"
+
+msgid "Unknown"
+msgstr "አልታወቀም"
+
+msgid "Reported on"
+msgstr "ተዘግቧል በ"
+
+# Service names and locations
+msgid "Bole Police Station"
+msgstr "የቦሌ ፖሊስ ጣቢያ"
+
+msgid "Arada Police Station"
+msgstr "የአራዳ ፖሊስ ጣቢያ"
+
+msgid "Black Lion Hospital"  
+msgstr "ብላክ ላዮን ሆስፒታል"
+
+msgid "St. Paul's Hospital"
+msgstr "ቅዱስ ጳውሎስ ሆስፒታል"
+
+msgid "Ethiopian Women Lawyers Association"
+msgstr "የኢትዮጵያ ሴቶች ጠበቃዎች ማህበር"
+
+msgid "Amanuel Mental Specialized Hospital"
+msgstr "አማኑኤል የአእምሮ ሕክምና ልዩ ሆስፒታል"
+
+msgid "Legal Aid Center of Addis Ababa"
+msgstr "የአዲስ አበባ የህግ እርዳታ ማእከል"
+
+# Service descriptions
+msgid "Main police station in Bole area with 24/7 service"
+msgstr "በቦሌ አካባቢ ዋና ፖሊስ ጣቢያ ከ24/7 አገልግሎት ጋር"
+
+msgid "Police station serving Arada sub-city"
+msgstr "አራዳ ክፍለ-ከተማን የሚያገለግል ፖሊስ ጣቢያ"
+
+msgid "Major referral hospital with emergency services"
+msgstr "ዋና የሪፈራል ሆስፒታል ከአደጋ ጊዜ አገልግሎቶች ጋር"
+
+msgid "Millennium Medical College with 24/7 emergency care"
+msgstr "ሚሌኒየም ሜዲካል ኮሌጅ ከ24/7 የአደጋ ጊዜ እንክብካቤ ጋር"
+
+msgid "Legal aid and support for women and children"
+msgstr "ለሴቶች እና ህጻናት የህግ እርዳታ እና ድጋፍ"
+
+msgid "Specialized mental health hospital"
+msgstr "ልዩ የአእምሮ ጤና ሆስፒታል"
+
+msgid "Free legal services for vulnerable populations"
+msgstr "ለተጋላጭ ሕዝብ ነፃ የህግ አገልግሎቶች"
+
+# Addresses
+msgid "Bole Road, near Edna Mall, Addis Ababa"
+msgstr "ቦሌ መንገድ፣ ኤድና ሞል አጠገብ፣ አዲስ አበባ"
+
+msgid "Piazza, Churchill Ave, Addis Ababa"
+msgstr "ፒያሳ፣ ቸርችል ጎዳና፣ አዲስ አበባ"
+
+msgid "Zambia St, Addis Ababa"
+msgstr "ዛምቢያ ጎዳና፣ አዲስ አበባ"
+
+msgid "Swaziland St, Addis Ababa"
+msgstr "ስዋዚላንድ ጎዳና፣ አዲስ አበባ"
+
+msgid "Mexico Square, Addis Ababa"
+msgstr "ሜክሲኮ አደባባይ፣ አዲስ አበባ" 

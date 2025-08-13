@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Welcome - Emergency Reporting{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1>{% trans "Welcome to Emergency Support" %}</h1>
+        <p class="lead">{% trans "Your safety matters to us" %}</p>
+    </div>
+
+    <!-- Onboarding Steps -->
+    <div id="onboardingCarousel" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#onboardingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#onboardingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#onboardingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#onboardingCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        
+        <div class="carousel-inner">
+            <!-- Step 1: Welcome -->
+            <div class="carousel-item active">
+                <div class="card">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <i class="bi bi-shield-check text-primary" style="font-size: 4rem;"></i>
+                        </div>
+                        <h3>{% trans "Emergency Reporting System" %}</h3>
+                        <p class="mb-4">{% trans "This app helps you report emergency incidents and find support services in your area. Your safety is our priority." %}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Reporting -->
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
+                        </div>
+                        <h3>{% trans "Report Incidents" %}</h3>
+                        <p class="mb-4">{% trans "Quickly report incidents like assault, harassment, or other emergencies. Share your location to get help faster." %}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Find Help -->
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <i class="bi bi-geo-alt text-success" style="font-size: 4rem;"></i>
+                        </div>
+                        <h3>{% trans "Find Support Nearby" %}</h3>
+                        <p class="mb-4">{% trans "Locate nearby police stations, hospitals, and support organizations that can help you during emergencies." %}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Language & Privacy -->
+            <div class="carousel-item">
+                <div class="card">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <i class="bi bi-translate text-info" style="font-size: 4rem;"></i>
+                        </div>
+                        <h3>{% trans "Language & Privacy" %}</h3>
+                        <p class="mb-4">
+                            {% trans "You can use the app in English, Amharic, or Afaan Oromo. Your data is secure and only used to provide emergency services." %}
+                        </p>
+                        
+                        <!-- Language Selection -->
+                        <div class="mb-3">
+                            <label for="languageSelect" class="form-label">{% trans "Choose your preferred language:" %}</label>
+                            <select id="languageSelect" class="form-select">
+                                <option value="en" {% if user_profile.language == 'en' %}selected{% endif %}>{% trans "English" %}</option>
+                                <option value="am" {% if user_profile.language == 'am' %}selected{% endif %}>{% trans "Amharic" %}</option>
+                                <option value="om" {% if user_profile.language == 'om' %}selected{% endif %}>{% trans "Afaan Oromo" %}</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Consent Checkbox -->
+                        <div class="form-check text-start mb-3">
+                            <input class="form-check-input" type="checkbox" id="consentCheckbox" {% if user_profile.data_consent %}checked{% endif %}>
+                            <label class="form-check-label" for="consentCheckbox">
+                                {% trans "I consent to the processing of my data for emergency services" %}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation buttons -->
+        <div class="d-flex justify-content-between mt-3">
+            <button id="prevButton" class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-arrow-left"></i> {% trans "Previous" %}
+            </button>
+            <button id="nextButton" class="btn btn-primary" type="button">
+                {% trans "Next" %} <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Get Started Button (initially hidden) -->
+    <div id="getStartedContainer" class="text-center mt-4 d-none">
+        <button id="getStartedButton" class="btn btn-success btn-lg w-100">
+            {% trans "Get Started" %} <i class="bi bi-arrow-right-circle"></i>
+        </button>
+    </div>
+    
+    <div class="mt-4 text-center">
+        <p class="text-muted small">{% trans "In case of immediate danger, please call emergency services directly." %}</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cache DOM elements
+        const carousel = document.getElementById('onboardingCarousel');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const getStartedContainer = document.getElementById('getStartedContainer');
+        const getStartedButton = document.getElementById('getStartedButton');
+        const languageSelect = document.getElementById('languageSelect');
+        const consentCheckbox = document.getElementById('consentCheckbox');
+        
+        // Initialize carousel
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+            interval: false, // Don't auto-cycle
+            wrap: false      // Don't loop
+        });
+        
+        // Track current slide
+        let currentSlide = 0;
+        const totalSlides = 4;
+        
+        // Update button states
+        function updateButtons() {
+            // Handle previous button
+            if (currentSlide === 0) {
+                prevButton.classList.add('disabled');
+            } else {
+                prevButton.classList.remove('disabled');
+            }
+            
+            // Handle next button
+            if (currentSlide === totalSlides - 1) {
+                nextButton.classList.add('d-none');
+                getStartedContainer.classList.remove('d-none');
+            } else {
+                nextButton.classList.remove('d-none');
+                getStartedContainer.classList.add('d-none');
+            }
+        }
+        
+        // Initialize button states
+        updateButtons();
+        
+        // Next button click
+        nextButton.addEventListener('click', function() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                carouselInstance.next();
+                updateButtons();
+            }
+        });
+        
+        // Previous button click
+        prevButton.addEventListener('click', function() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                carouselInstance.prev();
+                updateButtons();
+            }
+        });
+        
+        // Listen for carousel slide events
+        carousel.addEventListener('slide.bs.carousel', function(event) {
+            currentSlide = event.to;
+            updateButtons();
+        });
+        
+        // Language selection change
+        languageSelect.addEventListener('change', function() {
+            const language = this.value;
+            // Save language preference via AJAX
+            fetch('{% url "update_language" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ language: language })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Language updated successfully');
+                }
+            })
+            .catch(error => console.error('Error updating language:', error));
+        });
+        
+        // Consent checkbox change
+        consentCheckbox.addEventListener('change', function() {
+            const consent = this.checked;
+            // Save consent via AJAX
+            apiPost('{% url "update_consent" %}', { consent: consent })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Consent updated successfully');
+                        // Enable/disable get started button based on consent
+                        getStartedButton.disabled = !consent;
+                    }
+                })
+                .catch(error => console.error('Error updating consent:', error));
+        });
+        
+        // Get Started button click
+        getStartedButton.addEventListener('click', function() {
+            // Check if consent is given
+            if (!consentCheckbox.checked) {
+                alert('{% trans "Please provide consent to continue" %}');
+                return;
+            }
+            
+            // Redirect to main app
+            window.location.href = '{% url "index" %}?onboarded=true';
+        });
+        
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        // Initialize button state based on consent
+        getStartedButton.disabled = !consentCheckbox.checked;
+    });
+</script>
+{% endblock %}

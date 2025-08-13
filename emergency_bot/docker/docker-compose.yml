@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: web
+    volumes:
+      - ..:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=emergency_bot.settings.dev
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/emergency_bot
+      - REDIS_URL=redis://redis:6379/0
+
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: worker
+    volumes:
+      - ..:/app
+    depends_on:
+      - web
+      - redis
+      - db
+    env_file:
+      - ../.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=emergency_bot.settings.dev
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/emergency_bot
+      - REDIS_URL=redis://redis:6379/0
+
+  beat:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: beat
+    volumes:
+      - ..:/app
+    depends_on:
+      - worker
+      - redis
+      - db
+    env_file:
+      - ../.env
+    environment:
+      - DJANGO_SETTINGS_MODULE=emergency_bot.settings.dev
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/emergency_bot
+      - REDIS_URL=redis://redis:6379/0
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=emergency_bot
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data: 

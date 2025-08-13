@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "emergency-bot"
+version = "0.1.0"
+description = "Telegram Mini App for Emergency Reporting"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.0"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^4.0.0"
+channels = "^4.0.0"
+channels-redis = "^4.1.0"
+celery = "^5.3.0"
+redis = "^4.5.0"
+python-telegram-bot = "^20.0"
+django-filter = "^23.0"
+pillow = "^10.0.0"
+psycopg2-binary = "^2.9.5"
+django-environ = "^0.10.0"
+cryptography = "^41.0.0"
+gunicorn = "^21.0.0"
+daphne = "^4.0.0"
+whitenoise = "^6.4.0"
+sentry-sdk = "^1.25.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-django = "^4.5.2"
+pytest-cov = "^4.1.0"
+factory-boy = "^3.2.1"
+coverage = "^7.2.5"
+black = "^23.3.0"
+flake8 = "^6.0.0"
+isort = "^5.12.0"
+django-extensions = "^3.2.1"
+django-debug-toolbar = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "emergency_bot.settings.dev"
+python_files = "test_*.py"
+django_find_project = false
+testpaths = ["tests"] 

@@ -1,0 +1,215 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Dashboard - Emergency Bot Admin{% endblock %}
+
+{% block page_title %}Dashboard Overview{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Statistics Cards -->
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h5 class="card-title">Total Users</h5>
+                        <h2 class="card-text">{{ user_stats.total_users }}</h2>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-user-check me-1"></i>
+                            Active Users: {{ user_stats.active_users }}
+                        </p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 4px;">
+                    <div class="progress-bar bg-primary" style="width: 75%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h5 class="card-title">Total Services</h5>
+                        <h2 class="card-text">{{ service_stats|length }}</h2>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-hospital me-1"></i>
+                            Emergency Services
+                        </p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 4px;">
+                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h5 class="card-title">Recent Incidents</h5>
+                        <h2 class="card-text">{{ recent_incidents|length }}</h2>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-clock me-1"></i>
+                            Last 10 incidents
+                        </p>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 4px;">
+                    <div class="progress-bar bg-warning" style="width: 65%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Service Statistics and Recent Incidents -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-pie me-2"></i>
+                    Service Distribution
+                </h5>
+                <div class="dropdown">
+                    <button class="btn btn-link text-muted" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-download me-2"></i>Export</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-print me-2"></i>Print</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="serviceChart" style="height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2"></i>
+                    Recent Incidents
+                </h5>
+                <button class="btn btn-sm btn-primary">
+                    <i class="fas fa-plus me-2"></i>New Incident
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Chat ID</th>
+                                <th>Command</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for incident in recent_incidents %}
+                            <tr>
+                                <td>
+                                    <span class="badge bg-light text-dark">
+                                        {{ incident.chat_id }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="fw-medium">{{ incident.command }}</span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <i class="far fa-clock me-1"></i>
+                                        {{ incident.timestamp|date:"M d, Y H:i" }}
+                                    </small>
+                                </td>
+                                <td>
+                                    <span class="badge bg-success">Completed</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Service Distribution Chart
+    const serviceCtx = document.getElementById('serviceChart').getContext('2d');
+    const serviceData = {
+        labels: [
+            {% for stat in service_stats %}
+                '{{ stat.service_type|title }}',
+            {% endfor %}
+        ],
+        datasets: [{
+            data: [
+                {% for stat in service_stats %}
+                    {{ stat.count }},
+                {% endfor %}
+            ],
+            backgroundColor: [
+                '#4361ee',
+                '#3f37c9',
+                '#4895ef',
+                '#4cc9f0',
+                '#f72585'
+            ],
+            borderWidth: 0,
+            borderRadius: 5,
+            hoverOffset: 10
+        }]
+    };
+    
+    new Chart(serviceCtx, {
+        type: 'doughnut',
+        data: serviceData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        font: {
+                            size: 12,
+                            family: "'Poppins', sans-serif"
+                        }
+                    }
+                }
+            },
+            cutout: '70%',
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,498 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My Profile" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-container {
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .back-button {
+        background: none;
+        border: none;
+        color: var(--tg-theme-hint-color, #999999);
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        text-decoration: none;
+    }
+
+    .back-button .material-icons {
+        margin-right: 4px;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: var(--primary-color, #007aff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        margin: 0 auto 16px;
+    }
+
+    .profile-card {
+        background-color: var(--card-bg-color, white);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 16px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .settings-card {
+        background-color: var(--card-bg-color, white);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .reports-card {
+        background-color: var(--card-bg-color, white);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .user-name {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .user-info {
+        color: var(--tg-theme-hint-color, #999);
+        margin-bottom: 16px;
+    }
+
+    .stats-badge {
+        background-color: var(--primary-color, #007aff);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: var(--input-bg-color, white);
+        color: var(--tg-theme-text-color, #222);
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 20px;
+    }
+
+    .switch-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.3s;
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: var(--primary-color, #007aff);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    .save-button {
+        width: 100%;
+        padding: 14px;
+        background-color: var(--primary-color, #007aff);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .save-button .material-icons {
+        margin-right: 6px;
+    }
+
+    .reports-list {
+        margin-top: 16px;
+    }
+
+    .report-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-item:last-child {
+        border-bottom: none;
+    }
+
+    .report-info h6 {
+        margin: 0 0 4px 0;
+        font-weight: 500;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .report-date {
+        font-size: 12px;
+        color: var(--tg-theme-hint-color, #999);
+    }
+
+    .status-badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-new { background-color: #e3f2fd; color: #1976d2; }
+    .status-processing { background-color: #fff3e0; color: #f57c00; }
+    .status-resolved { background-color: #e8f5e8; color: #388e3c; }
+
+    .no-reports {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--tg-theme-hint-color, #999);
+    }
+
+    .no-reports .material-icons {
+        font-size: 48px;
+        margin-bottom: 16px;
+        opacity: 0.5;
+    }
+
+    .view-all-button {
+        padding: 8px 16px;
+        background-color: transparent;
+        color: var(--primary-color, #007aff);
+        border: 1px solid var(--primary-color, #007aff);
+        border-radius: 16px;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    /* Dark mode styles */
+    body.dark .profile-card,
+    body.dark .settings-card,
+    body.dark .reports-card {
+        background-color: #333333;
+    }
+
+    body.dark .form-select {
+        background-color: #2a2a2a;
+        border-color: #444444;
+    }
+
+    body.dark .report-item {
+        border-bottom-color: #444444;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <a href="javascript:history.back()" class="back-button">
+        <i class="material-icons">arrow_back</i> {% trans "Back" %}
+    </a>
+    
+    <h2 style="margin-bottom: 24px;">{% trans "My Profile" %}</h2>
+    
+    <!-- User Profile Card -->
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <i class="material-icons">person</i>
+        </div>
+        <div class="user-name" id="userName">{% trans "User" %}</div>
+        <div class="user-info" id="userTelegramId">{% trans "Telegram ID" %}: {% trans "Loading..." %}</div>
+        <div class="stats-badge" id="userReportsCount">
+            0 {% trans "Reports" %}
+        </div>
+    </div>
+    
+    <!-- Settings -->
+    <div class="settings-card">
+        <div class="card-header">
+            <h3 class="card-title">{% trans "Settings" %}</h3>
+        </div>
+        
+        <form id="settingsForm">
+            <div class="form-group">
+                <label class="form-label">{% trans "Preferred Language" %}</label>
+                <select class="form-select" id="languageSelect" name="language">
+                    <option value="en">{% trans "English" %}</option>
+                    <option value="am">{% trans "Amharic" %}</option>
+                    <option value="om">{% trans "Afaan Oromo" %}</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="switch-container">
+                    <div>
+                        <div class="form-label">{% trans "Notifications" %}</div>
+                        <div style="font-size: 14px; color: var(--tg-theme-hint-color);">
+                            {% trans "Receive important notifications" %}
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <button type="submit" class="save-button">
+                <i class="material-icons">save</i> {% trans "Save Settings" %}
+            </button>
+        </form>
+    </div>
+    
+    <!-- Recent Reports -->
+    <div class="reports-card">
+        <div class="card-header">
+            <h3 class="card-title">{% trans "My Reports" %}</h3>
+            <a href="#" class="view-all-button">{% trans "View All" %}</a>
+        </div>
+        
+        <div class="reports-list" id="recentReports">
+            <div class="no-reports" id="noReportsMessage">
+                <i class="material-icons">assignment</i>
+                <p>{% trans "You haven't submitted any reports yet" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Translation strings for JavaScript
+const translations = {
+    user: "{% trans 'User' %}",
+    telegram_id: "{% trans 'Telegram ID' %}",
+    loading: "{% trans 'Loading...' %}",
+    reports: "{% trans 'Reports' %}",
+    settings_saved: "{% trans 'Settings Saved' %}",
+    settings_saved_message: "{% trans 'Your profile settings have been updated successfully.' %}",
+    rape: "{% trans 'Rape' %}",
+    assault: "{% trans 'Assault' %}",
+    domestic_violence: "{% trans 'Domestic Violence' %}",
+    harassment: "{% trans 'Harassment' %}",
+    other: "{% trans 'Other' %}",
+    status_new: "{% trans 'New' %}",
+    status_processing: "{% trans 'Processing' %}",
+    status_resolved: "{% trans 'Resolved' %}",
+    status_unknown: "{% trans 'Unknown' %}",
+    reported_on: "{% trans 'Reported on' %}"
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get user data from Telegram
+    const user = {
+        id: window.user?.id || 'Unknown',
+        first_name: window.user?.first_name || translations.user,
+        last_name: window.user?.last_name || '',
+        username: window.user?.username || '',
+        language: window.user?.language || 'en'
+    };
+    
+    // Update profile information
+    document.getElementById('userName').textContent = `${user.first_name} ${user.last_name}`.trim();
+    document.getElementById('userTelegramId').textContent = `${translations.telegram_id}: ${user.id}`;
+    
+    // Set language preference based on user's language
+    if (user.language === 'am') {
+        document.getElementById('languageSelect').value = 'am';
+    } else if (user.language === 'om') {
+        document.getElementById('languageSelect').value = 'om';
+    }
+    
+    // Load user data from backend
+    loadUserData();
+    
+    // Settings form submission
+    document.getElementById('settingsForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const language = document.getElementById('languageSelect').value;
+        const notifications = document.getElementById('notificationsToggle').checked;
+        
+        // Update user language preference
+        updateUserLanguage(language);
+        
+        // Show success message
+        alert(translations.settings_saved_message);
+    });
+});
+
+async function loadUserData() {
+    try {
+        // Simulate loading user data
+        const userData = {
+            reports_count: 0,
+            recent_reports: []
+        };
+        
+        // Update reports count
+        document.getElementById('userReportsCount').textContent = `${userData.reports_count} ${translations.reports}`;
+        
+        // Display recent reports
+        if (userData.reports_count > 0) {
+            document.getElementById('noReportsMessage').style.display = 'none';
+            
+            const recentReportsContainer = document.getElementById('recentReports');
+            userData.recent_reports.forEach(report => {
+                const reportItem = document.createElement('div');
+                reportItem.className = 'report-item';
+                reportItem.innerHTML = `
+                    <div class="report-info">
+                        <h6>${getReportTypeLabel(report.type)}</h6>
+                        <div class="report-date">${translations.reported_on} ${formatDate(report.date)}</div>
+                    </div>
+                    <div class="status-badge status-${report.status}">
+                        ${getStatusLabel(report.status)}
+                    </div>
+                `;
+                recentReportsContainer.appendChild(reportItem);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading user data:', error);
+    }
+}
+
+function getReportTypeLabel(type) {
+    switch (type) {
+        case 'rape': return translations.rape;
+        case 'assault': return translations.assault;
+        case 'domestic_violence': return translations.domestic_violence;
+        case 'harassment': return translations.harassment;
+        default: return translations.other;
+    }
+}
+
+function getStatusLabel(status) {
+    switch (status) {
+        case 'new': return translations.status_new;
+        case 'processing': return translations.status_processing;
+        case 'resolved': return translations.status_resolved;
+        default: return translations.status_unknown;
+    }
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+}
+
+async function updateUserLanguage(languageCode) {
+    try {
+        const response = await fetch('/api/frontend/update-language/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                language: languageCode
+            })
+        });
+        const data = await response.json();
+        if (data.success) {
+            // Reload page to apply new language
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error('Error updating language:', error);
+    }
+}
+</script>
+{% endblock %} 

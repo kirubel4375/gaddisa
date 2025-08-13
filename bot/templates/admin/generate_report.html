@@ -1,0 +1,170 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Generate Reports - Emergency Bot Admin{% endblock %}
+
+{% block page_title %}Generate Reports{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Generate New Report</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" id="reportForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Report Type</label>
+                        <select name="report_type" class="form-select" required>
+                            <option value="DAILY">Daily Report</option>
+                            <option value="WEEKLY">Weekly Report</option>
+                            <option value="MONTHLY">Monthly Report</option>
+                            <option value="CUSTOM">Custom Report</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Start Date</label>
+                        <input type="date" name="start_date" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">End Date</label>
+                        <input type="date" name="end_date" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-chart-bar me-2"></i>Generate Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Report Results</h5>
+            </div>
+            <div class="card-body">
+                <div id="reportResults" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Incidents</h5>
+                                    <h2 class="card-text" id="totalIncidents">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Users</h5>
+                                    <h2 class="card-text" id="activeUsers">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <canvas id="incidentChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Type</th>
+                                            <th>Count</th>
+                                            <th>Percentage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="serviceStats">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="noReport" class="text-center py-5">
+                    <i class="fas fa-chart-bar fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">Generate a report to view statistics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.getElementById('reportForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    fetch('{% url "generate_report" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('reportResults').style.display = 'block';
+            document.getElementById('noReport').style.display = 'none';
+            
+            // Update statistics
+            document.getElementById('totalIncidents').textContent = data.report_data.incidents;
+            document.getElementById('activeUsers').textContent = data.report_data.active_users;
+            
+            // Update service statistics table
+            const serviceStats = document.getElementById('serviceStats');
+            serviceStats.innerHTML = '';
+            
+            Object.entries(data.report_data.services).forEach(([type, count]) => {
+                const percentage = ((count / data.report_data.incidents) * 100).toFixed(1);
+                serviceStats.innerHTML += `
+                    <tr>
+                        <td>${type}</td>
+                        <td>${count}</td>
+                        <td>${percentage}%</td>
+                    </tr>
+                `;
+            });
+            
+            // Create incident chart
+            const ctx = document.getElementById('incidentChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.report_data.dates,
+                    datasets: [{
+                        label: 'Incidents',
+                        data: data.report_data.incident_counts,
+                        borderColor: '#2c3e50',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Incidents Over Time'
+                        }
+                    }
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %} 

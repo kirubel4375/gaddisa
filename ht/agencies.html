@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Emergency Support Services</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --success-color: #4caf50;
+            --info-color: #2196f3;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--tg-theme-hint-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .back-button .material-icons {
+            margin-right: 4px;
+        }
+
+        .location-container {
+            background-color: #f5f5f5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .location-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .location-icon {
+            margin-right: 12px;
+            color: var(--primary-color);
+        }
+
+        .location-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .location-button .material-icons {
+            margin-right: 4px;
+            font-size: 18px;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            background-color: white;
+            color: var(--tg-theme-text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .filter-dropdown {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            background-color: white;
+            color: var(--tg-theme-text-color);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .agency-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agency-header {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .agency-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .agency-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .agency-icon.health {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .agency-details {
+            flex-grow: 1;
+        }
+
+        .agency-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0 0 4px 0;
+        }
+
+        .agency-address {
+            color: var(--tg-theme-hint-color);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .agency-distance {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .agency-actions {
+            display: flex;
+            margin-top: 12px;
+        }
+
+        .agency-button {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: none;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        .agency-button:last-child {
+            margin-right: 0;
+        }
+
+        .agency-button .material-icons {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        .emergency-button {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #f44336;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emergency-button .material-icons {
+            margin-right: 8px;
+        }
+
+        /* Dialog styles */
+        .dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 12px;
+            padding: 24px;
+            width: 80%;
+            max-width: 300px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .dialog-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .dialog-message {
+            margin-bottom: 24px;
+        }
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dialog-button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .dialog-button.cancel {
+            background-color: transparent;
+            color: #3498db;
+        }
+
+        .dialog-button.ok {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Dark mode */
+        body.dark {
+            --tg-theme-bg-color: #222222;
+            --tg-theme-text-color: #ffffff;
+            --tg-theme-hint-color: #aaaaaa;
+            background-color: #222222;
+            color: #ffffff;
+        }
+
+        body.dark .location-container {
+            background-color: #333333;
+        }
+
+        body.dark .dropdown,
+        body.dark .filter-dropdown {
+            background-color: #333333;
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        body.dark .agency-card {
+            background-color: #333333;
+        }
+
+        body.dark .agency-button {
+            border-color: #444444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="agencies-screen">
+            <div class="content">
+                <a href="index.html" class="back-button">
+                    <i class="material-icons">arrow_back</i> Back
+                </a>
+                
+                <h2>Emergency Support Services</h2>
+                <p class="subtitle">Find help nearby or report an incident</p>
+                
+                <div class="location-container">
+                    <div class="location-row">
+                        <i class="material-icons location-icon">location_on</i>
+                        <button class="location-button" id="useLocationBtn">
+                            <i class="material-icons">my_location</i> Use My Location
+                        </button>
+                    </div>
+                    
+                    <select class="dropdown" id="regionSelect">
+                        <option value="" selected disabled>Select Region</option>
+                        <option value="addis_ababa">Addis Ababa</option>
+                        <option value="oromia">Oromia</option>
+                        <option value="amhara">Amhara</option>
+                        <option value="tigray">Tigray</option>
+                        <option value="sidama">Sidama</option>
+                    </select>
+                    
+                    <select class="dropdown" id="zoneSelect" disabled>
+                        <option value="" selected disabled>Select Zone</option>
+                    </select>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <select class="dropdown" id="woredaSelect" disabled style="flex: 1;">
+                            <option value="" selected disabled>Select Woreda</option>
+                        </select>
+                        
+                        <select class="dropdown" id="kebeleSelect" disabled style="flex: 1;">
+                            <option value="" selected disabled>Select Kebele</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Add search button -->
+                    <button id="regionSearchBtn" class="location-button" style="width: 100%; margin-top: 16px;">
+                        <i class="material-icons">search</i> Search
+                    </button>
+                </div>
+                
+                <select class="filter-dropdown" id="serviceTypeSelect">
+                    <option value="all">All Services</option>
+                    <option value="police">Police</option>
+                    <option value="health">Health Facilities</option>
+                    <option value="women">Women & Child</option>
+                    <option value="psychiatry">Psychiatrists</option>
+                    <option value="marriage">Marriage Council</option>
+                    <option value="legal">Legal Aid</option>
+                </select>
+                
+                <h3 class="section-title">Nearby Services</h3>
+                
+                <div id="agenciesResults">
+                    <!-- Agency cards will be populated here -->
+                    <div class="agency-card">
+                        <div class="agency-header">
+                            <div class="agency-icon police">
+                                <i class="material-icons">shield</i>
+                            </div>
+                            <div class="agency-details">
+                                <h4 class="agency-name">Central Police Station</h4>
+                                <p class="agency-address">123 Main St, Central District</p>
+                            </div>
+                            <div class="agency-distance">0.8 km away</div>
+                        </div>
+                        <div class="agency-actions">
+                            <button class="agency-button" onclick="makeCall('+251911234567')">
+                                <i class="material-icons">call</i> Call
+                            </button>
+                            <button class="agency-button" onclick="getDirections(8.9806, 38.7578)">
+                                <i class="material-icons">directions</i> Directions
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="agency-card">
+                        <div class="agency-header">
+                            <div class="agency-icon health">
+                                <i class="material-icons">local_hospital</i>
+                            </div>
+                            <div class="agency-details">
+                                <h4 class="agency-name">City General Hospital</h4>
+                                <p class="agency-address">456 Health Ave, Central District</p>
+                            </div>
+                            <div class="agency-distance">1.2 km away</div>
+                        </div>
+                        <div class="agency-actions">
+                            <button class="agency-button" onclick="makeCall('+251911234568')">
+                                <i class="material-icons">call</i> Call
+                            </button>
+                            <button class="agency-button" onclick="getDirections(8.9756, 38.7598)">
+                                <i class="material-icons">directions</i> Directions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Location permission dialog -->
+        <div id="locationDialog" style="display: none;">
+            <div class="overlay"></div>
+            <div class="dialog">
+                <div class="dialog-title">Gaddisa</div>
+                <div class="dialog-message">Would you like to show emergency services near your current location?</div>
+                <div class="dialog-buttons">
+                    <button class="dialog-button cancel" id="cancelLocationBtn">Cancel</button>
+                    <button class="dialog-button ok" id="confirmLocationBtn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="emergency-button" id="emergencyBtn">
+        <i class="material-icons">warning</i> Emergency Help
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                }
+                
+                // Hardcoded agency data from agencies_addis_ababa.json
+                const agenciesData = [
+                    {
+                        id: "1a1a1a1a-0000-0000-0000-000000000001",
+                        name: "Bole Police Station",
+                        type: "police",
+                        description: "Main police station in Bole.",
+                        region: "Addis Ababa",
+                        zone: "Bole",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+251114670001",
+                        address: "Bole Road, near Edna Mall, Addis Ababa",
+                        latitude: 8.9936,
+                        longitude: 38.7870,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "1a1a1a1a-0000-0000-0000-000000000002",
+                        name: "Bole Subcity Police",
+                        type: "police",
+                        description: "Subcity police office for Bole.",
+                        region: "Addis Ababa",
+                        zone: "Bole",
+                        woreda: "02",
+                        kebele: "03",
+                        phone: "+251114670002",
+                        address: "Bole Michael, Addis Ababa",
+                        latitude: 8.9980,
+                        longitude: 38.7895,
+                        services: "Law enforcement, community policing"
+                    },
+                    {
+                        id: "1a1a1a1a-0000-0000-0000-000000000003",
+                        name: "Bole General Hospital",
+                        type: "hospital",
+                        description: "Major hospital serving Bole area.",
+                        region: "Addis Ababa",
+                        zone: "Bole",
+                        woreda: "04",
+                        kebele: "05",
+                        phone: "+251114670003",
+                        address: "Bole Medhanialem, Addis Ababa",
+                        latitude: 8.9950,
+                        longitude: 38.7800,
+                        services: "Emergency, surgery, maternity"
+                    },
+                    {
+                        id: "1a1a1a1a-0000-0000-0000-000000000004",
+                        name: "Hayat Hospital",
+                        type: "hospital",
+                        description: "Private hospital in Bole.",
+                        region: "Addis Ababa",
+                        zone: "Bole",
+                        woreda: "06",
+                        kebele: "07",
+                        phone: "+251114670004",
+                        address: "Bole, near Rwanda Embassy, Addis Ababa",
+                        latitude: 8.9910,
+                        longitude: 38.7820,
+                        services: "General medicine, emergency"
+                    },
+                    {
+                        id: "2b2b2b2b-0000-0000-0000-000000000001",
+                        name: "Arada Police Station",
+                        type: "police",
+                        description: "Main police station in Arada.",
+                        region: "Addis Ababa",
+                        zone: "Arada",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+25111230001",
+                        address: "Piazza, Churchill Ave, Addis Ababa",
+                        latitude: 9.0370,
+                        longitude: 38.7510,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "2b2b2b2b-0000-0000-0000-000000000003",
+                        name: "St. Paul's Hospital",
+                        type: "hospital",
+                        description: "Major public hospital in Arada.",
+                        region: "Addis Ababa",
+                        zone: "Arada",
+                        woreda: "04",
+                        kebele: "05",
+                        phone: "+25111230003",
+                        address: "Gulele Road, Addis Ababa",
+                        latitude: 9.0450,
+                        longitude: 38.7500,
+                        services: "Emergency, surgery, maternity"
+                    },
+                    {
+                        id: "3c3c3c3c-0000-0000-0000-000000000001",
+                        name: "Kirkos Police Station",
+                        type: "police",
+                        description: "Main police station in Kirkos.",
+                        region: "Addis Ababa",
+                        zone: "Kirkos",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+25111240001",
+                        address: "Kirkos, near Meskel Square, Addis Ababa",
+                        latitude: 9.0180,
+                        longitude: 38.7570,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3c3c3c3c-0000-0000-0000-000000000003",
+                        name: "Black Lion Hospital",
+                        type: "hospital",
+                        description: "Major referral hospital in Kirkos.",
+                        region: "Addis Ababa",
+                        zone: "Kirkos",
+                        woreda: "04",
+                        kebele: "05",
+                        phone: "+25111240003",
+                        address: "Kirkos, near Tikur Anbessa, Addis Ababa",
+                        latitude: 9.0170,
+                        longitude: 38.7600,
+                        services: "Emergency, surgery, referral"
+                    },
+                    // Additional Addis Ababa zones with agencies
+                    {
+                        id: "3d3d3d3d-0000-0000-0000-000000000001",
+                        name: "Yeka Police Department",
+                        type: "police",
+                        description: "Main police station in Yeka subcity.",
+                        region: "Addis Ababa",
+                        zone: "Yeka",
+                        woreda: "01",
+                        kebele: "02",
+                        phone: "+251116612345",
+                        address: "Yeka, near Megenagna, Addis Ababa",
+                        latitude: 9.0290,
+                        longitude: 38.8010,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3d3d3d3d-0000-0000-0000-000000000002",
+                        name: "Yeka Health Center",
+                        type: "hospital",
+                        description: "Public health center in Yeka.",
+                        region: "Addis Ababa",
+                        zone: "Yeka",
+                        woreda: "03",
+                        kebele: "04",
+                        phone: "+251116613456",
+                        address: "Yeka, Addis Ababa",
+                        latitude: 9.0310,
+                        longitude: 38.8050,
+                        services: "Primary healthcare, emergency"
+                    },
+                    {
+                        id: "3e3e3e3e-0000-0000-0000-000000000001",
+                        name: "Akaki Kaliti Police Station",
+                        type: "police",
+                        description: "Main police station in Akaki Kaliti.",
+                        region: "Addis Ababa",
+                        zone: "Akaki Kaliti",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+251114341234",
+                        address: "Akaki Kaliti, Addis Ababa",
+                        latitude: 8.8790,
+                        longitude: 38.7890,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3e3e3e3e-0000-0000-0000-000000000002",
+                        name: "Akaki Kaliti General Hospital",
+                        type: "hospital",
+                        description: "General hospital serving Akaki Kaliti area.",
+                        region: "Addis Ababa",
+                        zone: "Akaki Kaliti",
+                        woreda: "02",
+                        kebele: "03",
+                        phone: "+251114342345",
+                        address: "Akaki Kaliti, Addis Ababa",
+                        latitude: 8.8800,
+                        longitude: 38.7910,
+                        services: "Emergency, surgery, maternity"
+                    },
+                    {
+                        id: "3f3f3f3f-0000-0000-0000-000000000001",
+                        name: "Nifas Silk-Lafto Police Department",
+                        type: "police",
+                        description: "Police department in Nifas Silk-Lafto subcity.",
+                        region: "Addis Ababa",
+                        zone: "Nifas Silk-Lafto",
+                        woreda: "01",
+                        kebele: "02",
+                        phone: "+251114451234",
+                        address: "Nifas Silk-Lafto, Addis Ababa",
+                        latitude: 8.9650,
+                        longitude: 38.7350,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3f3f3f3f-0000-0000-0000-000000000002",
+                        name: "Nifas Silk-Lafto Medical Center",
+                        type: "hospital",
+                        description: "Medical center in Nifas Silk-Lafto.",
+                        region: "Addis Ababa",
+                        zone: "Nifas Silk-Lafto",
+                        woreda: "03",
+                        kebele: "04",
+                        phone: "+251114452345",
+                        address: "Nifas Silk-Lafto, Addis Ababa",
+                        latitude: 8.9670,
+                        longitude: 38.7370,
+                        services: "Emergency, general medicine"
+                    },
+                    {
+                        id: "3g3g3g3g-0000-0000-0000-000000000001",
+                        name: "Kolfe Keranio Police Station",
+                        type: "police",
+                        description: "Main police station in Kolfe Keranio subcity.",
+                        region: "Addis Ababa",
+                        zone: "Kolfe Keranio",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+251113741234",
+                        address: "Kolfe Keranio, Addis Ababa",
+                        latitude: 9.0120,
+                        longitude: 38.7120,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3g3g3g3g-0000-0000-0000-000000000002",
+                        name: "Kolfe Keranio Health Center",
+                        type: "hospital",
+                        description: "Public health center in Kolfe Keranio.",
+                        region: "Addis Ababa",
+                        zone: "Kolfe Keranio",
+                        woreda: "02",
+                        kebele: "03",
+                        phone: "+251113742345",
+                        address: "Kolfe Keranio, Addis Ababa",
+                        latitude: 9.0140,
+                        longitude: 38.7140,
+                        services: "Primary healthcare, emergency"
+                    },
+                    {
+                        id: "3h3h3h3h-0000-0000-0000-000000000001",
+                        name: "Gulele Police Department",
+                        type: "police",
+                        description: "Police department in Gulele subcity.",
+                        region: "Addis Ababa",
+                        zone: "Gulele",
+                        woreda: "01",
+                        kebele: "02",
+                        phone: "+251112781234",
+                        address: "Gulele, Addis Ababa",
+                        latitude: 9.0580,
+                        longitude: 38.7420,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3h3h3h3h-0000-0000-0000-000000000002",
+                        name: "Gulele General Hospital",
+                        type: "hospital",
+                        description: "General hospital in Gulele subcity.",
+                        region: "Addis Ababa",
+                        zone: "Gulele",
+                        woreda: "03",
+                        kebele: "04",
+                        phone: "+251112782345",
+                        address: "Gulele, Addis Ababa",
+                        latitude: 9.0600,
+                        longitude: 38.7440,
+                        services: "Emergency, surgery, maternity"
+                    },
+                    {
+                        id: "3i3i3i3i-0000-0000-0000-000000000001",
+                        name: "Lideta Police Station",
+                        type: "police",
+                        description: "Main police station in Lideta subcity.",
+                        region: "Addis Ababa",
+                        zone: "Lideta",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+251115561234",
+                        address: "Lideta, Addis Ababa",
+                        latitude: 9.0100,
+                        longitude: 38.7350,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3i3i3i3i-0000-0000-0000-000000000002",
+                        name: "Lideta Health Center",
+                        type: "hospital",
+                        description: "Public health center in Lideta.",
+                        region: "Addis Ababa",
+                        zone: "Lideta",
+                        woreda: "02",
+                        kebele: "03",
+                        phone: "+251115562345",
+                        address: "Lideta, Addis Ababa",
+                        latitude: 9.0120,
+                        longitude: 38.7370,
+                        services: "Primary healthcare, emergency"
+                    },
+                    {
+                        id: "3j3j3j3j-0000-0000-0000-000000000001",
+                        name: "Addis Ketema Police Department",
+                        type: "police",
+                        description: "Police department in Addis Ketema subcity.",
+                        region: "Addis Ababa",
+                        zone: "Addis Ketema",
+                        woreda: "01",
+                        kebele: "02",
+                        phone: "+251112731234",
+                        address: "Addis Ketema, Addis Ababa",
+                        latitude: 9.0300,
+                        longitude: 38.7250,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "3j3j3j3j-0000-0000-0000-000000000002",
+                        name: "Addis Ketema Medical Center",
+                        type: "hospital",
+                        description: "Medical center in Addis Ketema.",
+                        region: "Addis Ababa",
+                        zone: "Addis Ketema",
+                        woreda: "03",
+                        kebele: "04",
+                        phone: "+251112732345",
+                        address: "Addis Ketema, Addis Ababa",
+                        latitude: 9.0320,
+                        longitude: 38.7270,
+                        services: "Emergency, general medicine"
+                    },
+                    // Adding Oromia region agencies
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000001",
+                        name: "Adama Police Department",
+                        type: "police",
+                        description: "Main police department in Adama city.",
+                        region: "Oromia",
+                        zone: "East Shewa",
+                        woreda: "Adama",
+                        kebele: "01",
+                        phone: "+251221110511",
+                        address: "Adama, Oromia",
+                        latitude: 8.5400,
+                        longitude: 39.2700,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000002",
+                        name: "Oromia Police Commission",
+                        type: "police",
+                        description: "Regional police headquarters for Oromia.",
+                        region: "Oromia",
+                        zone: "Special Zone",
+                        woreda: "Finfinne",
+                        kebele: "01",
+                        phone: "+251113717277",
+                        address: "Saarbet (Calcallii), Finfinne (Addis Ababa)",
+                        latitude: 9.0100,
+                        longitude: 38.7600,
+                        services: "Law enforcement, regional security"
+                    },
+                    // Dandi Woreda in West Shewa Zone, Oromia Region
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000001",
+                        name: "Ginci Police Station",
+                        type: "police",
+                        description: "Main police station in Ginci town.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "01",
+                        phone: "+251113456789",
+                        address: "Main Street, Ginci, Dandi, West Shewa",
+                        latitude: 9.0200,
+                        longitude: 38.2500,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000002",
+                        name: "Ginci Health Center",
+                        type: "hospital",
+                        description: "Primary healthcare facility in Ginci town.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "01",
+                        phone: "+251113456790",
+                        address: "Hospital Road, Ginci, Dandi, West Shewa",
+                        latitude: 9.0210,
+                        longitude: 38.2520,
+                        services: "Primary healthcare, emergency, maternity"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000003",
+                        name: "Ginci Women & Children Affairs Office",
+                        type: "ngo",
+                        description: "Government office supporting women and children in Ginci.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "02",
+                        phone: "+251113456791",
+                        address: "Government Complex, Ginci, Dandi, West Shewa",
+                        latitude: 9.0220,
+                        longitude: 38.2530,
+                        services: "Women support, child protection, counseling"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000004",
+                        name: "Dandi Woreda Court",
+                        type: "legal",
+                        description: "Woreda court providing legal services in Dandi.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "01",
+                        phone: "+251113456792",
+                        address: "Justice Road, Ginci, Dandi, West Shewa",
+                        latitude: 9.0230,
+                        longitude: 38.2540,
+                        services: "Legal aid, court services, dispute resolution"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000005",
+                        name: "Ginci Mental Health Clinic",
+                        type: "hospital",
+                        description: "Mental health services in Ginci town.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "03",
+                        phone: "+251113456793",
+                        address: "Health Center Road, Ginci, Dandi, West Shewa",
+                        latitude: 9.0240,
+                        longitude: 38.2550,
+                        services: "Mental health counseling, psychiatric services"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000006",
+                        name: "Dandi Family Support Center",
+                        type: "marriage",
+                        description: "Center providing family counseling and support.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "02",
+                        phone: "+251113456794",
+                        address: "Community Center, Ginci, Dandi, West Shewa",
+                        latitude: 9.0250,
+                        longitude: 38.2560,
+                        services: "Marriage counseling, family therapy, mediation"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000007",
+                        name: "Ginci Rural Police Post",
+                        type: "police",
+                        description: "Rural police post serving outlying areas of Ginci.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "04",
+                        phone: "+251113456795",
+                        address: "Rural Road, Ginci, Dandi, West Shewa",
+                        latitude: 9.0260,
+                        longitude: 38.2570,
+                        services: "Rural law enforcement, community policing"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000008",
+                        name: "Dandi Emergency Response Team",
+                        type: "ngo",
+                        description: "Emergency response team for Dandi woreda.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "01",
+                        phone: "+251113456796",
+                        address: "Emergency Center, Ginci, Dandi, West Shewa",
+                        latitude: 9.0270,
+                        longitude: 38.2580,
+                        services: "Emergency response, first aid, disaster management"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000009",
+                        name: "Ginci Legal Aid Clinic",
+                        type: "legal",
+                        description: "Legal aid clinic providing free services to vulnerable populations.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "02",
+                        phone: "+251113456797",
+                        address: "Justice Complex, Ginci, Dandi, West Shewa",
+                        latitude: 9.0280,
+                        longitude: 38.2590,
+                        services: "Free legal aid, document preparation, legal advice"
+                    },
+                    {
+                        id: "5a5a5a5a-0000-0000-0000-000000000010",
+                        name: "Dandi Women's Shelter",
+                        type: "ngo",
+                        description: "Safe house for women and children fleeing domestic violence.",
+                        region: "Oromia",
+                        zone: "West Shewa",
+                        woreda: "Dandi",
+                        kebele: "03",
+                        phone: "+251113456798",
+                        address: "Confidential Location, Ginci, Dandi, West Shewa",
+                        latitude: 9.0290,
+                        longitude: 38.2600,
+                        services: "Emergency shelter, counseling, legal support, rehabilitation"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000003",
+                        name: "Mega Primary Hospital",
+                        type: "hospital",
+                        description: "Hospital serving the Borena zone in Oromia.",
+                        region: "Oromia",
+                        zone: "Borena",
+                        woreda: "Mega",
+                        kebele: "01",
+                        phone: "+251926152550",
+                        address: "Mega, Borena, Oromia",
+                        latitude: 4.0500,
+                        longitude: 38.3000,
+                        services: "Emergency, surgery, maternity, ambulance"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000004",
+                        name: "Jimma University Specialized Hospital",
+                        type: "hospital",
+                        description: "Major teaching and referral hospital in Jimma.",
+                        region: "Oromia",
+                        zone: "Jimma",
+                        woreda: "Jimma",
+                        kebele: "01",
+                        phone: "+251471111458",
+                        address: "Jimma University, Jimma, Oromia",
+                        latitude: 7.6700,
+                        longitude: 36.8300,
+                        services: "Emergency, surgery, specialized care, teaching"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000005",
+                        name: "Nekemte Specialized Hospital",
+                        type: "hospital",
+                        description: "Major hospital serving Western Oromia.",
+                        region: "Oromia",
+                        zone: "East Wollega",
+                        woreda: "Nekemte",
+                        kebele: "01",
+                        phone: "+251576617975",
+                        address: "Nekemte, East Wollega, Oromia",
+                        latitude: 9.0900,
+                        longitude: 36.5300,
+                        services: "Emergency, surgery, maternity"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000006",
+                        name: "Adama Referral Hospital",
+                        type: "hospital",
+                        description: "Major referral hospital in Adama.",
+                        region: "Oromia",
+                        zone: "East Shewa",
+                        woreda: "Adama",
+                        kebele: "02",
+                        phone: "+251221110455",
+                        address: "Adama, East Shewa, Oromia",
+                        latitude: 8.5500,
+                        longitude: 39.2600,
+                        services: "Emergency, surgery, referral services"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000007",
+                        name: "Asella Teaching Hospital",
+                        type: "hospital",
+                        description: "Teaching hospital in Asella.",
+                        region: "Oromia",
+                        zone: "Arsi",
+                        woreda: "Asella",
+                        kebele: "01",
+                        phone: "+251223313688",
+                        address: "Asella, Arsi, Oromia",
+                        latitude: 7.9500,
+                        longitude: 39.1400,
+                        services: "Emergency, surgery, teaching"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000008",
+                        name: "Shashamane Police Station",
+                        type: "police",
+                        description: "Main police station in Shashamane.",
+                        region: "Oromia",
+                        zone: "West Arsi",
+                        woreda: "Shashamane",
+                        kebele: "01",
+                        phone: "+251461102345",
+                        address: "Shashamane, West Arsi, Oromia",
+                        latitude: 7.2000,
+                        longitude: 38.6000,
+                        services: "Law enforcement, emergency response"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000009",
+                        name: "Bishoftu Police Department",
+                        type: "police",
+                        description: "Main police department in Bishoftu city.",
+                        region: "Oromia",
+                        zone: "East Shewa",
+                        woreda: "Bishoftu",
+                        kebele: "01",
+                        phone: "+251114339001",
+                        address: "Bishoftu, East Shewa, Oromia",
+                        latitude: 8.7500,
+                        longitude: 38.9800,
+                        services: "Law enforcement, community policing"
+                    },
+                    {
+                        id: "4d4d4d4d-0000-0000-0000-000000000010",
+                        name: "Bishoftu Hospital",
+                        type: "hospital",
+                        description: "Public hospital in Bishoftu.",
+                        region: "Oromia",
+                        zone: "East Shewa",
+                        woreda: "Bishoftu",
+                        kebele: "02",
+                        phone: "+251114339123",
+                        address: "Bishoftu, East Shewa, Oromia",
+                        latitude: 8.7600,
+                        longitude: 38.9900,
+                        services: "Emergency, surgery, maternity"
+                    }
+                ];
+                
+                // Function to get agencies by zone
+                function getAgenciesByZone(zone) {
+                    return agenciesData.filter(agency => agency.zone.toLowerCase() === zone.toLowerCase());
+                }
+                
+                // Function to get agencies by type
+                function getAgenciesByType(type) {
+                    return agenciesData.filter(agency => agency.type === type);
+                }
+                
+                // Function to get agencies by region
+                function getAgenciesByRegion(region) {
+                    return agenciesData.filter(agency => agency.region.toLowerCase() === region.toLowerCase());
+                }
+                
+                // Function to display agencies in the UI
+                function displayAgencies(agencies) {
+                    const agenciesResults = document.getElementById('agenciesResults');
+                    agenciesResults.innerHTML = ''; // Clear existing content
+                    
+                    if (agencies.length === 0) {
+                        agenciesResults.innerHTML = '<p class="text-center">No agencies found in this area.</p>';
+                        return;
+                    }
+                    
+                    agencies.forEach(agency => {
+                        const iconClass = agency.type === 'police' ? 'police' : 
+                                         agency.type === 'hospital' ? 'health' : 'ngo';
+                        
+                        const iconName = agency.type === 'police' ? 'shield' : 
+                                        agency.type === 'hospital' ? 'local_hospital' : 'people';
+                        
+                        const agencyCard = document.createElement('div');
+                        agencyCard.className = 'agency-card';
+                        agencyCard.innerHTML = `
+                            <div class="agency-header">
+                                <div class="agency-icon ${iconClass}">
+                                    <i class="material-icons">${iconName}</i>
+                                </div>
+                                <div class="agency-details">
+                                    <h4 class="agency-name">${agency.name}</h4>
+                                    <p class="agency-address">${agency.address}</p>
+                                </div>
+                            </div>
+                            <div class="agency-actions">
+                                <button class="agency-button" onclick="makeCall('${agency.phone}')">
+                                    <i class="material-icons">call</i> Call
+                                </button>
+                                <button class="agency-button" onclick="getDirections(${agency.latitude}, ${agency.longitude})">
+                                    <i class="material-icons">directions</i> Directions
+                                </button>
+                            </div>
+                        `;
+                        
+                        agenciesResults.appendChild(agencyCard);
+                    });
+                }
+                
+                // Get service type from URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const serviceType = urlParams.get('type');
+                
+                if (serviceType) {
+                    document.getElementById('serviceTypeSelect').value = serviceType;
+                    // Filter agencies based on type
+                    if (serviceType !== 'all') {
+                        const mappedType = serviceType === 'health' ? 'hospital' : 
+                                          serviceType === 'women' ? 'ngo' : serviceType;
+                        const filteredAgencies = getAgenciesByType(mappedType);
+                        displayAgencies(filteredAgencies);
+                    } else {
+                        displayAgencies(agenciesData);
+                    }
+                }
+                
+                // Location button handler
+                document.getElementById('useLocationBtn').addEventListener('click', function() {
+                    document.getElementById('locationDialog').style.display = 'block';
+                });
+                
+                document.getElementById('cancelLocationBtn').addEventListener('click', function() {
+                    document.getElementById('locationDialog').style.display = 'none';
+                });
+                
+                document.getElementById('confirmLocationBtn').addEventListener('click', function() {
+                    document.getElementById('locationDialog').style.display = 'none';
+                    
+                    // Get user location
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            function(position) {
+                                const lat = position.coords.latitude;
+                                const lng = position.coords.longitude;
+                                console.log(`Location: ${lat}, ${lng}`);
+                                
+                                // In a real app, you would fetch nearby agencies based on location
+                                // For now, we're using the sample data already in the HTML
+                            },
+                            function(error) {
+                                console.error("Error getting location:", error);
+                                alert("Could not get your location. Please try selecting your region manually.");
+                            }
+                        );
+                    } else {
+                        alert("Geolocation is not supported by this browser.");
+                    }
+                });
+                
+                // Region selection handler
+                document.getElementById('regionSelect').addEventListener('change', function() {
+                    const region = this.value;
+                    const zoneSelect = document.getElementById('zoneSelect');
+                    
+                    if (region) {
+                        // Enable zone dropdown
+                        zoneSelect.disabled = false;
+                        
+                        // Clear existing options
+                        zoneSelect.innerHTML = '<option value="" selected disabled>Select Zone</option>';
+                        
+                        // Get unique zones for this region from agency data
+                        const zones = [...new Set(
+                            agenciesData
+                                .filter(agency => agency.region.toLowerCase() === region.toLowerCase())
+                                .map(agency => agency.zone)
+                        )];
+                        
+                        // Add options
+                            zones.forEach(zone => {
+                                const option = document.createElement('option');
+                            option.value = zone.toLowerCase().replace(/\s+/g, '_');
+                                option.textContent = zone;
+                                zoneSelect.appendChild(option);
+                            });
+                    } else {
+                        zoneSelect.disabled = true;
+                    }
+                });
+                
+                // Zone selection handler
+                document.getElementById('zoneSelect').addEventListener('change', function() {
+                    const region = document.getElementById('regionSelect').value;
+                    const zone = this.value;
+                    const woredaSelect = document.getElementById('woredaSelect');
+                    
+                    if (zone) {
+                        // Enable woreda dropdown
+                        woredaSelect.disabled = false;
+                        
+                        // Clear existing options
+                        woredaSelect.innerHTML = '<option value="" selected disabled>Select Woreda</option>';
+                        
+                        // Get unique woredas for this region and zone from agency data
+                        const woredas = [...new Set(
+                            agenciesData
+                                .filter(agency => 
+                                    agency.region.toLowerCase() === region.toLowerCase() && 
+                                    agency.zone.toLowerCase() === zone.toLowerCase().replace(/_/g, ' ')
+                                )
+                                .map(agency => agency.woreda)
+                        )].sort();
+                        
+                        // Add options
+                        woredas.forEach(woreda => {
+                            const option = document.createElement('option');
+                            option.value = woreda;
+                            option.textContent = `Woreda ${woreda}`;
+                            woredaSelect.appendChild(option);
+                        });
+                    } else {
+                        woredaSelect.disabled = true;
+                    }
+                });
+                
+                // Woreda selection handler
+                document.getElementById('woredaSelect').addEventListener('change', function() {
+                    const region = document.getElementById('regionSelect').value;
+                    const zone = document.getElementById('zoneSelect').value.replace(/_/g, ' ');
+                    const woreda = this.value;
+                    const kebeleSelect = document.getElementById('kebeleSelect');
+                    
+                    if (woreda) {
+                        // Enable kebele dropdown
+                        kebeleSelect.disabled = false;
+                        
+                        // Clear existing options
+                        kebeleSelect.innerHTML = '<option value="" selected disabled>Select Kebele</option>';
+                        
+                        // Get unique kebeles for this region, zone, and woreda from agency data
+                        const kebeles = [...new Set(
+                            agenciesData
+                                .filter(agency => 
+                                    agency.region.toLowerCase() === region.toLowerCase() && 
+                                    agency.zone.toLowerCase() === zone.toLowerCase() &&
+                                    agency.woreda === woreda
+                                )
+                                .map(agency => agency.kebele)
+                        )].sort();
+                        
+                        // Add options
+                        kebeles.forEach(kebele => {
+                            const option = document.createElement('option');
+                            option.value = kebele;
+                            option.textContent = `Kebele ${kebele}`;
+                            kebeleSelect.appendChild(option);
+                        });
+                    } else {
+                        kebeleSelect.disabled = true;
+                    }
+                });
+                
+                // Emergency button handler
+                document.getElementById('emergencyBtn').addEventListener('click', function() {
+                    window.location.href = 'report.html';
+                });
+                
+                // Service type filter handler
+                document.getElementById('serviceTypeSelect').addEventListener('change', function() {
+                    const serviceType = this.value;
+                    console.log(`Filtering by service type: ${serviceType}`);
+                    
+                    // Get the currently displayed agencies
+                    const currentlyDisplayedAgencies = getCurrentlyDisplayedAgencies();
+                    
+                    // Filter agencies by type
+                    if (serviceType !== 'all') {
+                        const mappedType = serviceType === 'health' ? 'hospital' : 
+                                          serviceType === 'women' ? 'ngo' : serviceType;
+                        const filteredAgencies = currentlyDisplayedAgencies.filter(agency => agency.type === mappedType);
+                        displayAgencies(filteredAgencies);
+                    } else {
+                        displayAgencies(currentlyDisplayedAgencies);
+                    }
+                });
+                
+                // Region search button handler
+                document.getElementById('regionSearchBtn').addEventListener('click', function() {
+                    const region = document.getElementById('regionSelect').value;
+                    const zone = document.getElementById('zoneSelect').value;
+                    const woreda = document.getElementById('woredaSelect').value;
+                    const kebele = document.getElementById('kebeleSelect').value;
+                    
+                    if (region) {
+                        // Get filtered agencies based on selections
+                        const filteredAgencies = getCurrentlyDisplayedAgencies();
+                        
+                        // Display the filtered agencies
+                        displayAgencies(filteredAgencies);
+                        
+                        // Apply any service type filter
+                        const serviceType = document.getElementById('serviceTypeSelect').value;
+                        if (serviceType !== 'all') {
+                            const mappedType = serviceType === 'health' ? 'hospital' : 
+                                              serviceType === 'women' ? 'ngo' : serviceType;
+                            const typeFilteredAgencies = filteredAgencies.filter(agency => agency.type === mappedType);
+                            displayAgencies(typeFilteredAgencies);
+                        }
+                    }
+                });
+                
+                // Function to get currently displayed agencies based on region selections
+                function getCurrentlyDisplayedAgencies() {
+                    const region = document.getElementById('regionSelect').value;
+                    const zone = document.getElementById('zoneSelect').value ? 
+                                 document.getElementById('zoneSelect').value.replace(/_/g, ' ') : null;
+                    const woreda = document.getElementById('woredaSelect').value;
+                    const kebele = document.getElementById('kebeleSelect').value;
+                    
+                    // If no region is selected, return all agencies
+                    if (!region) {
+                        return agenciesData;
+                    }
+                    
+                    // Filter by region
+                    let filteredAgencies = agenciesData.filter(agency => 
+                        agency.region.toLowerCase() === document.getElementById('regionSelect')
+                            .options[document.getElementById('regionSelect').selectedIndex].text.toLowerCase()
+                    );
+                    
+                    // Further filter by zone if selected
+                    if (zone) {
+                        filteredAgencies = filteredAgencies.filter(agency => 
+                            agency.zone.toLowerCase() === zone.toLowerCase().replace(/_/g, ' ')
+                        );
+                        
+                        // Further filter by woreda if selected
+                        if (woreda) {
+                            filteredAgencies = filteredAgencies.filter(agency => 
+                                agency.woreda === woreda
+                            );
+                            
+                            // Further filter by kebele if selected
+                            if (kebele) {
+                                filteredAgencies = filteredAgencies.filter(agency => 
+                                    agency.kebele === kebele
+                                );
+                            }
+                        }
+                    }
+                    
+                    return filteredAgencies;
+                }
+            } else {
+                console.log("WebApp initialization failed");
+            }
+        });
+        
+        // Utility functions
+        function makeCall(phoneNumber) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+        
+        function getDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+    </script>
+</body>
+</html> 

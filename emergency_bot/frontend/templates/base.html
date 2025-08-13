@@ -57,40 +57,51 @@
     
     <!-- Telegram Mini App Initialization -->
     <script>
-        // Initialize Telegram WebApp
-        const tg = window.Telegram.WebApp;
-        tg.expand();
+        // Initialize Telegram WebApp with error handling
+        let tg = null;
+        let user = {};
         
-        // Set theme based on Telegram color scheme
-        document.documentElement.className = tg.colorScheme;
-        
-        // Store user data
-        const user = {
-            id: tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id'),
-            first_name: tg.initDataUnsafe?.user?.first_name || '',
-            last_name: tg.initDataUnsafe?.user?.last_name || '',
-            username: tg.initDataUnsafe?.user?.username || '',
-            language: tg.initDataUnsafe?.user?.language_code || 'en'
-        };
+        try {
+            tg = window.Telegram && window.Telegram.WebApp;
+            if (tg) {
+                tg.expand();
+                // Set theme based on Telegram color scheme
+                document.documentElement.className = tg.colorScheme || '';
+                
+                // Store user data
+                user = {
+                    id: tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id'),
+                    first_name: tg.initDataUnsafe?.user?.first_name || '',
+                    last_name: tg.initDataUnsafe?.user?.last_name || '',
+                    username: tg.initDataUnsafe?.user?.username || '',
+                    language: tg.initDataUnsafe?.user?.language_code || 'en'
+                };
+            } else {
+                // Fallback for testing outside Telegram
+                user = {
+                    id: new URLSearchParams(window.location.search).get('user_id'),
+                    first_name: '',
+                    last_name: '',
+                    username: '',
+                    language: 'en'
+                };
+            }
+        } catch (error) {
+            console.log('Telegram WebApp initialization error:', error);
+            // Fallback user data
+            user = {
+                id: new URLSearchParams(window.location.search).get('user_id'),
+                first_name: '',
+                last_name: '',
+                username: '',
+                language: 'en'
+            };
+        }
 
         // Current page language (set by Django)
         const currentLanguage = '{{ LANGUAGE_CODE }}';
         
-        // Check localStorage for saved language preference (Telegram mini app compatibility)
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedLang = localStorage.getItem('mini_app_language');
-            if (storedLang && storedLang !== currentLanguage) {
-                // Update user profile with stored language preference
-                if (user.id) {
-                    updateUserLanguage(storedLang);
-                }
-            } else if (user.id && user.language && user.language !== currentLanguage) {
-                // Fallback: use Telegram user language if no localStorage setting
-                updateUserLanguage(user.language);
-            }
-        });
-
-        // Verify user authentication on page load
+        // Single DOMContentLoaded event listener to avoid conflicts
         document.addEventListener('DOMContentLoaded', function() {
             // Add user_id and language to all links if not already present
             if (user.id) {
@@ -98,14 +109,19 @@
                 
                 const links = document.querySelectorAll('a');
                 links.forEach(link => {
-                    const url = new URL(link.href, window.location.origin);
-                    if (!url.searchParams.has('user_id')) {
-                        url.searchParams.set('user_id', user.id);
+                    try {
+                        const url = new URL(link.href, window.location.origin);
+                        if (!url.searchParams.has('user_id')) {
+                            url.searchParams.set('user_id', user.id);
+                        }
+                        if (!url.searchParams.has('lang')) {
+                            url.searchParams.set('lang', currentLang);
+                        }
+                        link.href = url.toString();
+                    } catch (e) {
+                        // Skip invalid links
+                        console.log('Skipping invalid link:', link.href);
                     }
-                    if (!url.searchParams.has('lang')) {
-                        url.searchParams.set('lang', currentLang);
-                    }
-                    link.href = url.toString();
                 });
 
                 // Authenticate with backend
@@ -113,8 +129,13 @@
             }
         });
 
-        // Function to authenticate with backend
+        // Function to authenticate with backend (with better error handling)
         function verifyTelegramAuth() {
+            if (!user.id) {
+                console.log('No user ID available, skipping authentication');
+                return;
+            }
+            
             fetch('/api/accounts/verify/', {
                 method: 'POST',
                 headers: {
@@ -129,15 +150,15 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    console.error('Authentication failed');
+                    console.log('Authentication failed (non-critical)');
                 }
-                return response.json();
+                return response.json().catch(() => ({})); // Handle invalid JSON gracefully
             })
             .then(data => {
-                console.log('Authentication successful:', data);
+                console.log('Authentication completed:', data);
             })
             .catch(error => {
-                console.error('Error during authentication:', error);
+                console.log('Authentication error (non-critical):', error);
             });
         }
         
@@ -198,33 +219,39 @@
                 });
         }
 
-        // Function to update user language preference for Telegram mini app
+        // Debounce mechanism to prevent excessive API calls
+        let languageUpdateTimeout = null;
+        
+        // Function to update user language preference (NO AUTOMATIC RELOAD)
         function updateUserLanguage(languageCode) {
-            if (!user.id) return;
+            if (!user.id || !languageCode) return;
             
             // Save to localStorage for mini app persistence
             localStorage.setItem('mini_app_language', languageCode);
             
-            // Save to user profile in background
-            apiPost('/webapp/api/frontend/update-language/', {
-                language: languageCode,
-                telegram_id: user.id
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Language updated successfully:', languageCode);
-                    // For mini apps, reload page to apply Django language
-                    window.location.reload();
-                } else {
-                    console.error('Failed to update language:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error updating language:', error);
-                // Still reload to apply localStorage language if API fails
-                window.location.reload();
-            });
+            // Debounce API calls to prevent excessive requests
+            if (languageUpdateTimeout) {
+                clearTimeout(languageUpdateTimeout);
+            }
+            
+            languageUpdateTimeout = setTimeout(() => {
+                // Save to user profile in background (no reload)
+                apiPost('/webapp/api/frontend/update-language/', {
+                    language: languageCode,
+                    telegram_id: user.id
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Language updated successfully:', languageCode);
+                    } else {
+                        console.log('Failed to update language:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.log('Error updating language:', error);
+                });
+            }, 500); // Wait 500ms before sending API request
         }
 
         // Function to activate language in Django
@@ -270,16 +297,19 @@
          *     .then(response => ...)
          */
         function apiPost(url, data) {
-            const tg = window.Telegram.WebApp;
-            const initData = tg.initData || '';
-            const userId = tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id');
+            const initData = tg?.initData || '';
+            const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
             
             // Add user_id to URL if not already present
             if (userId) {
-                const urlObj = new URL(url, window.location.origin);
-                if (!urlObj.searchParams.has('user_id')) {
-                    urlObj.searchParams.set('user_id', userId);
-                    url = urlObj.toString();
+                try {
+                    const urlObj = new URL(url, window.location.origin);
+                    if (!urlObj.searchParams.has('user_id')) {
+                        urlObj.searchParams.set('user_id', userId);
+                        url = urlObj.toString();
+                    }
+                } catch (e) {
+                    console.log('URL parsing error, using original URL:', e);
                 }
             }
             
@@ -290,7 +320,7 @@
                     'X-Telegram-Init-Data': initData,
                     'X-User-ID': userId ? userId.toString() : ''
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data || {})
             });
         }
 
@@ -302,16 +332,19 @@
          *     .then(response => ...)
          */
         function apiGet(url) {
-            const tg = window.Telegram.WebApp;
-            const initData = tg.initData || '';
-            const userId = tg.initDataUnsafe?.user?.id || new URLSearchParams(window.location.search).get('user_id');
+            const initData = tg?.initData || '';
+            const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
             
             // Add user_id to URL if not already present
             if (userId) {
-                const urlObj = new URL(url, window.location.origin);
-                if (!urlObj.searchParams.has('user_id')) {
-                    urlObj.searchParams.set('user_id', userId);
-                    url = urlObj.toString();
+                try {
+                    const urlObj = new URL(url, window.location.origin);
+                    if (!urlObj.searchParams.has('user_id')) {
+                        urlObj.searchParams.set('user_id', userId);
+                        url = urlObj.toString();
+                    }
+                } catch (e) {
+                    console.log('URL parsing error, using original URL:', e);
                 }
             }
             

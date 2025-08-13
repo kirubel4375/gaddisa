@@ -66,6 +66,12 @@ def get_webapp_url():
 def get_report_url():
     """Get the URL for the report page"""
     base_url = get_webapp_url()
+    # Remove any trailing paths like /index.html from base_url
+    if base_url.endswith('/index.html'):
+        base_url = base_url[:-11]  # Remove '/index.html'
+    elif base_url.endswith('/index.html/'):
+        base_url = base_url[:-12]  # Remove '/index.html/'
+    
     report_url = f"{base_url}/webapp/report.html"
     logger.info(f"Using report URL: {report_url}")
     return report_url
@@ -73,6 +79,12 @@ def get_report_url():
 def get_agencies_url():
     """Get the URL for the agencies page"""
     base_url = get_webapp_url()
+    # Remove any trailing paths like /index.html from base_url
+    if base_url.endswith('/index.html'):
+        base_url = base_url[:-11]  # Remove '/index.html'
+    elif base_url.endswith('/index.html/'):
+        base_url = base_url[:-12]  # Remove '/index.html/'
+    
     agencies_url = f"{base_url}/webapp/agencies.html"
     logger.info(f"Using agencies URL: {agencies_url}")
     return agencies_url
@@ -413,7 +425,7 @@ async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
             web_app=WebAppInfo(url=WEBAPP_URL)
         )],
         [InlineKeyboardButton(
-            "📞 " + get_text('call_7711', language), 
+            "📞 " + get_text('emergency_numbers', language), 
             callback_data="emergency_call_options"
         )],
         [InlineKeyboardButton(

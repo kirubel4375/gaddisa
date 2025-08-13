@@ -299,7 +299,7 @@ async def language_button_callback(update: Update, context: ContextTypes.DEFAULT
                         web_app=WebAppInfo(url=WEBAPP_URL)
                     )],
                     [InlineKeyboardButton(
-                        "📞 " + get_text('call_7711', lang_code), 
+                        "📞 " + get_text('emergency_numbers', lang_code), 
                         callback_data="emergency_call_options"
                     )],
                     [InlineKeyboardButton(

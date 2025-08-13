@@ -352,7 +352,7 @@
 <body>
     <div class="container">
             <div class="content">
-            <a href="{% url 'index_html' %}" class="back-button">
+            <a href="#" class="back-button" onclick="goBackToHome(event)">
                     <i class="material-icons">arrow_back</i> {% trans "Back" %}
                 </a>
                 
@@ -433,6 +433,27 @@
             'please_select_region_zone': '{% trans "Please select at least Region and Zone" %}'
         };
         
+        // Function to go back to home with language persistence
+        function goBackToHome(event) {
+            event.preventDefault();
+            
+            // Get user ID
+            const tg = window.Telegram && window.Telegram.WebApp;
+            const userId = (tg && tg.initDataUnsafe?.user?.id) || new URLSearchParams(window.location.search).get('user_id');
+            
+            // Get current language from localStorage for persistence
+            const currentLang = localStorage.getItem('mini_app_language') || 'en';
+            
+            // Build URL with both user_id and language parameters
+            const params = new URLSearchParams();
+            if (userId) params.set('user_id', userId);
+            params.set('lang', currentLang);
+            
+            const homeUrl = `/webapp/index.html?${params.toString()}`;
+            console.log('Navigating back to home with language:', currentLang, 'URL:', homeUrl);
+            window.location.href = homeUrl;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Telegram WebApp
             const tg = window.Telegram && window.Telegram.WebApp;

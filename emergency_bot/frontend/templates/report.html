@@ -214,7 +214,7 @@
 
 {% block content %}
 <div class="form-container">
-    <a href="{% url 'index_html' %}" class="back-button">
+    <a href="#" class="back-button" onclick="goBackToHome(event)">
         <i class="material-icons">arrow_back</i> {% trans "back" %}
     </a>
     
@@ -328,6 +328,26 @@ const translations = {
     record: "{% trans 'record' %}",
     select_zone: "{% trans 'select_zone' %}"
 };
+
+// Function to go back to home with language persistence
+function goBackToHome(event) {
+    event.preventDefault();
+    
+    // Get user ID
+    const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+    
+    // Get current language from localStorage for persistence
+    const currentLang = localStorage.getItem('mini_app_language') || 'en';
+    
+    // Build URL with both user_id and language parameters
+    const params = new URLSearchParams();
+    if (userId) params.set('user_id', userId);
+    params.set('lang', currentLang);
+    
+    const homeUrl = `/webapp/index.html?${params.toString()}`;
+    console.log('Navigating back to home with language:', currentLang, 'URL:', homeUrl);
+    window.location.href = homeUrl;
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Tab switching
@@ -621,7 +641,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 alert(translations.report_submitted_successfully);
                 const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
-                window.location.href = `{% url "index_html" %}${userId ? '?user_id=' + userId : ''}`;
+                
+                // Include language parameter for persistence
+                const currentLang = localStorage.getItem('mini_app_language') || 'en';
+                const params = new URLSearchParams();
+                if (userId) params.set('user_id', userId);
+                params.set('lang', currentLang);
+                
+                window.location.href = `/webapp/index.html?${params.toString()}`;
             } else {
                 alert(translations.failed_to_submit_report + ": " + data.message);
                 submitBtn.innerHTML = originalBtnText;

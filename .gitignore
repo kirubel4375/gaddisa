@@ -1,0 +1,7 @@
+db.sqlite3
+bot_log.txt
+logs/*
+.claude/*
+.cursor/*
+debug_bot.log
+debug_output.txt

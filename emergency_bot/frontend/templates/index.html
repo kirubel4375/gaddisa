@@ -636,40 +636,46 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
     };
     
-    // Simple language selector functions
+    // Telegram Mini App language selector functions
     function initializeLanguageSelector() {
         const languageSelect = document.getElementById('languageSelect');
         
-        // Set current language from page
-        const pageLang = currentLanguage || 'en';
-        languageSelect.value = pageLang;
+        // Get stored language from localStorage or use page default
+        const storedLang = localStorage.getItem('mini_app_language');
+        const currentLang = storedLang || currentLanguage || 'en';
+        languageSelect.value = currentLang;
         
-        // Simple change event listener
+        // If we have a stored language different from page language, apply it
+        if (storedLang && storedLang !== currentLanguage) {
+            applyLanguage(storedLang);
+        }
+        
+        // Language change event listener
         languageSelect.addEventListener('change', function() {
             changeLanguage(this.value);
         });
     }
     
     function changeLanguage(language) {
-        // Simple approach: just reload the page with language parameter
-        const currentUrl = new URL(window.location);
-        currentUrl.searchParams.set('lang', language);
+        console.log('Changing language to:', language);
         
-        // Save to user profile in background (optional, no waiting)
+        // Store language preference in localStorage for mini app
+        localStorage.setItem('mini_app_language', language);
+        
+        // Save to user profile in background
         let userId = null;
         try {
             userId = (typeof user !== 'undefined' && user) ? user.id : null;
         } catch (e) {
-            console.log('User variable not available for language save');
+            console.log('User variable not available');
         }
         
-        // Fallback to URL parameter
         if (!userId) {
-            userId = currentUrl.searchParams.get('user_id');
+            userId = new URLSearchParams(window.location.search).get('user_id');
         }
         
         if (userId) {
-            // Save language preference asynchronously
+            // Save language preference to database asynchronously
             fetch('/webapp/api/frontend/update-language/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -677,8 +683,109 @@ document.addEventListener('DOMContentLoaded', function() {
             }).catch(e => console.log('Language save failed:', e));
         }
         
-        // Immediately reload with new language
-        window.location.href = currentUrl.toString();
+        // Apply language immediately without page reload
+        applyLanguage(language);
+    }
+    
+    function applyLanguage(language) {
+        console.log('Applying language:', language);
+        
+        // Language translations for immediate UI update
+        const translations = {
+            'en': {
+                'Emergency Services': 'Emergency Services',
+                'Police': 'Police',
+                'Find nearby police stations': 'Find nearby police stations',
+                'Health Services': 'Health Services',
+                'Hospitals and clinics': 'Hospitals and clinics',
+                'Women & Social Affairs': 'Women & Social Affairs',
+                'Support & protection services': 'Support & protection services',
+                'Psychosocial': 'Psychosocial',
+                'Mental health support': 'Mental health support',
+                'Important Informations': 'Important Informations',
+                'Any related informations': 'Any related informations',
+                'Legal Aid': 'Legal Aid',
+                'Lawyers and legal support': 'Lawyers and legal support',
+                'Emergency Help': 'Emergency Help',
+                'Nearby Services': 'Nearby Services'
+            },
+            'am': {
+                'Emergency Services': 'የአደጋ አገልግሎቶች',
+                'Police': 'ፖሊስ',
+                'Find nearby police stations': 'አቅራቢያ ያሉ የፖሊስ ጣቢያዎችን ይፈልጉ',
+                'Health Services': 'የጤና አገልግሎቶች',
+                'Hospitals and clinics': 'ሆስፒታሎች እና ክሊኒኮች',
+                'Women & Social Affairs': 'የሴቶች እና ማህበራዊ ጉዳዮች',
+                'Support & protection services': 'የድጋፍ እና ጥበቃ አገልግሎቶች',
+                'Psychosocial': 'ስነ-ልቦናዊ',
+                'Mental health support': 'የአእምሮ ጤና ድጋፍ',
+                'Important Informations': 'አስፈላጊ መረጃዎች',
+                'Any related informations': 'ማንኛውም ተዛማጅ መረጃዎች',
+                'Legal Aid': 'የህግ እርዳታ',
+                'Lawyers and legal support': 'ጠበቆች እና የህግ ድጋፍ',
+                'Emergency Help': 'የአደጋ ጊዜ እርዳታ',
+                'Nearby Services': 'አቅራቢያ ያሉ አገልግሎቶች'
+            },
+            'om': {
+                'Emergency Services': 'Tajaajila Balaa',
+                'Police': 'Poolisii',
+                'Find nearby police stations': 'Buufata poolisii dhihoo jiran barbaadi',
+                'Health Services': 'Tajaajila Fayyaa',
+                'Hospitals and clinics': 'Hospitaala fi kilinikii',
+                'Women & Social Affairs': 'Dhimma Dubartootaa fi Hawaasaa',
+                'Support & protection services': 'Tajaajila deeggaraa fi eegumsa',
+                'Psychosocial': 'Sammuu-hawaasummaa',
+                'Mental health support': 'Deeggarsa fayyaa sammuu',
+                'Important Informations': 'Odeeffannoo Barbaachisaa',
+                'Any related informations': 'Odeeffannoo walqabataa kamuu',
+                'Legal Aid': 'Gargaarsa Seeraa',
+                'Lawyers and legal support': 'Laammiilee fi deeggarsa seeraa',
+                'Emergency Help': 'Gargaarsa Balaa',
+                'Nearby Services': 'Tajaajila Dhihoo'
+            }
+        };
+        
+        const langTranslations = translations[language] || translations['en'];
+        
+        // Update UI elements immediately
+        const elementsToTranslate = [
+            { selector: 'h2', key: 'Emergency Services' },
+            { selector: '.service-title', texts: [
+                'Police', 'Health Services', 'Women & Social Affairs', 
+                'Psychosocial', 'Important Informations', 'Legal Aid'
+            ]},
+            { selector: '.service-desc', texts: [
+                'Find nearby police stations', 'Hospitals and clinics', 'Support & protection services',
+                'Mental health support', 'Any related informations', 'Lawyers and legal support'
+            ]},
+            { selector: '.emergency-button', key: 'Emergency Help' },
+            { selector: 'h3', key: 'Nearby Services' }
+        ];
+        
+        // Apply translations
+        elementsToTranslate.forEach(item => {
+            if (item.key) {
+                const elements = document.querySelectorAll(item.selector);
+                elements.forEach(el => {
+                    if (el.innerHTML.includes('material-icons')) {
+                        // Handle elements with icons - only change text
+                        const iconHtml = el.querySelector('.material-icons')?.outerHTML || '';
+                        el.innerHTML = iconHtml + ' ' + langTranslations[item.key];
+                    } else {
+                        el.textContent = langTranslations[item.key];
+                    }
+                });
+            } else if (item.texts) {
+                const elements = document.querySelectorAll(item.selector);
+                elements.forEach((el, index) => {
+                    if (index < item.texts.length) {
+                        el.textContent = langTranslations[item.texts[index]];
+                    }
+                });
+            }
+        });
+        
+        console.log('Language applied successfully:', language);
     }
 });
 </script>

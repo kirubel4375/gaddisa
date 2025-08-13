@@ -56,38 +56,36 @@ def get_user_profile(request):
         return None
 
 
-def index(request):
-    """
-    Main entry point for the Telegram Mini App.
-    """
-    # Get user profile and activate language
-    user_profile = get_user_profile(request)
+def activate_user_language(request, user_profile=None):
+    """Activate user's preferred language for the request"""
+    if not user_profile:
+        user_profile = get_user_profile(request)
     
-    # Check for language parameter in URL (highest priority)
-    lang_param = request.GET.get('lang')
-    
-    # Determine which language to use
-    if lang_param and lang_param in ['en', 'am', 'om']:
-        # Use language from URL parameter
-        active_language = lang_param
-        # Update user profile if they have one
-        if user_profile:
-            user_profile.language = lang_param
-            user_profile.save()
-    elif user_profile and user_profile.language:
-        # Use user's saved language preference
+    # Determine language to use
+    if user_profile and user_profile.language:
         active_language = user_profile.language
     else:
-        # Default to English
         active_language = 'en'
+        # Set default language for new users
         if user_profile:
             user_profile.language = 'en'
             user_profile.save()
     
-    # Activate the determined language
+    # Activate the language
     translation.activate(active_language)
     request.LANGUAGE_CODE = active_language
     logger.info(f"Activated language: {active_language} for user {user_profile.telegram_id if user_profile else 'anonymous'}")
+    
+    return active_language
+
+
+def index(request):
+    """
+    Main entry point for the Telegram Mini App.
+    """
+    # Get user profile and activate their preferred language
+    user_profile = get_user_profile(request)
+    active_language = activate_user_language(request, user_profile)
     
     return render(request, 'index.html')
 
@@ -97,11 +95,9 @@ def welcome(request):
     """
     Welcome screen for first-time users with onboarding steps.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'welcome.html')
 
@@ -329,11 +325,9 @@ def agencies(request):
     """
     View for agencies listing and search.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'agencies.html')
 
@@ -342,11 +336,9 @@ def report(request):
     """
     View for incident reporting.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'report.html')
 
@@ -471,11 +463,9 @@ def profile(request):
     """
     View for user profile management.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'profile.html')
 
@@ -485,11 +475,9 @@ def report_history(request):
     """
     View for user's report history.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'reports.html')
 
@@ -498,11 +486,9 @@ def agency_detail(request, slug):
     """
     View for individual agency details.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     agency = get_object_or_404(Agency, slug=slug)
     return render(request, 'agency_detail.html', {'agency': agency})
@@ -512,11 +498,9 @@ def my_reports(request):
     """
     View for user's own reports.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     return render(request, 'my_reports.html')
 
@@ -525,11 +509,9 @@ def report_detail(request, report_id):
     """
     View for individual report details.
     """
-    # Get user profile and activate language
+    # Get user profile and activate their preferred language
     user_profile = get_user_profile(request)
-    if user_profile and user_profile.language:
-        translation.activate(user_profile.language)
-        request.LANGUAGE_CODE = user_profile.language
+    activate_user_language(request, user_profile)
     
     report = get_object_or_404(IncidentReport, id=report_id)
     return render(request, 'report_detail.html', {'report': report}) 

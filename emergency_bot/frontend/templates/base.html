@@ -76,10 +76,19 @@
         // Current page language (set by Django)
         const currentLanguage = '{{ LANGUAGE_CODE }}';
         
-        // Update user language preference if needed
-        if (user.id && user.language && user.language !== currentLanguage) {
-            updateUserLanguage(user.language);
-        }
+        // Check localStorage for saved language preference (Telegram mini app compatibility)
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedLang = localStorage.getItem('mini_app_language');
+            if (storedLang && storedLang !== currentLanguage) {
+                // Update user profile with stored language preference
+                if (user.id) {
+                    updateUserLanguage(storedLang);
+                }
+            } else if (user.id && user.language && user.language !== currentLanguage) {
+                // Fallback: use Telegram user language if no localStorage setting
+                updateUserLanguage(user.language);
+            }
+        });
 
         // Verify user authentication on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -184,24 +193,32 @@
                 });
         }
 
-        // Function to update user language preference
+        // Function to update user language preference for Telegram mini app
         function updateUserLanguage(languageCode) {
             if (!user.id) return;
             
-            apiPost('/api/frontend/update-language/', {
-                language: languageCode
+            // Save to localStorage for mini app persistence
+            localStorage.setItem('mini_app_language', languageCode);
+            
+            // Save to user profile in background
+            apiPost('/webapp/api/frontend/update-language/', {
+                language: languageCode,
+                telegram_id: user.id
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Activate Django language for this session
-                    activateLanguage(languageCode);
+                    console.log('Language updated successfully:', languageCode);
+                    // For mini apps, reload page to apply Django language
+                    window.location.reload();
                 } else {
                     console.error('Failed to update language:', data.error);
                 }
             })
             .catch(error => {
                 console.error('Error updating language:', error);
+                // Still reload to apply localStorage language if API fails
+                window.location.reload();
             });
         }
 
@@ -234,95 +251,8 @@
             form.submit();
         }
 
-        // Language sync for shared hosting using polling
-        let languageSyncInterval = null;
-        let lastLanguageCheck = null;
-        let currentLanguage = '{{ LANGUAGE_CODE|default:"en" }}';
-        
-        function startLanguageSync() {
-            if (!user.id) return;
-            
-            console.log('Starting language sync polling for shared hosting');
-            
-            // Check immediately on start
-            checkLanguageSync();
-            
-            // Then check every 3 seconds
-            languageSyncInterval = setInterval(checkLanguageSync, 3000);
-        }
-        
-        function checkLanguageSync() {
-            if (!user.id) return;
-            
-            const url = new URL('/api/frontend/check-language-sync/', window.location.origin);
-            url.searchParams.set('user_id', user.id);
-            if (lastLanguageCheck) {
-                url.searchParams.set('last_check', lastLanguageCheck);
-            }
-            
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'X-Telegram-Init-Data': tg.initData || '',
-                    'X-User-ID': user.id ? user.id.toString() : ''
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    lastLanguageCheck = data.timestamp;
-                    
-                    if (data.language_changed && data.language !== currentLanguage) {
-                        console.log('Language changed in Telegram to:', data.language);
-                        console.log('Updating mini app language...');
-                        activateLanguage(data.language);
-                    }
-                } else {
-                    console.error('Language sync check failed:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Language sync check error:', error);
-            });
-        }
-        
-        function stopLanguageSync() {
-            if (languageSyncInterval) {
-                clearInterval(languageSyncInterval);
-                languageSyncInterval = null;
-                console.log('Language sync polling stopped');
-            }
-        }
-        
-        // Initialize language detection and sync on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            if (user.id) {
-                // First, get the user's preferred language and activate it
-                getUserLanguage().then(userLanguage => {
-                    console.log('User preferred language:', userLanguage);
-                    
-                    // Check if current page language differs from user preference  
-                    console.log('Current page language:', currentLanguage);
-                    
-                    if (userLanguage && userLanguage !== currentLanguage) {
-                        console.log('Activating user preferred language:', userLanguage);
-                        activateLanguage(userLanguage);
-                    } else {
-                        // If languages match, start the sync polling
-                        startLanguageSync();
-                    }
-                }).catch(error => {
-                    console.error('Error getting user language preference:', error);
-                    // Fallback to sync polling
-                    startLanguageSync();
-                });
-            }
-        });
-        
-        // Stop polling when page is unloaded
-        window.addEventListener('beforeunload', function() {
-            stopLanguageSync();
-        });
+        // Simplified language persistence for Telegram mini apps
+        // Language preference is handled via localStorage and page reload
     </script>
     
     <!-- Telegram WebApp API Helper: Always send initData for authentication -->

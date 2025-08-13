@@ -65,14 +65,15 @@ def get_webapp_url():
 
 def get_report_url():
     """Get the URL for the report page"""
-    report_url = "https://gaddisa.hdmsoftwaresolutions.com/profile.htmlreport.html"
+    base_url = get_webapp_url()
+    report_url = f"{base_url}/webapp/report.html"
     logger.info(f"Using report URL: {report_url}")
     return report_url
 
 def get_agencies_url():
     """Get the URL for the agencies page"""
     base_url = get_webapp_url()
-    agencies_url = f"{base_url}/profile.htmlagencies.html"
+    agencies_url = f"{base_url}/webapp/agencies.html"
     logger.info(f"Using agencies URL: {agencies_url}")
     return agencies_url
 
@@ -148,7 +149,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                     web_app=WebAppInfo(url=WEBAPP_URL)
                 )],
                 [InlineKeyboardButton(
-                    "📞 " + get_text('call_7711', language), 
+                    "📞 " + get_text('emergency_numbers', language), 
                     callback_data="emergency_call_options"
                 )],
                 [InlineKeyboardButton(
@@ -299,7 +300,7 @@ async def handle_consent_response(update: Update, context: ContextTypes.DEFAULT_
                     web_app=WebAppInfo(url=WEBAPP_URL)
                 )],
                 [InlineKeyboardButton(
-                    "📞 " + get_text('call_7711', language), 
+                    "📞 " + get_text('emergency_numbers', language), 
                     callback_data="emergency_call_options"
                 )],
                 [InlineKeyboardButton(
@@ -441,46 +442,10 @@ async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /help is issued."""
-    help_text = (
-        "<b>📱 Emergency Reporting Bot - Help Guide</b>\n\n"
-        "<b>What This Bot Does:</b>\n"
-        "This bot helps you report emergency incidents (like assault, harassment, etc.) and find nearby support services including police stations, hospitals, and other support agencies.\n\n"
-        
-        "<b>How to Use This Bot:</b>\n\n"
-        
-        "1️⃣ <b>Reporting an Emergency:</b>\n"
-        "• Use /report or tap the Emergency Help button\n"
-        "• Select the incident type (assault, harassment, etc.)\n"
-        "• Share your location (optional but recommended)\n"
-        "• Add details about what happened\n"
-        "• Record a voice note if needed\n"
-        "• Submit your report\n\n"
-        
-        "2️⃣ <b>Finding Support Services:</b>\n"
-        "• Use /agencies command\n"
-        "• Share your location to find nearby services OR\n"
-        "• Select your region, zone, woreda, and kebele\n"
-        "• Filter by service type (police, hospital, etc.)\n"
-        "• View contact information and directions\n\n"
-        
-        "3️⃣ <b>Using the Location Feature:</b>\n"
-        "• When searching for agencies, tap 'Use My Location'\n"
-        "• Allow location access when prompted\n"
-        "• The app will show services nearest to you\n"
-        "• Tap 'Call' to contact a service directly\n"
-        "• Tap 'Directions' to get navigation instructions\n\n"
-        
-        "<b>Available Commands:</b>\n"
-        "/start - Open the emergency app\n"
-        "/report - Report an emergency incident\n"
-        "/agencies - Find nearby support services\n"
-        "/language - Change your language\n"
-        "/privacy - View privacy policy\n"
-        "/help - Show this help message\n\n"
-        
-        "<b>Need More Help?</b>\n"
-        "If you need assistance using this bot, please contact support at support@gaddisa.org"
-    )
+    user = update.effective_user
+    user_language = await get_user_language_async(user.id)
+    
+    help_text = get_text('help_text', user_language)
     await update.message.reply_html(help_text)
 
 async def language_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -624,38 +589,14 @@ async def show_help_callback(update: Update, context: ContextTypes.DEFAULT_TYPE)
     query = update.callback_query
     await query.answer()
     
-    help_text = (
-        "<b>📱 Emergency Reporting Bot - Help Guide</b>\n\n"
-        "<b>What This Bot Does:</b>\n"
-        "This bot helps you report emergency incidents (like assault, harassment, etc.) and find nearby support services including police stations, hospitals, and other support agencies.\n\n"
-        
-        "<b>How to Use This Bot:</b>\n\n"
-        
-        "1️⃣ <b>Reporting an Emergency:</b>\n"
-        "• Use /report or tap the Emergency Help button\n"
-        "• Select the incident type (assault, harassment, etc.)\n"
-        "• Share your location (optional but recommended)\n"
-        "• Add details about what happened\n"
-        "• Record a voice note if needed\n"
-        "• Submit your report\n\n"
-        
-        "2️⃣ <b>Finding Support Services:</b>\n"
-        "• Use /agencies command\n"
-        "• Share your location to find nearby services OR\n"
-        "• Select your region, zone, woreda, and kebele\n"
-        "• Filter by service type (police, hospital, etc.)\n"
-        "• View contact information and directions\n\n"
-        
-        "3️⃣ <b>Using the Location Feature:</b>\n"
-        "• When searching for agencies, tap 'Use My Location'\n"
-        "• Allow location access when prompted\n"
-        "• The app will show services nearest to you\n"
-        "• Tap 'Call' to contact a service directly\n"
-        "• Tap 'Directions' to get navigation instructions\n\n"
-    )
+    user = query.from_user
+    user_language = await get_user_language_async(user.id)
     
-    # Add a button to go back to main menu
-    keyboard = [[InlineKeyboardButton("◀️ Back to Main Menu", callback_data="back_to_main")]]
+    help_text = get_text('help_text', user_language)
+    
+    # Add a button to go back to main menu with translated text
+    back_text = get_text('back_to_menu', user_language)
+    keyboard = [[InlineKeyboardButton(f"◀️ {back_text}", callback_data="back_to_main")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await query.edit_message_text(
@@ -774,26 +715,22 @@ async def emergency_call_options_callback(update: Update, context: ContextTypes.
     query = update.callback_query
     await query.answer()
     
+    user = query.from_user
+    language = await get_user_language_async(user.id)
+    
     # Create keyboard with emergency call options
     keyboard = [
-        [InlineKeyboardButton("🚨 Call 7711 - Emergency Services", url="tel:7711")],
-        [InlineKeyboardButton("👮 Call 999 - Police", url="tel:999")],
-        [InlineKeyboardButton("🚑 Call 907 - Ambulance", url="tel:907")],
-        [InlineKeyboardButton("🔥 Call 939 - Fire", url="tel:939")],
-        [InlineKeyboardButton("🏥 Call 911 - General Emergency", url="tel:911")],
-        [InlineKeyboardButton("◀️ Back to Main Menu", callback_data="back_to_main")]
+        [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
+        [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
+        [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
+        [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
+        [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
+        [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     await query.edit_message_text(
-        "<b>📞 Emergency Call Options</b>\n\n"
-        "Choose an emergency service to call:\n\n"
-        "🚨 <b>7711</b> - Main Emergency Services\n"
-        "👮 <b>999</b> - Police Department\n"
-        "🚑 <b>907</b> - Ambulance Service\n"
-        "🔥 <b>939</b> - Fire Department\n"
-        "🏥 <b>911</b> - General Emergency\n\n"
-        "<i>Your phone will begin calling when you press a button</i>",
+        get_text('emergency_numbers_menu', language),
         reply_markup=reply_markup,
         parse_mode='HTML'
     )

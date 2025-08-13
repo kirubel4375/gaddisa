@@ -313,7 +313,15 @@ function handleEmergencyClick() {
         userId = new URLSearchParams(window.location.search).get('user_id');
     }
     
-    const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
+    // Get current language from localStorage for persistence
+    const currentLang = localStorage.getItem('mini_app_language') || 'en';
+    
+    // Build URL with both user_id and language parameters
+    const params = new URLSearchParams();
+    if (userId) params.set('user_id', userId);
+    params.set('lang', currentLang);
+    
+    const reportUrl = `/webapp/report.html?${params.toString()}`;
     console.log('Navigating to:', reportUrl);
     window.location.href = reportUrl;
 }
@@ -403,7 +411,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 userId = new URLSearchParams(window.location.search).get('user_id');
             }
             
-            const reportUrl = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
+            // Get current language from localStorage for persistence
+            const currentLang = localStorage.getItem('mini_app_language') || 'en';
+            
+            // Build URL with both user_id and language parameters
+            const params = new URLSearchParams();
+            if (userId) params.set('user_id', userId);
+            params.set('lang', currentLang);
+            
+            const reportUrl = `/webapp/report.html?${params.toString()}`;
             console.log('Navigating to:', reportUrl);
             window.location.href = reportUrl;
         });
@@ -593,8 +609,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const viewAllBtn = document.createElement('div');
                 viewAllBtn.style.textAlign = 'center';
                 viewAllBtn.style.marginTop = '16px';
+                
+                // Include language parameter for persistence
+                const currentLang = localStorage.getItem('mini_app_language') || 'en';
+                const params = new URLSearchParams();
+                params.set('type', serviceType);
+                if (userId) params.set('user_id', userId);
+                params.set('lang', currentLang);
+                
                 viewAllBtn.innerHTML = `
-                    <button onclick="window.location.href='/webapp/agencies.html?type=${serviceType}${userId ? '&user_id=' + userId : ''}'" style="
+                    <button onclick="window.location.href='/webapp/agencies.html?${params.toString()}'" style="
                         background-color: var(--primary-color, #007aff);
                         color: white;
                         border: none;

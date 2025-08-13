@@ -57,14 +57,27 @@ def get_user_profile(request):
 
 
 def activate_user_language(request, user_profile=None):
-    """Activate user's preferred language for the request"""
+    """Activate user's preferred language for the request with localStorage support"""
     if not user_profile:
         user_profile = get_user_profile(request)
     
-    # Determine language to use
-    if user_profile and user_profile.language:
+    # Priority order: URL lang parameter > user profile > default
+    # Check for language parameter in URL (from localStorage navigation)
+    lang_param = request.GET.get('lang')
+    
+    if lang_param and lang_param in ['en', 'am', 'om']:
+        # Use language from URL parameter (localStorage navigation)
+        active_language = lang_param
+        # Update user profile to match localStorage preference
+        if user_profile:
+            user_profile.language = lang_param
+            user_profile.save()
+            logger.info(f"Updated user {user_profile.telegram_id} language to {lang_param} from localStorage")
+    elif user_profile and user_profile.language:
+        # Use user's saved language preference from database
         active_language = user_profile.language
     else:
+        # Default to English
         active_language = 'en'
         # Set default language for new users
         if user_profile:

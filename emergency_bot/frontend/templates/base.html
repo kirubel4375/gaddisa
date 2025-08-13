@@ -92,15 +92,20 @@
 
         // Verify user authentication on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Add user_id to all links if not already present
+            // Add user_id and language to all links if not already present
             if (user.id) {
+                const currentLang = localStorage.getItem('mini_app_language') || currentLanguage || 'en';
+                
                 const links = document.querySelectorAll('a');
                 links.forEach(link => {
                     const url = new URL(link.href, window.location.origin);
                     if (!url.searchParams.has('user_id')) {
                         url.searchParams.set('user_id', user.id);
-                        link.href = url.toString();
                     }
+                    if (!url.searchParams.has('lang')) {
+                        url.searchParams.set('lang', currentLang);
+                    }
+                    link.href = url.toString();
                 });
 
                 // Authenticate with backend

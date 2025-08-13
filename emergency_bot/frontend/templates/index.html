@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('emergencyBtn').addEventListener('click', function() {
         const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
-        window.location.href = `{% url "report_html" %}${userId ? '?user_id=' + userId : ''}`;
+        window.location.href = `/webapp/report.html${userId ? '?user_id=' + userId : ''}`;
     });
     
     // Translatable services data using translation strings
@@ -428,79 +428,139 @@ document.addEventListener('DOMContentLoaded', function() {
     function showNearbyServices(serviceType) {
         document.getElementById('nearbyServicesSection').style.display = 'block';
         const nearbyServicesList = document.getElementById('nearbyServicesList');
-        nearbyServicesList.innerHTML = '';
         
-        const services = servicesData[serviceType] || [];
-        
-        if (services.length === 0) {
-            nearbyServicesList.innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
-                    <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
-                        ${translations.no_services_category}
-                    </p>
-                </div>
-            `;
-            return;
-        }
-        
-        services.sort((a, b) => a.distance - b.distance);
-        
-        services.forEach(service => {
-            const serviceCard = document.createElement('div');
-            serviceCard.className = 'nearby-service-card';
-            
-            const iconClass = service.type === 'police' ? 'police' : 'hospital';
-            const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
-            
-            serviceCard.innerHTML = `
-                <div class="service-type-icon ${iconClass}">
-                    <i class="material-icons">${iconName}</i>
-                </div>
-                <div class="service-info">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <h4 class="service-name">${service.name}</h4>
-                        <span class="service-distance">${service.distance.toFixed(1)} ${translations.km_away}</span>
-                    </div>
-                    <p class="service-address">${service.address}</p>
-                    <div class="service-actions">
-                        <button class="service-action-btn" onclick="makeCall('${service.phone}')">
-                            <i class="material-icons">call</i> ${translations.call}
-                        </button>
-                        <button class="service-action-btn" onclick="getDirections(${service.latitude || 9.0107}, ${service.longitude || 38.7476})">
-                            <i class="material-icons">directions</i> ${translations.directions}
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            nearbyServicesList.appendChild(serviceCard);
-        });
-        
-        const viewAllBtn = document.createElement('div');
-        viewAllBtn.style.textAlign = 'center';
-        viewAllBtn.style.marginTop = '16px';
-        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
-        viewAllBtn.innerHTML = `
-            <button onclick="window.location.href='{% url "agencies_html" %}?type=${serviceType}${userId ? '&user_id=' + userId : ''}'" style="
-                background-color: var(--primary-color, #007aff);
-                color: white;
-                border: none;
-                border-radius: 20px;
-                padding: 8px 16px;
-                font-size: 14px;
-                display: flex;
-                align-items: center;
-                margin: 0 auto;
-                cursor: pointer;
-            ">
-                <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
-                ${translations.view_all_services}
-            </button>
+        // Show loading indicator
+        nearbyServicesList.innerHTML = `
+            <div class="loading-indicator" style="text-align: center; padding: 20px;">
+                <div style="width: 40px; height: 40px; border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-color, #007aff); border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 10px; color: var(--tg-theme-hint-color, #999);">${translations.loading || 'Loading...'}</p>
+            </div>
         `;
-        nearbyServicesList.appendChild(viewAllBtn);
         
-        document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
+        // Get user's location and fetch nearby services
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    fetchNearbyServices(serviceType, lat, lng);
+                },
+                (error) => {
+                    console.log('Geolocation error:', error);
+                    // Fallback to Addis Ababa center coordinates
+                    fetchNearbyServices(serviceType, 9.0307, 38.7407);
+                }
+            );
+        } else {
+            // Fallback to Addis Ababa center coordinates
+            fetchNearbyServices(serviceType, 9.0307, 38.7407);
+        }
+    }
+    
+    function fetchNearbyServices(serviceType, lat, lng) {
+        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
+        const nearbyServicesList = document.getElementById('nearbyServicesList');
+        
+        // Fetch nearby agencies from API
+        fetch(`/api/v1/agencies/nearby/?lat=${lat}&lng=${lng}&user_id=${userId}`)
+            .then(response => response.json())
+            .then(services => {
+                // Filter services by type
+                let filteredServices = services;
+                if (serviceType && serviceType !== 'all') {
+                    filteredServices = services.filter(service => {
+                        // Map service types
+                        if (serviceType === 'police' && service.type === 'police') return true;
+                        if (serviceType === 'hospital' && service.type === 'hospital') return true;
+                        if (serviceType === 'women' && service.type === 'ngo') return true;
+                        if (serviceType === 'psychiatry' && service.type === 'hospital' && service.name.toLowerCase().includes('mental')) return true;
+                        if (serviceType === 'legal' && service.type === 'ngo') return true;
+                        return false;
+                    });
+                }
+                
+                nearbyServicesList.innerHTML = '';
+                
+                if (filteredServices.length === 0) {
+                    nearbyServicesList.innerHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
+                            <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                                ${translations.no_services_category}
+                            </p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Display services (already sorted by distance from API)
+                filteredServices.slice(0, 5).forEach(service => {
+                    const serviceCard = document.createElement('div');
+                    serviceCard.className = 'nearby-service-card';
+                    
+                    const iconClass = service.type === 'police' ? 'police' : 'hospital';
+                    const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
+                    
+                    serviceCard.innerHTML = `
+                        <div class="service-type-icon ${iconClass}">
+                            <i class="material-icons">${iconName}</i>
+                        </div>
+                        <div class="service-info">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <h4 class="service-name">${service.name}</h4>
+                                <span class="service-distance">${service.distance} ${translations.km_away}</span>
+                            </div>
+                            <p class="service-address">${service.address}</p>
+                            <div class="service-actions">
+                                <button class="service-action-btn" onclick="makeCall('${service.phone}')">
+                                    <i class="material-icons">call</i> ${translations.call}
+                                </button>
+                                <button class="service-action-btn" onclick="getDirections(${service.latitude}, ${service.longitude})">
+                                    <i class="material-icons">directions</i> ${translations.directions}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    nearbyServicesList.appendChild(serviceCard);
+                });
+                
+                // Add "View All Services" button
+                const viewAllBtn = document.createElement('div');
+                viewAllBtn.style.textAlign = 'center';
+                viewAllBtn.style.marginTop = '16px';
+                viewAllBtn.innerHTML = `
+                    <button onclick="window.location.href='/webapp/agencies.html?type=${serviceType}${userId ? '&user_id=' + userId : ''}'" style="
+                        background-color: var(--primary-color, #007aff);
+                        color: white;
+                        border: none;
+                        border-radius: 20px;
+                        padding: 8px 16px;
+                        font-size: 14px;
+                        display: flex;
+                        align-items: center;
+                        margin: 0 auto;
+                        cursor: pointer;
+                    ">
+                        <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
+                        ${translations.view_all_services}
+                    </button>
+                `;
+                nearbyServicesList.appendChild(viewAllBtn);
+                
+                document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error fetching nearby services:', error);
+                nearbyServicesList.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">error</i>
+                        <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                            Error loading services. Please try again.
+                        </p>
+                    </div>
+                `;
+            });
     }
     
     // Utility functions

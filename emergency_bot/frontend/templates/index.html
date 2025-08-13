@@ -517,11 +517,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const languageSelect = document.getElementById('languageSelect');
         
         // Set current language from Django context or get from user profile
-        languageSelect.value = currentLanguage || 'en';
+        const pageLang = currentLanguage || 'en';
+        languageSelect.value = pageLang;
+        console.log('Initialized language selector with page language:', pageLang);
         
         // Also try to get from user profile to make sure they match
         if (user.id) {
             getUserLanguage().then(userLanguage => {
+                console.log('User profile language:', userLanguage);
                 languageSelect.value = userLanguage || 'en';
             }).catch(error => {
                 console.log('Could not fetch user language, using current page language');
@@ -530,6 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add change event listener
         languageSelect.addEventListener('change', function() {
+            console.log('Language dropdown changed to:', this.value);
             changeLanguage(this.value);
         });
     }
@@ -540,12 +544,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const originalValue = languageSelect.value;
         languageSelect.disabled = true;
         
-        // Use the existing updateUserLanguage function from base.html
-        // which handles both updating the backend and activating the language
-        updateUserLanguage(language);
+        const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
         
-        // The activateLanguage function in base.html will reload the page automatically
-        // So we don't need to handle success/error here as the page will change
+        if (!userId) {
+            // If no user ID, just reload with language parameter
+            window.location.href = `${window.location.pathname}?lang=${language}`;
+            return;
+        }
+        
+        // Send language update request using the API helper from base.html
+        apiPost('/api/frontend/update-language/', {
+            language: language,
+            telegram_id: userId
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Language updated successfully to:', language);
+                // Simply reload the page to apply the new language
+                // The backend will detect the user's new language preference and activate it
+                window.location.reload();
+            } else {
+                // Revert selection if failed
+                console.error('Failed to update language:', data.error);
+                languageSelect.value = originalValue;
+                languageSelect.disabled = false;
+                alert('Failed to change language. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error changing language:', error);
+            // Revert selection if failed
+            languageSelect.value = originalValue;
+            languageSelect.disabled = false;
+            alert('Failed to change language. Please try again.');
+        });
     }
 });
 </script>

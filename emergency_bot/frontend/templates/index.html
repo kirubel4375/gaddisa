@@ -213,6 +213,11 @@
 {% endblock %}
 
 {% block content %}
+<!-- Hidden div with agencies data -->
+<div id="agenciesDataDiv" style="display: none;">{{ agencies_json|safe|default:"[]" }}</div>
+<!-- Debug message -->
+<div style="display: none;">DEBUG: {{ debug_message|default:"NO_MESSAGE" }}</div>
+
 <div class="container-fluid p-3">
     <!-- Language Selector -->
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -428,82 +433,16 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Emergency button not found!');
     }
     
-    // Translatable services data using translation strings
-    const servicesData = {
-        'police': [
-            {
-                id: "1",
-                name: translations.bole_police,
-                type: "police",
-                description: translations.bole_police_desc,
-                phone: "+251114670001",
-                address: translations.bole_address,
-                distance: 1.2
-            },
-            {
-                id: "2",
-                name: translations.arada_police,
-                type: "police",
-                description: translations.arada_police_desc,
-                phone: "+251114456789",
-                address: translations.arada_address,
-                distance: 2.5
-            }
-        ],
-        'hospital': [
-            {
-                id: "4",
-                name: translations.black_lion_hospital,
-                type: "hospital",
-                description: translations.black_lion_desc,
-                phone: "+251115517011",
-                address: translations.black_lion_address,
-                distance: 0.8
-            },
-            {
-                id: "5",
-                name: translations.st_pauls_hospital,
-                type: "hospital",
-                description: translations.st_pauls_desc,
-                phone: "+251115533666",
-                address: translations.st_pauls_address,
-                distance: 1.5
-            }
-        ],
-        'women': [
-            {
-                id: "7",
-                name: translations.women_lawyers_assoc,
-                type: "women_child_affair",
-                description: translations.women_lawyers_desc,
-                phone: "+251115505050",
-                address: translations.women_lawyers_address,
-                distance: 1.7
-            }
-        ],
-        'psychiatry': [
-            {
-                id: "10",
-                name: translations.amanuel_hospital,
-                type: "hospital",
-                description: translations.amanuel_desc,
-                phone: "+251111223344",
-                address: translations.amanuel_address,
-                distance: 3.2
-            }
-        ],
-        'legal': [
-            {
-                id: "12",
-                name: translations.legal_aid_center,
-                type: "legal",
-                description: translations.legal_aid_desc,
-                phone: "+251115606060",
-                address: translations.legal_aid_address,
-                distance: 1.9
-            }
-        ]
-    };
+    // Load agencies data from Django
+    const agenciesDataDiv = document.getElementById('agenciesDataDiv');
+    let agenciesData = [];
+    try {
+        agenciesData = JSON.parse(agenciesDataDiv.textContent || '[]');
+        console.log('Loaded agencies from database:', agenciesData.length);
+    } catch (e) {
+        console.log('Failed to parse agencies data, using empty array');
+        agenciesData = [];
+    }
     
     function showNearbyServices(serviceType) {
         document.getElementById('nearbyServicesSection').style.display = 'block';
@@ -541,120 +480,153 @@ document.addEventListener('DOMContentLoaded', function() {
         const userId = user.id || new URLSearchParams(window.location.search).get('user_id');
         const nearbyServicesList = document.getElementById('nearbyServicesList');
         
-        // Fetch nearby agencies from API
-        fetch(`/api/v1/agencies/nearby/?lat=${lat}&lng=${lng}&user_id=${userId}`)
-            .then(response => response.json())
-            .then(services => {
-                // Filter services by type
-                let filteredServices = services;
-                if (serviceType && serviceType !== 'all') {
-                    filteredServices = services.filter(service => {
-                        // Map service types
-                        if (serviceType === 'police' && service.type === 'police') return true;
-                        if (serviceType === 'hospital' && service.type === 'hospital') return true;
-                        if (serviceType === 'women' && service.type === 'ngo') return true;
-                        if (serviceType === 'psychiatry' && service.type === 'hospital' && service.name.toLowerCase().includes('mental')) return true;
-                        if (serviceType === 'legal' && service.type === 'ngo') return true;
-                        return false;
-                    });
-                }
-                
-                nearbyServicesList.innerHTML = '';
-                
-                if (filteredServices.length === 0) {
-                    nearbyServicesList.innerHTML = `
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
-                            <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
-                                ${translations.no_services_category}
-                            </p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                // Display services (already sorted by distance from API)
-                filteredServices.slice(0, 5).forEach(service => {
-                    const serviceCard = document.createElement('div');
-                    serviceCard.className = 'nearby-service-card';
-                    serviceCard.style.cursor = 'pointer';
-                    
-                    const iconClass = service.type === 'police' ? 'police' : 'hospital';
-                    const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
-                    
-                    serviceCard.innerHTML = `
-                        <div class="service-type-icon ${iconClass}">
-                            <i class="material-icons">${iconName}</i>
-                        </div>
-                        <div class="service-info">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                <h4 class="service-name">${service.name}</h4>
-                                <span class="service-distance">${service.distance} ${translations.km_away}</span>
-                            </div>
-                            <p class="service-address">${service.address}</p>
-                            <div class="service-actions">
-                                <button class="service-action-btn" onclick="event.stopPropagation(); makeCall('${service.phone}')">
-                                    <i class="material-icons">call</i> ${translations.call}
-                                </button>
-                                <button class="service-action-btn" onclick="event.stopPropagation(); getDirections(${service.latitude}, ${service.longitude})">
-                                    <i class="material-icons">directions</i> ${translations.directions}
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add click handler to navigate to agency detail page
-                    serviceCard.addEventListener('click', function() {
-                        navigateToAgencyDetail(service.id);
-                    });
-                    
-                    nearbyServicesList.appendChild(serviceCard);
-                });
-                
-                // Add "View All Services" button
-                const viewAllBtn = document.createElement('div');
-                viewAllBtn.style.textAlign = 'center';
-                viewAllBtn.style.marginTop = '16px';
-                
-                // Include language parameter for persistence
-                const currentLang = localStorage.getItem('mini_app_language') || 'en';
-                const params = new URLSearchParams();
-                params.set('type', serviceType);
-                if (userId) params.set('user_id', userId);
-                params.set('lang', currentLang);
-                
-                viewAllBtn.innerHTML = `
-                    <button onclick="window.location.href='/webapp/agencies.html?${params.toString()}'" style="
-                        background-color: var(--primary-color, #007aff);
-                        color: white;
-                        border: none;
-                        border-radius: 20px;
-                        padding: 8px 16px;
-                        font-size: 14px;
-                        display: flex;
-                        align-items: center;
-                        margin: 0 auto;
-                        cursor: pointer;
-                    ">
-                        <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
-                        ${translations.view_all_services}
-                    </button>
-                `;
-                nearbyServicesList.appendChild(viewAllBtn);
-                
-                document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
-            })
-            .catch(error => {
-                console.error('Error fetching nearby services:', error);
-                nearbyServicesList.innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">error</i>
-                        <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
-                            Error loading services. Please try again.
-                        </p>
-                    </div>
-                `;
+        // Use agencies data loaded from Django
+        const services = agenciesData || [];
+        
+        // Calculate distance for each agency if location is available
+        const servicesWithDistance = services.map(service => {
+            if (lat && lng && service.latitude && service.longitude) {
+                const distance = calculateDistance(lat, lng, service.latitude, service.longitude);
+                return { ...service, distance: Math.round(distance * 100) / 100 };
+            }
+            return { ...service, distance: 0 };
+        });
+        
+        // Sort by distance
+        servicesWithDistance.sort((a, b) => a.distance - b.distance);
+        
+        // Filter services by type
+        let filteredServices = servicesWithDistance;
+        if (serviceType && serviceType !== 'all') {
+            filteredServices = servicesWithDistance.filter(service => {
+                // Map service types
+                if (serviceType === 'police' && service.type === 'police') return true;
+                if (serviceType === 'hospital' && service.type === 'hospital') return true;
+                if (serviceType === 'women' && service.type === 'ngo') return true;
+                if (serviceType === 'psychiatry' && service.type === 'hospital' && service.name.toLowerCase().includes('mental')) return true;
+                if (serviceType === 'legal' && service.type === 'ngo') return true;
+                return false;
             });
+        }
+        
+        nearbyServicesList.innerHTML = '';
+        
+        if (filteredServices.length === 0) {
+            nearbyServicesList.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <i class="material-icons" style="font-size: 36px; color: var(--tg-theme-hint-color);">info</i>
+                    <p style="margin-top: 10px; color: var(--tg-theme-hint-color);">
+                        ${translations.no_services_category}
+                    </p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Display services (limit to top 5)
+        filteredServices.slice(0, 5).forEach(service => {
+            const serviceCard = document.createElement('div');
+            serviceCard.className = 'nearby-service-card';
+            serviceCard.style.cursor = 'pointer';
+            
+            // Get appropriate icon based on service type
+            let iconClass, iconName;
+            if (service.type === 'police') {
+                iconClass = 'police';
+                iconName = 'shield';
+            } else if (service.type === 'hospital') {
+                iconClass = 'hospital';
+                iconName = 'local_hospital';
+            } else if (service.type === 'ngo') {
+                iconClass = 'hospital'; // Use hospital icon for NGOs
+                iconName = 'people';
+            } else if (service.type === 'government') {
+                iconClass = 'police'; // Use police icon for government
+                iconName = 'account_balance';
+            } else if (service.type === 'shelter') {
+                iconClass = 'hospital'; // Use hospital icon for shelters
+                iconName = 'home';
+            } else {
+                iconClass = 'hospital';
+                iconName = 'business';
+            }
+            
+            const distanceText = service.distance > 0 ? `${service.distance} ${translations.km_away}` : '';
+            
+            serviceCard.innerHTML = `
+                <div class="service-type-icon ${iconClass}">
+                    <i class="material-icons">${iconName}</i>
+                </div>
+                <div class="service-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <h4 class="service-name">${service.name}</h4>
+                        <span class="service-distance">${distanceText}</span>
+                    </div>
+                    <p class="service-address">${service.address}</p>
+                    <div class="service-actions">
+                        <button class="service-action-btn" onclick="event.stopPropagation(); makeCall('${service.phone}')">
+                            <i class="material-icons">call</i> ${translations.call}
+                        </button>
+                        <button class="service-action-btn" onclick="event.stopPropagation(); getDirections(${service.latitude}, ${service.longitude})">
+                            <i class="material-icons">directions</i> ${translations.directions}
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add click handler to navigate to agency detail page
+            serviceCard.addEventListener('click', function() {
+                navigateToAgencyDetail(service.id);
+            });
+            
+            nearbyServicesList.appendChild(serviceCard);
+        });
+        
+        // Add "View All Services" button
+        const viewAllBtn = document.createElement('div');
+        viewAllBtn.style.textAlign = 'center';
+        viewAllBtn.style.marginTop = '16px';
+        
+        // Include language parameter for persistence
+        const currentLang = localStorage.getItem('mini_app_language') || 'en';
+        const params = new URLSearchParams();
+        params.set('type', serviceType);
+        if (userId) params.set('user_id', userId);
+        params.set('lang', currentLang);
+        
+        viewAllBtn.innerHTML = `
+            <button onclick="window.location.href='/webapp/agencies.html?${params.toString()}'" style="
+                background-color: var(--primary-color, #007aff);
+                color: white;
+                border: none;
+                border-radius: 20px;
+                padding: 8px 16px;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                margin: 0 auto;
+                cursor: pointer;
+            ">
+                <i class="material-icons" style="margin-right: 4px; font-size: 18px;">search</i>
+                ${translations.view_all_services}
+            </button>
+        `;
+        nearbyServicesList.appendChild(viewAllBtn);
+        
+        document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Distance calculation function (Haversine formula)
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Radius of the Earth in kilometers
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const d = R * c; // Distance in kilometers
+        return d;
     }
     
     // Utility functions

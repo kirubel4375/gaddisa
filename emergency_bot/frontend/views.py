@@ -96,11 +96,29 @@ def index(request):
     """
     Main entry point for the Telegram Mini App.
     """
-    # Get user profile and activate their preferred language
-    user_profile = get_user_profile(request)
-    active_language = activate_user_language(request, user_profile)
+    # Load agencies from database
+    agencies = Agency.objects.filter(active=True)
     
-    return render(request, 'index.html')
+    # Create simple test data first
+    test_data = [
+        {
+            'id': '1',
+            'name': 'Test Hospital',
+            'type': 'hospital',
+            'phone': '+251115551234',
+            'address': 'Test Address',
+            'latitude': 9.0301,
+            'longitude': 38.7379,
+            'services': 'Emergency care'
+        }
+    ]
+    
+    context = {
+        'agencies_json': json.dumps(test_data),
+        'debug_message': 'MODIFIED_VIEW_WORKING'
+    }
+    
+    return render(request, 'index.html', context)
 
 
 @telegram_auth_required

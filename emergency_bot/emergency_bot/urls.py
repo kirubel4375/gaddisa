@@ -26,8 +26,8 @@ urlpatterns = [
     # Frontend routes for the Telegram Mini App
     path('webapp/', include('emergency_bot.frontend.urls')),
     
-    # Redirect root URL to admin for now
-    path('', RedirectView.as_view(url='/admin/'), name='home'),
+    # Redirect root URL to webapp for now
+    path('', RedirectView.as_view(url='/webapp/'), name='home'),
 ]
 
 # Add media and static URLs in development

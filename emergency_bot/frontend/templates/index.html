@@ -216,7 +216,9 @@
 <!-- Hidden div with agencies data -->
 <div id="agenciesDataDiv" style="display: none;">{{ agencies_json|safe|default:"[]" }}</div>
 <!-- Debug message -->
-<div style="display: none;">DEBUG: {{ debug_message|default:"NO_MESSAGE" }}</div>
+<div style="display: none;">DEBUG: {{ debug_marker|default:"NO_DJANGO_VIEW" }}</div>
+<!-- Timestamp -->
+<div style="display: none;">TIMESTAMP: {{ unique_timestamp|default:"NO_TIMESTAMP" }}</div>
 
 <div class="container-fluid p-3">
     <!-- Language Selector -->

@@ -406,12 +406,23 @@
         });
         
         // Function to fetch nearby services
-        function fetchNearbyServices(lat, lng) {
-            // In a real app, this would be an API call
-            // For now, we'll use our hardcoded data
+        async function fetchNearbyServices(lat, lng) {
+            try {
+                // Get user ID from URL parameters or generate one
+                const urlParams = new URLSearchParams(window.location.search);
+                const userId = urlParams.get('user_id') || '123';
+                
+                // Call the Django API to get agencies from database
+                const response = await fetch(`/api/v1/agencies/nearby/?lat=${lat}&lng=${lng}&user_id=${userId}`);
+                const data = await response.json();
+                
+                console.log('Loaded agencies from database:', data.source, data.count);
+                const agenciesData = data.agencies || [];
             
-            // Hardcoded agency data from agencies_addis_ababa.json
-            const agenciesData = [
+            // Fallback hardcoded data if API fails
+            } catch (error) {
+                console.error('Error loading agencies from API, using fallback data:', error);
+                const agenciesData = [
                 {
                     id: "1a1a1a1a-0000-0000-0000-000000000001",
                     name: "Bole Police Station",
@@ -488,6 +499,7 @@
                     services: "Emergency, surgery, specialized care, teaching"
                 }
             ];
+            }
             
             // Calculate distance for each agency
             const agenciesWithDistance = agenciesData.map(agency => {
@@ -547,6 +559,12 @@
             agencies.forEach(agency => {
                 const serviceCard = document.createElement('div');
                 serviceCard.className = 'nearby-service-card';
+                serviceCard.style.cursor = 'pointer';
+                
+                // Add click handler for navigation to detail page
+                serviceCard.addEventListener('click', () => {
+                    navigateToAgencyDetail(agency);
+                });
                 
                 // Determine icon based on type
                 const iconClass = agency.type === 'police' ? 'police' : 'hospital';
@@ -603,6 +621,27 @@
         // Utility functions
         function makeCall(phoneNumber) {
             window.location.href = `tel:${phoneNumber}`;
+        }
+
+        function navigateToAgencyDetail(agency) {
+            // Store agency data for the detail page
+            localStorage.setItem('selectedAgency', JSON.stringify(agency));
+            
+            // Navigate to agency detail page
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = new URLSearchParams();
+            
+            // Preserve user_id and other parameters
+            if (urlParams.get('user_id')) {
+                params.set('user_id', urlParams.get('user_id'));
+            }
+            
+            // Add agency information
+            params.set('agency_id', agency.id);
+            params.set('agency_name', agency.name);
+            
+            // Navigate to detail page (adjust path based on deployment)
+            window.location.href = `agency-detail.html?${params.toString()}`;
         }
         
         function getDirections(lat, lng) {

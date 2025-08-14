@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import uuid
+import time
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
@@ -96,26 +97,43 @@ def index(request):
     """
     Main entry point for the Telegram Mini App.
     """
+    import sys
+    print("======= DEBUG: DJANGO INDEX VIEW CALLED =======", file=sys.stderr)
+    print(f"Request path: {request.path}", file=sys.stderr)
+    print(f"Request method: {request.method}", file=sys.stderr)
+    
+    # Get user profile and activate their preferred language
+    user_profile = get_user_profile(request)
+    active_language = activate_user_language(request, user_profile)
+    
     # Load agencies from database
     agencies = Agency.objects.filter(active=True)
+    print(f"DEBUG: Found {agencies.count()} agencies in database", file=sys.stderr)
     
-    # Create simple test data first
-    test_data = [
-        {
-            'id': '1',
-            'name': 'Test Hospital',
-            'type': 'hospital',
-            'phone': '+251115551234',
-            'address': 'Test Address',
-            'latitude': 9.0301,
-            'longitude': 38.7379,
-            'services': 'Emergency care'
-        }
-    ]
+    # Serialize agencies for JavaScript
+    agencies_data = []
+    for agency in agencies:
+        agencies_data.append({
+            'id': str(agency.id),
+            'name': agency.name,
+            'type': agency.type,
+            'description': agency.description,
+            'phone': agency.phone,
+            'address': agency.address,
+            'latitude': float(agency.latitude),
+            'longitude': float(agency.longitude),
+            'services': agency.services,
+        })
+    
+    print(f"DEBUG: Serialized {len(agencies_data)} agencies", file=sys.stderr)
+    agencies_json = json.dumps(agencies_data)
+    print(f"DEBUG: JSON length: {len(agencies_json)} characters", file=sys.stderr)
+    print("======= END DEBUG =======", file=sys.stderr)
     
     context = {
-        'agencies_json': json.dumps(test_data),
-        'debug_message': 'MODIFIED_VIEW_WORKING'
+        'agencies_json': agencies_json,
+        'debug_marker': 'DJANGO_VIEW_RENDERED',
+        'unique_timestamp': f'VIEW_CALLED_AT_{int(time.time())}'
     }
     
     return render(request, 'index.html', context)

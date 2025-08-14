@@ -345,6 +345,14 @@ def agencies(request):
     return render(request, 'agencies.html')
 
 
+def agency_detail_page(request):
+    """
+    View for displaying individual agency details page.
+    """
+    # Simple view that just renders the template
+    return render(request, 'agency-detail.html')
+
+
 def report(request):
     """
     View for incident reporting.

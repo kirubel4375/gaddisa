@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Agency Details</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #222222;
+            --tg-theme-hint-color: #999999;
+            --tg-theme-link-color: #2678b6;
+            --tg-theme-button-color: #50a8eb;
+            --tg-theme-button-text-color: #ffffff;
+            --primary-color: #007aff;
+            --success-color: #4caf50;
+            --info-color: #2196f3;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --card-bg-color: white;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #222222);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+
+        .back-button .material-icons {
+            margin-right: 4px;
+        }
+
+        .agency-header {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .agency-icon-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .agency-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .agency-icon.police {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        .agency-icon.hospital {
+            background-color: #e53935;
+            color: white;
+        }
+
+        .agency-icon.ngo {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .agency-icon.government {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .agency-icon.shelter {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .agency-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--tg-theme-text-color);
+        }
+
+        .agency-type {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .agency-description {
+            color: var(--tg-theme-hint-color);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .info-section {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .info-section h2 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--tg-theme-text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .info-section h2 .material-icons {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item .material-icons {
+            margin-right: 12px;
+            color: var(--tg-theme-hint-color);
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: var(--tg-theme-hint-color);
+            margin-bottom: 2px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--tg-theme-text-color);
+            font-weight: 500;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .action-button .material-icons {
+            margin-right: 6px;
+            font-size: 18px;
+        }
+
+        .action-button.call {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .action-button.directions {
+            background-color: var(--info-color);
+            color: white;
+        }
+
+        .action-button.call-alt {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .services-list {
+            margin-top: 8px;
+        }
+
+        .service-item {
+            background-color: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .service-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: var(--danger-color);
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--success-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .verified-badge .material-icons {
+            margin-right: 4px;
+            font-size: 14px;
+        }
+
+        /* Dark mode */
+        body.dark {
+            --card-bg-color: #333333;
+        }
+
+        body.dark .info-section {
+            background-color: var(--card-bg-color);
+        }
+
+        body.dark .service-item {
+            background-color: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <a href="#" class="back-button" onclick="goBackToAgencies(event)">
+                <i class="material-icons">arrow_back</i> Back
+            </a>
+
+            <div id="agencyDetailContainer">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div>Loading agency details...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Translation strings for JavaScript
+        const translations = {
+            'call': 'Call',
+            'call_alternate': 'Call Alternate',
+            'get_directions': 'Get Directions',
+            'contact_information': 'Contact Information',
+            'location_details': 'Location Details',
+            'service_information': 'Service Information',
+            'phone': 'Phone',
+            'alternate_phone': 'Alternate Phone',
+            'email': 'Email',
+            'address': 'Address',
+            'region': 'Region',
+            'zone': 'Zone',
+            'woreda': 'Woreda',
+            'kebele': 'Kebele',
+            'hours_of_operation': 'Hours of Operation',
+            'services_offered': 'Services Offered',
+            'verified_agency': 'Verified',
+            'agency_not_found': 'Agency not found',
+            'error_loading_agency': 'Error loading agency details'
+        };
+
+        // Function to go back to agencies page with language persistence
+        function goBackToAgencies(event) {
+            event.preventDefault();
+            
+            // Get user ID and language
+            const tg = window.Telegram && window.Telegram.WebApp;
+            const userId = (tg && tg.initDataUnsafe?.user?.id) || new URLSearchParams(window.location.search).get('user_id');
+            const currentLang = localStorage.getItem('mini_app_language') || 'en';
+            
+            // Build URL with parameters
+            const params = new URLSearchParams();
+            if (userId) params.set('user_id', userId);
+            params.set('lang', currentLang);
+            
+            const agenciesUrl = `/webapp/agencies.html?${params.toString()}`;
+            console.log('Navigating back to agencies with language:', currentLang, 'URL:', agenciesUrl);
+            window.location.href = agenciesUrl;
+        }
+
+        // Function to get agency type icon
+        function getAgencyIcon(type) {
+            const icons = {
+                'police': 'shield',
+                'hospital': 'local_hospital',
+                'ngo': 'people',
+                'government': 'account_balance',
+                'shelter': 'home'
+            };
+            return icons[type] || 'business';
+        }
+
+        // Function to get type display name
+        function getTypeDisplayName(type) {
+            const types = {
+                'police': 'Police',
+                'hospital': 'Hospital',
+                'ngo': 'NGO',
+                'government': 'Government',
+                'shelter': 'Shelter'
+            };
+            return types[type] || type.charAt(0).toUpperCase() + type.slice(1);
+        }
+
+        // Function to render agency details
+        function renderAgencyDetails(agency) {
+            const container = document.getElementById('agencyDetailContainer');
+            
+            const services = agency.services ? agency.services.split(',').map(s => s.trim()).filter(s => s) : [];
+            
+            container.innerHTML = `
+                <div class="agency-header">
+                    <div class="agency-icon-wrapper">
+                        <div class="agency-icon ${agency.type}">
+                            <i class="material-icons">${getAgencyIcon(agency.type)}</i>
+                        </div>
+                        <div class="agency-info">
+                            <h1>${agency.name}</h1>
+                            <div class="agency-type">${getTypeDisplayName(agency.type)}</div>
+                            ${agency.verified ? `<span class="verified-badge"><i class="material-icons">verified</i>${translations.verified_agency}</span>` : ''}
+                        </div>
+                    </div>
+                    ${agency.description ? `<p class="agency-description">${agency.description}</p>` : ''}
+                </div>
+
+                <div class="info-section">
+                    <h2>
+                        <i class="material-icons">contact_phone</i>
+                        ${translations.contact_information}
+                    </h2>
+                    
+                    <div class="info-item">
+                        <i class="material-icons">phone</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.phone}</div>
+                            <div class="info-value">${agency.phone}</div>
+                        </div>
+                    </div>
+                    
+                    ${agency.alt_phone ? `
+                    <div class="info-item">
+                        <i class="material-icons">phone</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.alternate_phone}</div>
+                            <div class="info-value">${agency.alt_phone}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${agency.email ? `
+                    <div class="info-item">
+                        <i class="material-icons">email</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.email}</div>
+                            <div class="info-value">${agency.email}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="contact-actions">
+                        <a href="tel:${agency.phone}" class="action-button call">
+                            <i class="material-icons">call</i>
+                            ${translations.call}
+                        </a>
+                        ${agency.alt_phone ? `
+                        <a href="tel:${agency.alt_phone}" class="action-button call-alt">
+                            <i class="material-icons">phone</i>
+                            ${translations.call_alternate}
+                        </a>
+                        ` : ''}
+                        <button class="action-button directions" onclick="getDirections(${agency.latitude}, ${agency.longitude})">
+                            <i class="material-icons">directions</i>
+                            ${translations.get_directions}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>
+                        <i class="material-icons">place</i>
+                        ${translations.location_details}
+                    </h2>
+                    
+                    <div class="info-item">
+                        <i class="material-icons">location_on</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.address}</div>
+                            <div class="info-value">${agency.address}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="material-icons">map</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.region}</div>
+                            <div class="info-value">${agency.region}</div>
+                        </div>
+                    </div>
+                    
+                    ${agency.zone ? `
+                    <div class="info-item">
+                        <i class="material-icons">place</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.zone}</div>
+                            <div class="info-value">${agency.zone}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${agency.woreda ? `
+                    <div class="info-item">
+                        <i class="material-icons">location_city</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.woreda}</div>
+                            <div class="info-value">${agency.woreda}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${agency.kebele ? `
+                    <div class="info-item">
+                        <i class="material-icons">home</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.kebele}</div>
+                            <div class="info-value">${agency.kebele}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+
+                <div class="info-section">
+                    <h2>
+                        <i class="material-icons">info</i>
+                        ${translations.service_information}
+                    </h2>
+                    
+                    ${agency.hours_of_operation ? `
+                    <div class="info-item">
+                        <i class="material-icons">access_time</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.hours_of_operation}</div>
+                            <div class="info-value">${agency.hours_of_operation}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${services.length > 0 ? `
+                    <div class="info-item">
+                        <i class="material-icons">list</i>
+                        <div class="info-content">
+                            <div class="info-label">${translations.services_offered}</div>
+                            <div class="services-list">
+                                ${services.map(service => `<div class="service-item">${service}</div>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        // Function to show error state
+        function showError(message) {
+            const container = document.getElementById('agencyDetailContainer');
+            container.innerHTML = `
+                <div class="error-message">
+                    <i class="material-icons" style="font-size: 48px; margin-bottom: 16px;">error</i>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        // Function to get directions
+        function getDirections(lat, lng) {
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+        }
+
+        // Function to load agency details
+        async function loadAgencyDetails() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const agencyId = urlParams.get('id');
+                
+                if (!agencyId) {
+                    showError(translations.agency_not_found);
+                    return;
+                }
+                
+                const response = await fetch(`/api/v1/agencies/detail/${agencyId}/`);
+                
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError(translations.agency_not_found);
+                    } else {
+                        showError(translations.error_loading_agency);
+                    }
+                    return;
+                }
+                
+                const agency = await response.json();
+                renderAgencyDetails(agency);
+                
+            } catch (error) {
+                console.error('Error loading agency details:', error);
+                showError(translations.error_loading_agency);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Telegram WebApp
+            const tg = window.Telegram && window.Telegram.WebApp;
+            
+            if (tg) {
+                console.log("WebApp initialized successfully");
+                
+                // Expand to full height
+                tg.expand();
+                
+                // Set theme based on Telegram's color scheme
+                if (tg.colorScheme === 'dark') {
+                    document.body.classList.add('dark');
+                    
+                    // Apply Telegram's theme colors to CSS variables
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
+                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
+                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
+                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
+                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
+                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
+                }
+            }
+            
+            // Load agency details
+            loadAgencyDetails();
+        });
+    </script>
+</body>
+</html>

@@ -248,6 +248,58 @@ def nearby_agencies(request):
         logger.error(f"Error finding nearby agencies: {e}")
         return JsonResponse({'error': str(e)}, status=500)
 
+
+@require_GET
+def agency_detail(request, agency_id):
+    """
+    Get detailed information for a specific agency by ID.
+    Fetches from database with fallback strategy.
+    """
+    try:
+        # Try to get from database first
+        try:
+            agency = Agency.objects.get(id=agency_id, active=True)
+            agency_data = {
+                'id': agency.id,
+                'name': agency.name,
+                'type': agency.type,
+                'description': agency.description,
+                'region': agency.region,
+                'zone': agency.zone,
+                'woreda': agency.woreda,
+                'kebele': agency.kebele,
+                'phone': agency.phone,
+                'alt_phone': agency.alt_phone,
+                'email': agency.email,
+                'address': agency.address,
+                'latitude': float(agency.latitude),
+                'longitude': float(agency.longitude),
+                'hours_of_operation': agency.hours_of_operation,
+                'services': agency.services,
+                'verified': agency.verified,
+                'active': agency.active
+            }
+            logger.info(f"Retrieved agency detail from database: {agency.name}")
+            return JsonResponse(agency_data)
+        
+        except Agency.DoesNotExist:
+            # Agency not found in database, check fallback data
+            logger.warning(f"Agency ID {agency_id} not found in database, checking fallback")
+            
+            # Check fallback agencies
+            for agency in FALLBACK_AGENCIES:
+                if str(agency['id']) == str(agency_id):
+                    logger.info(f"Retrieved agency detail from fallback: {agency['name']}")
+                    return JsonResponse(agency)
+            
+            # Agency not found anywhere
+            logger.warning(f"Agency ID {agency_id} not found in database or fallback")
+            return JsonResponse({'error': 'Agency not found'}, status=404)
+    
+    except Exception as e:
+        logger.error(f"Error retrieving agency detail: {e}")
+        return JsonResponse({'error': 'Internal server error'}, status=500)
+
 @telegram_auth_required
 @require_GET
 def search_agencies(request):

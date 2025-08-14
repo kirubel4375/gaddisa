@@ -577,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 filteredServices.slice(0, 5).forEach(service => {
                     const serviceCard = document.createElement('div');
                     serviceCard.className = 'nearby-service-card';
+                    serviceCard.style.cursor = 'pointer';
                     
                     const iconClass = service.type === 'police' ? 'police' : 'hospital';
                     const iconName = service.type === 'police' ? 'shield' : 'local_hospital';
@@ -592,15 +593,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                             <p class="service-address">${service.address}</p>
                             <div class="service-actions">
-                                <button class="service-action-btn" onclick="makeCall('${service.phone}')">
+                                <button class="service-action-btn" onclick="event.stopPropagation(); makeCall('${service.phone}')">
                                     <i class="material-icons">call</i> ${translations.call}
                                 </button>
-                                <button class="service-action-btn" onclick="getDirections(${service.latitude}, ${service.longitude})">
+                                <button class="service-action-btn" onclick="event.stopPropagation(); getDirections(${service.latitude}, ${service.longitude})">
                                     <i class="material-icons">directions</i> ${translations.directions}
                                 </button>
                             </div>
                         </div>
                     `;
+                    
+                    // Add click handler to navigate to agency detail page
+                    serviceCard.addEventListener('click', function() {
+                        navigateToAgencyDetail(service.id);
+                    });
                     
                     nearbyServicesList.appendChild(serviceCard);
                 });
@@ -658,6 +664,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.getDirections = function(lat, lng) {
         window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
+    };
+    
+    // Function to navigate to agency detail page
+    window.navigateToAgencyDetail = function(agencyId) {
+        // Get user ID and language for persistence
+        const tg = window.Telegram && window.Telegram.WebApp;
+        const userId = (tg && tg.initDataUnsafe?.user?.id) || new URLSearchParams(window.location.search).get('user_id');
+        const currentLang = localStorage.getItem('mini_app_language') || 'en';
+        
+        // Build URL with parameters
+        const params = new URLSearchParams();
+        params.set('id', agencyId);
+        if (userId) params.set('user_id', userId);
+        params.set('lang', currentLang);
+        
+        const detailUrl = `/webapp/agency-detail.html?${params.toString()}`;
+        console.log('Navigating to agency detail:', agencyId, 'URL:', detailUrl);
+        window.location.href = detailUrl;
     };
     
     // Telegram Mini App language selector functions

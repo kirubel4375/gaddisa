@@ -479,224 +479,184 @@
                 }
             }
             
-            // Hard-coded agencies data
-            const agenciesData = [
-                // Police Stations
-                {
-                    id: "1",
-                    name: "Bole Police Station",
-                    type: "police",
-                    description: "Main police station in Bole area with 24/7 service",
-                    region: "Addis Ababa",
-                    zone: "Bole",
-                    woreda: "01",
-                    kebele: "01",
-                    phone: "+251114670001",
-                    address: "Bole Road, near Edna Mall, Addis Ababa",
-                    latitude: 8.9936,
-                    longitude: 38.7870,
-                    distance: 1.2
-                },
-                {
-                    id: "2",
-                    name: "Arada Police Station",
-                    type: "police",
-                    description: "Police station serving Arada sub-city",
-                    region: "Addis Ababa",
-                    zone: "Arada",
-                    woreda: "01",
-                    kebele: "01",
-                    phone: "+251114456789",
-                    address: "Piazza, Churchill Ave, Addis Ababa",
-                    latitude: 9.0370,
-                    longitude: 38.7510,
-                    distance: 2.5
-                },
-                {
-                    id: "3",
-                    name: "Ginci Police Station",
-                    type: "police",
-                    description: "Main police station in Ginci town, Dandi woreda",
-                    region: "Oromia",
-                    zone: "West Shewa",
-                    woreda: "Dandi",
-                    kebele: "01",
-                    phone: "+251911123456",
-                    address: "Main Street, Ginci, Dandi woreda",
-                    latitude: 9.0167,
-                    longitude: 38.0833,
-                    distance: 5.3
-                },
-                // Hospitals
-                {
-                    id: "4",
-                    name: "Black Lion Hospital",
-                    type: "hospital",
-                    description: "Major referral hospital with emergency services",
-                    region: "Addis Ababa",
-                    zone: "Kirkos",
-                    woreda: "04",
-                    kebele: "05",
-                    phone: "+251115517011",
-                    address: "Zambia St, Addis Ababa",
-                    latitude: 9.0107,
-                    longitude: 38.7476,
-                    distance: 0.8
-                },
-                {
-                    id: "5",
-                    name: "St. Paul's Hospital",
-                    type: "hospital",
-                    description: "Millennium Medical College with 24/7 emergency care",
-                    region: "Addis Ababa",
-                    zone: "Gulele",
-                    woreda: "01",
-                    kebele: "01",
-                    phone: "+251115533666",
-                    address: "Swaziland St, Addis Ababa",
-                    latitude: 9.0036,
-                    longitude: 38.7468,
-                    distance: 1.5
-                },
-                {
-                    id: "6",
-                    name: "Dandi Woreda Hospital",
-                    type: "hospital",
-                    description: "Woreda level hospital with emergency services",
-                    region: "Oromia",
-                    zone: "West Shewa",
-                    woreda: "Dandi",
-                    kebele: "01",
-                    phone: "+251911456789",
-                    address: "Hospital Road, Ginci, Dandi woreda",
-                    latitude: 9.0160,
-                    longitude: 38.0850,
-                    distance: 4.2
-                },
-                // Women & Child Affairs
-                {
-                    id: "7",
-                    name: "Ethiopian Women Lawyers Association",
-                    type: "women_child_affair",
-                    description: "Legal aid and support for women and children",
-                    region: "Addis Ababa",
-                    zone: "Kirkos",
-                    woreda: "02",
-                    kebele: "03",
-                    phone: "+251115505050",
-                    address: "Kirkos, Addis Ababa",
-                    latitude: 9.0145,
-                    longitude: 38.7632,
-                    distance: 1.7
-                },
-                {
-                    id: "8",
-                    name: "Women and Children Affairs Bureau",
-                    type: "women_child_affair",
-                    description: "Government office for women and children protection",
-                    region: "Addis Ababa",
-                    zone: "Arada",
-                    woreda: "01",
-                    kebele: "02",
-                    phone: "+251115252525",
-                    address: "Arada, Addis Ababa",
-                    latitude: 9.0336,
-                    longitude: 38.7504,
-                    distance: 2.3
-                },
-                {
-                    id: "9",
-                    name: "Ginci Women Support Center",
-                    type: "women_child_affair",
-                    description: "Support center for women and children in Ginci town",
-                    region: "Oromia",
-                    zone: "West Shewa",
-                    woreda: "Dandi",
-                    kebele: "02",
-                    phone: "+251911678901",
-                    address: "Community Center, Ginci, Dandi woreda",
-                    latitude: 9.0155,
-                    longitude: 38.0835,
-                    distance: 5.1
-                },
-                // Mental Health
-                {
-                    id: "10",
-                    name: "Amanuel Mental Specialized Hospital",
-                    type: "hospital",
-                    description: "Specialized mental health hospital",
-                    region: "Addis Ababa",
-                    zone: "Addis Ketema",
-                    woreda: "01",
-                    kebele: "01",
-                    phone: "+251111223344",
-                    address: "Mexico Square, Addis Ababa",
-                    latitude: 9.0382,
-                    longitude: 38.7611,
-                    distance: 3.2
-                },
-                {
-                    id: "11",
-                    name: "Ginci Mental Health Clinic",
-                    type: "hospital",
-                    description: "Mental health services in Ginci town",
-                    region: "Oromia",
-                    zone: "West Shewa",
-                    woreda: "Dandi",
-                    kebele: "03",
-                    phone: "+251911345678",
-                    address: "Health Center Road, Ginci, Dandi woreda",
-                    latitude: 9.0240,
-                    longitude: 38.2550,
-                    distance: 4.8
-                },
-                // Legal Aid
-                {
-                    id: "12",
-                    name: "Legal Aid Center of Addis Ababa",
-                    type: "legal",
-                    description: "Free legal services for vulnerable populations",
-                    region: "Addis Ababa",
-                    zone: "Kirkos",
-                    woreda: "03",
-                    kebele: "04",
-                    phone: "+251115606060",
-                    address: "Kirkos, Addis Ababa",
-                    latitude: 9.0220,
-                    longitude: 38.7705,
-                    distance: 1.9
-                },
-                {
-                    id: "13",
-                    name: "Ginci Legal Aid Clinic",
-                    type: "legal",
-                    description: "Legal aid clinic providing free services",
-                    region: "Oromia",
-                    zone: "West Shewa",
-                    woreda: "Dandi",
-                    kebele: "02",
-                    phone: "+251911567890",
-                    address: "Justice Complex, Ginci, Dandi woreda",
-                    latitude: 9.0280,
-                    longitude: 38.2590,
-                    distance: 5.5
+            // Global variable to store agencies data
+            let agenciesData = [];
+            let dataSource = 'loading';
+            
+            // Function to load agencies from API with fallback
+            async function loadAgencies() {
+                try {
+                    console.log('Loading agencies from API...');
+                    showLoadingState('Loading agencies...');
+                    
+                    const response = await fetch('/api/v1/agencies/all/');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    agenciesData = data.agencies || [];
+                    dataSource = data.source || 'unknown';
+                    
+                    console.log(`Loaded ${agenciesData.length} agencies from ${dataSource}`);
+                    
+                    // Show a notice about data source if not from database
+                    if (dataSource !== 'database') {
+                        showDataSourceNotice(dataSource);
+                    }
+                    
+                    return true;
+                } catch (error) {
+                    console.error('Failed to load agencies from API:', error);
+                    
+                    // Use hard-coded fallback data
+                    agenciesData = getHardcodedAgencies();
+                    dataSource = 'hardcoded_fallback';
+                    
+                    showDataSourceNotice('hardcoded_fallback');
+                    console.log(`Using hard-coded fallback with ${agenciesData.length} agencies`);
+                    
+                    return false;
                 }
-            ];
+            }
+            
+            // Hard-coded fallback agencies data
+            function getHardcodedAgencies() {
+                return [
+                    {
+                        id: "1",
+                        name: "Bole Police Station",
+                        type: "police",
+                        description: "Main police station in Bole area with 24/7 service",
+                        region: "Addis Ababa",
+                        zone: "Bole",
+                        woreda: "01",
+                        kebele: "01",
+                        phone: "+251114670001",
+                        address: "Bole Road, near Edna Mall, Addis Ababa",
+                        latitude: 8.9936,
+                        longitude: 38.7870,
+                        verified: true,
+                        active: true
+                    },
+                    {
+                        id: "2",
+                        name: "Black Lion Hospital",
+                        type: "hospital",
+                        description: "Major referral hospital with emergency services",
+                        region: "Addis Ababa",
+                        zone: "Kirkos",
+                        woreda: "04",
+                        kebele: "05",
+                        phone: "+251115517011",
+                        address: "Zambia St, Addis Ababa",
+                        latitude: 9.0107,
+                        longitude: 38.7476,
+                        verified: true,
+                        active: true
+                    },
+                    {
+                        id: "3",
+                        name: "Ethiopian Women Lawyers Association",
+                        type: "ngo",
+                        description: "Legal aid and support for women and children",
+                        region: "Addis Ababa",
+                        zone: "Kirkos",
+                        woreda: "02",
+                        kebele: "03",
+                        phone: "+251115505050",
+                        address: "Kirkos, Addis Ababa",
+                        latitude: 9.0145,
+                        longitude: 38.7632,
+                        verified: true,
+                        active: true
+                    }
+                ];
+            }
+            
+            // Function to show data source notice
+            function showDataSourceNotice(source) {
+                const notices = {
+                    'internet': 'ℹ️ Data loaded from external source',
+                    'internet_cached': 'ℹ️ Data loaded from cached external source',
+                    'fallback': 'ℹ️ Using built-in emergency agency data',
+                    'hardcoded_fallback': '⚠️ Using offline emergency data - limited agencies available',
+                    'database_empty': 'ℹ️ Database is empty, using fallback data',
+                    'database_error': '⚠️ Database unavailable, using fallback data'
+                };
+                
+                const notice = notices[source] || '⚠️ Data source unknown';
+                
+                // Show notice at the top of the page
+                const noticeDiv = document.createElement('div');
+                noticeDiv.style.cssText = `
+                    background-color: #e3f2fd;
+                    color: #1976d2;
+                    padding: 8px 16px;
+                    text-align: center;
+                    font-size: 14px;
+                    border-bottom: 1px solid #bbdefb;
+                `;
+                noticeDiv.textContent = notice;
+                
+                document.body.insertBefore(noticeDiv, document.body.firstChild);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (noticeDiv.parentNode) {
+                        noticeDiv.parentNode.removeChild(noticeDiv);
+                    }
+                }, 5000);
+            }
+            
+            // Function to show loading state
+            function showLoadingState(message) {
+                const agenciesContainer = document.getElementById('agenciesContainer');
+                agenciesContainer.innerHTML = `
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <div>${message}</div>
+                    </div>
+                `;
+            }
             
             // Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const typeParam = urlParams.get('type');
             
-            // Set initial filter based on URL parameter
-            if (typeParam) {
-                document.getElementById('serviceTypeSelect').value = typeParam;
+            // Initialize the app
+            async function initializeApp() {
+                try {
+                    // Load agencies data first
+                    await loadAgencies();
+                    
+                    // Set initial filter based on URL parameter
+                    if (typeParam) {
+                        // No service type select in this template, but filter can be applied
+                        console.log('Type filter requested:', typeParam);
+                    }
+                    
+                    // Populate region dropdown
+                    populateRegionDropdown();
+                    
+                    // Display agencies (filtered by type if specified in URL)
+                    displayAgencies(filterAgenciesByType(agenciesData, typeParam));
+                    
+                } catch (error) {
+                    console.error('Failed to initialize app:', error);
+                    
+                    // Show error state
+                    const agenciesContainer = document.getElementById('agenciesContainer');
+                    agenciesContainer.innerHTML = `
+                        <div class="error-message">
+                            <i class="material-icons">error</i>
+                            <p>Failed to load agencies. Please try again later.</p>
+                        </div>
+                    `;
+                }
             }
             
-            // Populate region dropdown
-            populateRegionDropdown();
-            
-            // Display agencies (filtered by type if specified in URL)
-            displayAgencies(filterAgenciesByType(agenciesData, typeParam));
+            initializeApp();
             
             // Region selection handler
             document.getElementById('regionDropdown').addEventListener('change', function() {
@@ -818,8 +778,49 @@
                 });
             });
             
+            // Use location button handler
+            document.getElementById('useLocationBtn').addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    showLoadingState('Getting your location...');
+                    
+                    navigator.geolocation.getCurrentPosition(
+                        async (position) => {
+                            const latitude = position.coords.latitude;
+                            const longitude = position.coords.longitude;
+                            
+                            document.getElementById('currentLocation').textContent = translations.using_current_location || 'Using your current location';
+                            document.getElementById('locationDetails').textContent = `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                            
+                            // Fetch nearby agencies using API
+                            await fetchNearbyAgencies(latitude, longitude);
+                        },
+                        (error) => {
+                            console.error('Error getting location:', error);
+                            showDataSourceNotice('location_error');
+                            
+                            // Fallback to showing all agencies
+                            displayAgencies(agenciesData);
+                        },
+                        {
+                            enableHighAccuracy: true,
+                            timeout: 10000,
+                            maximumAge: 300000 // Cache for 5 minutes
+                        }
+                    );
+                } else {
+                    alert('Geolocation is not supported by this browser.');
+                    displayAgencies(agenciesData);
+                }
+            });
+            
+            // Select location button handler
+            document.getElementById('selectLocationBtn').addEventListener('click', () => {
+                const container = document.getElementById('locationSelectionContainer');
+                container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            });
+            
             // Apply location button
-            document.getElementById('applyLocationBtn').addEventListener('click', () => {
+            document.getElementById('applyLocationBtn').addEventListener('click', async () => {
                 const region = document.getElementById('regionDropdown').value;
                 const zone = document.getElementById('zoneDropdown').value;
                 const woreda = document.getElementById('woredaDropdown').value;
@@ -830,7 +831,7 @@
                     document.getElementById('locationSelectionContainer').style.display = 'none';
                     
                     // Fetch agencies by administrative division
-                    fetchAgenciesByLocation(region, zone, woreda);
+                    await fetchAgenciesByLocation(region, zone, woreda);
                     } else {
                     alert(translations.please_select_region_zone);
                 }
@@ -989,8 +990,110 @@
         
         // Function to get agencies data
         function getAgenciesData() {
-            // This would normally be fetched from an API
-            return window.agenciesData || [];
+            return agenciesData || [];
+        }
+        
+        // Function to fetch agencies by location from API
+        async function fetchAgenciesByLocation(region, zone, woreda, kebele) {
+            try {
+                showLoadingState('Searching agencies by location...');
+                
+                const params = new URLSearchParams();
+                if (region) params.append('region', region);
+                if (zone) params.append('zone', zone);  
+                if (woreda) params.append('woreda', woreda);
+                if (kebele) params.append('kebele', kebele);
+                
+                const response = await fetch(`/api/v1/agencies/search/?${params.toString()}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const agencies = data.agencies || [];
+                
+                console.log(`Found ${agencies.length} agencies for location search from ${data.source}`);
+                
+                // Show data source notice if not from database
+                if (data.source !== 'database') {
+                    showDataSourceNotice(data.source);
+                }
+                
+                displayAgencies(agencies);
+                
+            } catch (error) {
+                console.error('Failed to fetch agencies by location:', error);
+                
+                // Fallback to client-side filtering
+                const filteredAgencies = filterAgenciesByLocation(agenciesData, region, zone, woreda, kebele);
+                displayAgencies(filteredAgencies);
+            }
+        }
+        
+        // Function to fetch nearby agencies from API
+        async function fetchNearbyAgencies(latitude, longitude) {
+            try {
+                showLoadingState('Searching for nearby agencies...');
+                
+                const response = await fetch(`/api/v1/agencies/nearby/?lat=${latitude}&lng=${longitude}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const agencies = data.agencies || [];
+                
+                console.log(`Found ${agencies.length} nearby agencies from ${data.source}`);
+                
+                // Show data source notice if not from database
+                if (data.source !== 'database') {
+                    showDataSourceNotice(data.source);
+                }
+                
+                displayAgencies(agencies);
+                
+            } catch (error) {
+                console.error('Failed to fetch nearby agencies:', error);
+                
+                // Fallback to client-side calculation
+                const nearbyAgencies = calculateNearbyAgencies(agenciesData, latitude, longitude);
+                displayAgencies(nearbyAgencies);
+            }
+        }
+        
+        // Fallback function to calculate nearby agencies client-side
+        function calculateNearbyAgencies(agencies, latitude, longitude) {
+            const result = [];
+            
+            for (const agency of agencies) {
+                try {
+                    const distance = calculateDistance(latitude, longitude, agency.latitude, agency.longitude);
+                    if (distance <= 50) { // Within 50km
+                        const agencyWithDistance = { ...agency, distance: Math.round(distance * 100) / 100 };
+                        result.push(agencyWithDistance);
+                    }
+                } catch (error) {
+                    console.warn('Error calculating distance for agency:', agency.name, error);
+                }
+            }
+            
+            // Sort by distance
+            result.sort((a, b) => (a.distance || 0) - (b.distance || 0));
+            return result;
+        }
+        
+        // Function to calculate distance between two points (Haversine formula)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the Earth in kilometers
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const distance = R * c;
+            return distance;
         }
         
         // Utility functions

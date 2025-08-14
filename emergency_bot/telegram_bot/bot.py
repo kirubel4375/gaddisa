@@ -409,6 +409,31 @@ async def change_language(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         reply_markup=reply_markup
     )
 
+async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Show emergency call options dropdown when the emergency call button is clicked."""
+    query = update.callback_query
+    await query.answer()
+    
+    user = query.from_user
+    language = await get_user_language_async(user.id)
+    
+    # Create keyboard with emergency call options
+    keyboard = [
+        [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
+        [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
+        [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
+        [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
+        [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
+        [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    await query.edit_message_text(
+        get_text('emergency_numbers_menu', language),
+        reply_markup=reply_markup,
+        parse_mode='HTML'
+    )
+
 async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Return to the main menu."""
     query = update.callback_query
@@ -722,31 +747,6 @@ async def show_agencies_callback(update: Update, context: ContextTypes.DEFAULT_T
             parse_mode='HTML'
         )
 
-async def emergency_call_options_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Show emergency call options dropdown when the emergency call button is clicked."""
-    query = update.callback_query
-    await query.answer()
-    
-    user = query.from_user
-    language = await get_user_language_async(user.id)
-    
-    # Create keyboard with emergency call options
-    keyboard = [
-        [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
-        [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
-        [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
-        [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
-        [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
-        [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
-    await query.edit_message_text(
-        get_text('emergency_numbers_menu', language),
-        reply_markup=reply_markup,
-        parse_mode='HTML'
-    )
-
 async def show_safety_info_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Show safety information when the safety info button is clicked."""
     query = update.callback_query
@@ -811,7 +811,7 @@ def create_application():
         application.add_handler(CallbackQueryHandler(show_help_callback, pattern=r"^show_help$"))
         application.add_handler(CallbackQueryHandler(show_report_callback, pattern=r"^show_report$"))
         application.add_handler(CallbackQueryHandler(show_agencies_callback, pattern=r"^show_agencies$"))
-        application.add_handler(CallbackQueryHandler(emergency_call_options_callback, pattern=r"^emergency_call_options$"))
+        application.add_handler(CallbackQueryHandler(emergency_call_options, pattern=r"^emergency_call_options$"))
         application.add_handler(CallbackQueryHandler(show_safety_info_callback, pattern=r"^show_safety_info$"))
         
         # Handle regular messages

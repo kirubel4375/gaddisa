@@ -412,27 +412,88 @@ async def change_language(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Show emergency call options dropdown when the emergency call button is clicked."""
     query = update.callback_query
-    await query.answer()
     
-    user = query.from_user
-    language = await get_user_language_async(user.id)
-    
-    # Create keyboard with emergency call options
-    keyboard = [
-        [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
-        [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
-        [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
-        [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
-        [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
-        [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    
-    await query.edit_message_text(
-        get_text('emergency_numbers_menu', language),
-        reply_markup=reply_markup,
-        parse_mode='HTML'
-    )
+    try:
+        await query.answer()
+        
+        user = query.from_user
+        logger.info(f"Emergency call options requested by user: {user.id}")
+        
+        # Get user's language preference with error handling
+        try:
+            language = await get_user_language_async(user.id)
+            logger.debug(f"Retrieved language '{language}' for user {user.id}")
+        except Exception as e:
+            logger.error(f"Error getting user language for {user.id}: {e}")
+            language = 'en'  # Default to English if language retrieval fails
+        
+        # Create keyboard with emergency call options
+        try:
+            keyboard = [
+                [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
+                [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
+                [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
+                [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
+                [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
+                [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            logger.debug(f"Created emergency numbers keyboard with {len(keyboard)} buttons")
+        except Exception as e:
+            logger.error(f"Error creating emergency numbers keyboard: {e}")
+            # Fallback keyboard with basic options
+            keyboard = [
+                [InlineKeyboardButton("🚨 Call 7711 - Emergency", url="tel:7711")],
+                [InlineKeyboardButton("👮 Call 999 - Police", url="tel:999")],
+                [InlineKeyboardButton("🚑 Call 907 - Ambulance", url="tel:907")],
+                [InlineKeyboardButton("🔥 Call 939 - Fire", url="tel:939")],
+                [InlineKeyboardButton("🏥 Call 911 - Emergency", url="tel:911")],
+                [InlineKeyboardButton("◀️ Back to Menu", callback_data="back_to_main")]
+            ]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+        
+        # Send the emergency numbers menu
+        try:
+            menu_text = get_text('emergency_numbers_menu', language)
+            await query.edit_message_text(
+                menu_text,
+                reply_markup=reply_markup,
+                parse_mode='HTML'
+            )
+            logger.info(f"Emergency numbers menu sent successfully to user {user.id}")
+        except Exception as e:
+            logger.error(f"Error sending emergency numbers menu: {e}")
+            # Fallback with simple text
+            try:
+                await query.edit_message_text(
+                    "📞 Emergency Numbers\n\nChoose an emergency service to call:",
+                    reply_markup=reply_markup
+                )
+            except Exception as fallback_error:
+                logger.error(f"Fallback emergency numbers menu also failed: {fallback_error}")
+                # Try sending a new message if editing fails
+                await context.bot.send_message(
+                    chat_id=user.id,
+                    text="📞 Emergency Numbers\n\nChoose an emergency service to call:",
+                    reply_markup=reply_markup
+                )
+                
+    except Exception as e:
+        logger.error(f"Critical error in emergency_call_options for user {query.from_user.id if query and query.from_user else 'unknown'}: {e}", exc_info=True)
+        # Last resort fallback
+        try:
+            await query.edit_message_text(
+                "Emergency numbers are temporarily unavailable. Please call 7711 directly for emergency services."
+            )
+        except:
+            # If all else fails, try sending a new message
+            try:
+                await context.bot.send_message(
+                    chat_id=query.from_user.id,
+                    text="Emergency numbers are temporarily unavailable. Please call 7711 directly for emergency services."
+                )
+            except Exception as final_error:
+                logger.error(f"Even final fallback failed: {final_error}")
 
 async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Return to the main menu."""

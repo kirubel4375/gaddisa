@@ -441,14 +441,14 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
             logger.warning(f"Invalid language code '{language}' for user {user.id}, defaulting to 'en'")
             language = 'en'
         
-        # Create keyboard with emergency call options
+        # Create keyboard with emergency call options (using callback_data instead of tel: URLs)
         try:
             keyboard = [
-                [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), url="tel:7711")],
-                [InlineKeyboardButton("👮 " + get_text('call_999_text', language), url="tel:999")],
-                [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), url="tel:907")],
-                [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), url="tel:939")],
-                [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), url="tel:911")],
+                [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), callback_data="call_7711")],
+                [InlineKeyboardButton("👮 " + get_text('call_999_text', language), callback_data="call_999")],
+                [InlineKeyboardButton("🚑 " + get_text('call_907_text', language), callback_data="call_907")],
+                [InlineKeyboardButton("🔥 " + get_text('call_939_text', language), callback_data="call_939")],
+                [InlineKeyboardButton("🏥 " + get_text('call_911_text', language), callback_data="call_911")],
                 [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
@@ -457,11 +457,11 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
             logger.error(f"Error creating emergency numbers keyboard: {e}")
             # Fallback keyboard with basic options
             keyboard = [
-                [InlineKeyboardButton("🚨 Call 7711 - Emergency", url="tel:7711")],
-                [InlineKeyboardButton("👮 Call 999 - Police", url="tel:999")],
-                [InlineKeyboardButton("🚑 Call 907 - Ambulance", url="tel:907")],
-                [InlineKeyboardButton("🔥 Call 939 - Fire", url="tel:939")],
-                [InlineKeyboardButton("🏥 Call 911 - Emergency", url="tel:911")],
+                [InlineKeyboardButton("🚨 Call 7711 - Emergency", callback_data="call_7711")],
+                [InlineKeyboardButton("👮 Call 999 - Police", callback_data="call_999")],
+                [InlineKeyboardButton("🚑 Call 907 - Ambulance", callback_data="call_907")],
+                [InlineKeyboardButton("🔥 Call 939 - Fire", callback_data="call_939")],
+                [InlineKeyboardButton("🏥 Call 911 - Emergency", callback_data="call_911")],
                 [InlineKeyboardButton("◀️ Back to Menu", callback_data="back_to_main")]
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
@@ -517,6 +517,79 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
                 )
             except Exception as final_error:
                 logger.error(f"Even final fallback failed: {final_error}")
+
+async def handle_emergency_call(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle emergency number button clicks and provide call instructions."""
+    query = update.callback_query
+    await query.answer()
+    
+    user = query.from_user
+    emergency_number = query.data.split('_')[1]  # Extract number from callback_data
+    
+    # Get user's language preference
+    try:
+        language = await get_user_language_async(user.id)
+    except Exception as e:
+        logger.error(f"Error getting user language for {user.id}: {e}")
+        language = 'en'
+    
+    # Validate language code
+    if language not in ['en', 'am', 'om']:
+        language = 'en'
+    
+    # Create message based on emergency number
+    emergency_info = {
+        '7711': {
+            'en': '🚨 **Emergency Services - 7711**\n\nTo call Emergency Services, dial **7711** on your phone.\n\nThis is the main emergency number for immediate assistance.',
+            'am': '🚨 **የአደጋ ጊዜ አገልግሎቶች - 7711**\n\nየአደጋ ጊዜ አገልግሎቶችን ለመደወል በስልክዎ **7711** ይደውሉ።\n\nይህ ለአፋጣኝ እርዳታ ዋናው የአደጋ ጊዜ ቁጥር ነው።',
+            'om': '🚨 **Tajaajila Balaa - 7711**\n\nTajaajila Balaa bilbiluuf bilbila keessan irraa **7711** bilbilaa.\n\nKunis gargaarsa hatattamaa argachuuf lakkoofsa balaa jalqabaa dha.'
+        },
+        '999': {
+            'en': '👮 **Police - 999**\n\nTo call the Police, dial **999** on your phone.\n\nUse this number for crimes, emergencies requiring police response.',
+            'am': '👮 **ፖሊስ - 999**\n\nፖሊስን ለመደወል በስልክዎ **999** ይደውሉ।\n\nይህን ቁጥር ለወንጀሎች፣ የፖሊስ ምላሽ ለሚፈልጉ አደጋዎች ይጠቀሙ።',
+            'om': '👮 **Poolisii - 999**\n\nPoolisii bilbiluuf bilbila keessan irraa **999** bilbilaa.\n\nLakkoofsa kana yakkamoota, muddaalee deebii poolisii barbaadaniif fayyadamaa.'
+        },
+        '907': {
+            'en': '🚑 **Ambulance - 907**\n\nTo call an Ambulance, dial **907** on your phone.\n\nUse this number for medical emergencies and urgent health issues.',
+            'am': '🚑 **አምቡላንስ - 907**\n\nአምቡላንስን ለመደወል በስልክዎ **907** ይደውሉ።\n\nይህን ቁጥር ለጤና አደጋዎች እና አስቸኳይ ጤና ችግሮች ይጠቀሙ።',
+            'om': '🚑 **Ambulaansii - 907**\n\nAmbulaansii bilbiluuf bilbila keessan irraa **907** bilbilaa.\n\nLakkoofsa kana muddaa fayyaa fi dhimma fayyaa ariifachiisaaf fayyadamaa.'
+        },
+        '939': {
+            'en': '🔥 **Fire Department - 939**\n\nTo call the Fire Department, dial **939** on your phone.\n\nUse this number for fires, gas leaks, and related emergencies.',
+            'am': '🔥 **እሳት አደጋ መከላከያ - 939**\n\nየእሳት አደጋ መከላከያን ለመደወል በስልክዎ **939** ይደውሉ።\n\nይህን ቁጥር ለእሳት፣ ለጋዝ መስሪያ እና ተዛማጅ አደጋዎች ይጠቀሙ።',
+            'om': '🔥 **Ibidda Dhaamsuu - 939**\n\nIbidda Dhaamsuu bilbiluuf bilbila keessan irraa **939** bilbilaa.\n\nLakkoofsa kana ibidda, gaazii dhangala\'aa fi muddaalee wal qabataniif fayyadamaa.'
+        },
+        '911': {
+            'en': '🏥 **General Emergency - 911**\n\nTo call General Emergency services, dial **911** on your phone.\n\nUse this number for general emergencies and urgent situations.',
+            'am': '🏥 **አጠቃላይ አደጋ - 911**\n\nአጠቃላይ የአደጋ ጊዜ አገልግሎቶችን ለመደወል በስልክዎ **911** ይደውሉ።\n\nይህን ቁጥር ለአጠቃላይ አደጋዎች እና አስቸኳይ ሁኔታዎች ይጠቀሙ።',
+            'om': '🏥 **Balaa Waliigalaa - 911**\n\nTajaajila Balaa Waliigalaa bilbiluuf bilbila keessan irraa **911** bilbilaa.\n\nLakkoofsa kana balaa waliigalaa fi haalawwan ariifachiisaaf fayyadamaa.'
+        }
+    }
+    
+    # Get the message for this emergency number and language
+    message_text = emergency_info.get(emergency_number, emergency_info['7711']).get(language, emergency_info['7711']['en'])
+    
+    # Create back button
+    keyboard = [
+        [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="emergency_call_options")],
+        [InlineKeyboardButton("🏠 " + get_text('back_to_menu', language).replace('Menu', 'Home'), callback_data="back_to_main")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    try:
+        await query.edit_message_text(
+            message_text,
+            reply_markup=reply_markup,
+            parse_mode='Markdown'
+        )
+        logger.info(f"Emergency number {emergency_number} information sent to user {user.id} in language {language}")
+    except Exception as e:
+        logger.error(f"Error sending emergency number info: {e}")
+        # Fallback
+        await query.edit_message_text(
+            f"📞 Call {emergency_number}\n\nDial {emergency_number} on your phone for emergency services.",
+            reply_markup=reply_markup
+        )
 
 async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Return to the main menu."""
@@ -897,6 +970,9 @@ def create_application():
         application.add_handler(CallbackQueryHandler(show_agencies_callback, pattern=r"^show_agencies$"))
         application.add_handler(CallbackQueryHandler(emergency_call_options, pattern=r"^emergency_call_options$"))
         application.add_handler(CallbackQueryHandler(show_safety_info_callback, pattern=r"^show_safety_info$"))
+        
+        # Add emergency number callback handlers
+        application.add_handler(CallbackQueryHandler(handle_emergency_call, pattern=r"^call_\d+$"))
         
         # Handle regular messages
         application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))

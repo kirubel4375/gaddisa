@@ -282,13 +282,23 @@ async def language_button_callback(update: Update, context: ContextTypes.DEFAULT
             
             # Get URLs for web app buttons - use the same URLs as in bot.py
             try:
-                from emergency_bot.telegram_bot.bot import WEBAPP_URL, REPORT_URL
-                logger.debug(f"Retrieved URLs: WEBAPP_URL={WEBAPP_URL}, REPORT_URL={REPORT_URL}")
+                from emergency_bot.telegram_bot.bot import WEBAPP_URL, get_report_url
+                logger.debug(f"Retrieved URLs: WEBAPP_URL={WEBAPP_URL}")
             except ImportError as e:
                 logger.error(f"Error importing URLs from bot.py: {e}")
                 WEBAPP_URL = "https://gaddisa.hdmsoftwaresolutions.com"
-                REPORT_URL = "https://gaddisa.hdmsoftwaresolutions.com/report.html"
-                logger.debug(f"Using fallback URLs: WEBAPP_URL={WEBAPP_URL}, REPORT_URL={REPORT_URL}")
+                # Define fallback function for get_report_url
+                def get_report_url(user_id=None, language=None):
+                    url = "https://gaddisa.hdmsoftwaresolutions.com/webapp/report.html"
+                    params = []
+                    if user_id:
+                        params.append(f"user_id={user_id}")
+                    if language:
+                        params.append(f"lang={language}")
+                    if params:
+                        url += "?" + "&".join(params)
+                    return url
+                logger.debug(f"Using fallback URLs: WEBAPP_URL={WEBAPP_URL}")
             
             # Create a new message with the main menu in the selected language
             try:
@@ -304,7 +314,7 @@ async def language_button_callback(update: Update, context: ContextTypes.DEFAULT
                     )],
                     [InlineKeyboardButton(
                         "📝 " + get_text('report_emergency', lang_code), 
-                        web_app=WebAppInfo(url=REPORT_URL)
+                        web_app=WebAppInfo(url=get_report_url(user.id, lang_code))
                     )],
                     [InlineKeyboardButton(
                         "❓ " + get_text('how_to_use_bot', lang_code), 

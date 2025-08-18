@@ -63,8 +63,8 @@ def get_webapp_url():
     logger.info(f"Using default URL: {default_url}")
     return default_url
 
-def get_report_url():
-    """Get the URL for the report page"""
+def get_report_url(user_id=None, language=None):
+    """Get the URL for the report page with optional user_id and language parameters"""
     base_url = get_webapp_url()
     # Remove any trailing paths like /index.html from base_url
     if base_url.endswith('/index.html'):
@@ -73,6 +73,17 @@ def get_report_url():
         base_url = base_url[:-12]  # Remove '/index.html/'
     
     report_url = f"{base_url}/webapp/report.html"
+    
+    # Add query parameters if provided
+    params = []
+    if user_id:
+        params.append(f"user_id={user_id}")
+    if language:
+        params.append(f"lang={language}")
+    
+    if params:
+        report_url += "?" + "&".join(params)
+    
     logger.info(f"Using report URL: {report_url}")
     return report_url
 
@@ -91,10 +102,8 @@ def get_agencies_url():
 
 # Get the WebApp URL
 WEBAPP_URL = get_webapp_url()
-REPORT_URL = get_report_url()
 AGENCIES_URL = get_agencies_url()
 logger.info(f"Using WebApp URL: {WEBAPP_URL}")
-logger.info(f"Using Report URL: {REPORT_URL}")
 logger.info(f"Using Agencies URL: {AGENCIES_URL}")
 
 # Function to create a WebAppInfo button with retry logic
@@ -166,7 +175,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 )],
                 [InlineKeyboardButton(
                     "📝 " + get_text('report_emergency', language), 
-                    web_app=WebAppInfo(url=REPORT_URL)
+                    web_app=WebAppInfo(url=get_report_url(user.id, language))
                 )],
                 [InlineKeyboardButton(
                     "❓ " + get_text('how_to_use_bot', language), 
@@ -317,7 +326,7 @@ async def handle_consent_response(update: Update, context: ContextTypes.DEFAULT_
                 )],
                 [InlineKeyboardButton(
                     "📝 " + get_text('report_emergency', language), 
-                    web_app=WebAppInfo(url=REPORT_URL)
+                    web_app=WebAppInfo(url=get_report_url(user.id, language))
                 )],
                 [InlineKeyboardButton(
                     "❓ " + get_text('how_to_use_bot', language), 
@@ -427,6 +436,11 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
             logger.error(f"Error getting user language for {user.id}: {e}")
             language = 'en'  # Default to English if language retrieval fails
         
+        # Validate language code
+        if language not in ['en', 'am', 'om']:
+            logger.warning(f"Invalid language code '{language}' for user {user.id}, defaulting to 'en'")
+            language = 'en'
+        
         # Create keyboard with emergency call options
         try:
             keyboard = [
@@ -438,7 +452,7 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
                 [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="back_to_main")]
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            logger.debug(f"Created emergency numbers keyboard with {len(keyboard)} buttons")
+            logger.debug(f"Created emergency numbers keyboard with {len(keyboard)} buttons for language '{language}'")
         except Exception as e:
             logger.error(f"Error creating emergency numbers keyboard: {e}")
             # Fallback keyboard with basic options
@@ -451,32 +465,41 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
                 [InlineKeyboardButton("◀️ Back to Menu", callback_data="back_to_main")]
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
+            logger.debug("Using fallback keyboard due to translation error")
         
         # Send the emergency numbers menu
         try:
             menu_text = get_text('emergency_numbers_menu', language)
+            logger.debug(f"Retrieved menu text for language '{language}': {menu_text[:50]}...")
+            
             await query.edit_message_text(
                 menu_text,
                 reply_markup=reply_markup,
                 parse_mode='HTML'
             )
-            logger.info(f"Emergency numbers menu sent successfully to user {user.id}")
+            logger.info(f"Emergency numbers menu sent successfully to user {user.id} in language '{language}'")
         except Exception as e:
             logger.error(f"Error sending emergency numbers menu: {e}")
             # Fallback with simple text
             try:
+                fallback_text = f"📞 {get_text('emergency_numbers', language)}\n\nChoose an emergency service to call:"
                 await query.edit_message_text(
-                    "📞 Emergency Numbers\n\nChoose an emergency service to call:",
+                    fallback_text,
                     reply_markup=reply_markup
                 )
+                logger.info(f"Sent fallback emergency numbers menu to user {user.id}")
             except Exception as fallback_error:
                 logger.error(f"Fallback emergency numbers menu also failed: {fallback_error}")
                 # Try sending a new message if editing fails
-                await context.bot.send_message(
-                    chat_id=user.id,
-                    text="📞 Emergency Numbers\n\nChoose an emergency service to call:",
-                    reply_markup=reply_markup
-                )
+                try:
+                    await context.bot.send_message(
+                        chat_id=user.id,
+                        text="📞 Emergency Numbers\n\nChoose an emergency service to call:",
+                        reply_markup=reply_markup
+                    )
+                    logger.info(f"Sent new emergency numbers message to user {user.id}")
+                except Exception as send_error:
+                    logger.error(f"Even sending new message failed: {send_error}")
                 
     except Exception as e:
         logger.error(f"Critical error in emergency_call_options for user {query.from_user.id if query and query.from_user else 'unknown'}: {e}", exc_info=True)
@@ -603,7 +626,7 @@ async def report_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     keyboard = [
         [InlineKeyboardButton(
             "📝 Report Incident", 
-            web_app=WebAppInfo(url=REPORT_URL)
+            web_app=WebAppInfo(url=get_report_url(user.id))
         )]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -739,7 +762,7 @@ async def show_report_callback(update: Update, context: ContextTypes.DEFAULT_TYP
         keyboard = [
             [InlineKeyboardButton(
                 "📝 Report Incident", 
-                web_app=WebAppInfo(url=REPORT_URL)
+                web_app=WebAppInfo(url=get_report_url(user.id))
             )],
             [InlineKeyboardButton("◀️ Back to Main Menu", callback_data="back_to_main")]
         ]

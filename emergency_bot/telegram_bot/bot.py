@@ -100,6 +100,24 @@ def get_agencies_url():
     logger.info(f"Using agencies URL: {agencies_url}")
     return agencies_url
 
+# Get a call helper URL that opens a minimal call page with a user-tap button
+def get_call_url(number, user_id=None, language=None):
+    base_url = get_webapp_url()
+    if base_url.endswith('/index.html'):
+        base_url = base_url[:-11]
+    elif base_url.endswith('/index.html/'):
+        base_url = base_url[:-12]
+    call_url = f"{base_url}/webapp/call.html?number={number}"
+    params = []
+    if user_id:
+        params.append(f"user_id={user_id}")
+    if language:
+        params.append(f"lang={language}")
+    if params:
+        call_url += "&" + "&".join(params)
+    logger.info(f"Using call URL: {call_url}")
+    return call_url
+
 # Get the WebApp URL
 WEBAPP_URL = get_webapp_url()
 AGENCIES_URL = get_agencies_url()
@@ -441,7 +459,7 @@ async def emergency_call_options(update: Update, context: ContextTypes.DEFAULT_T
             logger.warning(f"Invalid language code '{language}' for user {user.id}, defaulting to 'en'")
             language = 'en'
         
-        # Create keyboard with emergency call options (using callback_data instead of tel: URLs)
+        # Create keyboard with emergency call options using callbacks; handler will send contact card for native call UI
         try:
             keyboard = [
                 [InlineKeyboardButton("🚨 " + get_text('call_7711_text', language), callback_data="call_7711")],
@@ -537,6 +555,16 @@ async def handle_emergency_call(update: Update, context: ContextTypes.DEFAULT_TY
     if language not in ['en', 'am', 'om']:
         language = 'en'
     
+    # Build a 'Call now' button using tel: and include back/home navigation
+    label_keys = {
+        '7711': 'call_7711_text',
+        '999': 'call_999_text',
+        '907': 'call_907_text',
+        '939': 'call_939_text',
+        '911': 'call_911_text'
+    }
+    service_label = get_text(label_keys.get(emergency_number, 'call_7711_text'), language)
+
     # Create message based on emergency number
     emergency_info = {
         '7711': {
@@ -565,17 +593,17 @@ async def handle_emergency_call(update: Update, context: ContextTypes.DEFAULT_TY
             'om': '🏥 **Balaa Waliigalaa - 911**\n\nTajaajila Balaa Waliigalaa bilbiluuf bilbila keessan irraa **911** bilbilaa.\n\nLakkoofsa kana balaa waliigalaa fi haalawwan ariifachiisaaf fayyadamaa.'
         }
     }
-    
+
     # Get the message for this emergency number and language
     message_text = emergency_info.get(emergency_number, emergency_info['7711']).get(language, emergency_info['7711']['en'])
-    
+
     # Create back button
     keyboard = [
         [InlineKeyboardButton("◀️ " + get_text('back_to_menu', language), callback_data="emergency_call_options")],
         [InlineKeyboardButton("🏠 " + get_text('back_to_menu', language).replace('Menu', 'Home'), callback_data="back_to_main")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+
     try:
         await query.edit_message_text(
             message_text,
@@ -612,7 +640,7 @@ async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         )],
         [InlineKeyboardButton(
             "📝 " + get_text('report_emergency', language), 
-            web_app=WebAppInfo(url=REPORT_URL)
+            web_app=WebAppInfo(url=get_report_url(user.id, language))
         )],
         [InlineKeyboardButton(
             "❓ " + get_text('how_to_use_bot', language), 

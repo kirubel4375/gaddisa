@@ -1,63 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Agency Details</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        :root {
-            --tg-theme-bg-color: #ffffff;
-            --tg-theme-text-color: #222222;
-            --tg-theme-hint-color: #999999;
-            --tg-theme-link-color: #2678b6;
-            --tg-theme-button-color: #50a8eb;
-            --tg-theme-button-text-color: #ffffff;
-            --primary-color: #007aff;
-            --success-color: #4caf50;
-            --info-color: #2196f3;
-            --warning-color: #ff9800;
-            --danger-color: #f44336;
-            --card-bg-color: white;
-        }
+{% extends "base.html" %}
+{% load i18n %}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #222222);
-            line-height: 1.6;
-        }
+{% block title %}{% trans "Agency Details" %}{% endblock %}
 
-        .container {
-            max-width: 100%;
-            padding: 0;
-            margin: 0;
-            min-height: 100vh;
-        }
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
 
-        .content {
-            padding: 16px;
-        }
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+    }
 
-        .back-button {
-            background: none;
-            border: none;
-            color: var(--tg-theme-hint-color, #999999);
-            font-size: 16px;
-            cursor: pointer;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            text-decoration: none;
-        }
+    .content {
+        padding: 16px;
+    }
 
-        .back-button .material-icons {
-            margin-right: 4px;
-        }
+    .back-button {
+        background: none;
+        border: none;
+        color: var(--tg-theme-hint-color, #999999);
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        text-decoration: none;
+    }
+
+    .back-button .material-icons {
+        margin-right: 4px;
+    }
 
         .agency-header {
             background-color: var(--card-bg-color);
@@ -290,21 +266,45 @@
             font-size: 14px;
         }
 
-        /* Dark mode */
-        body.dark {
-            --card-bg-color: #333333;
-        }
+    /* Dark mode specific overrides */
+    body.dark .agency-header {
+        background-color: var(--card-bg-color);
+        border-color: var(--border-color);
+    }
 
-        body.dark .info-section {
-            background-color: var(--card-bg-color);
-        }
+    body.dark .info-section {
+        background-color: var(--card-bg-color);
+        border-color: var(--border-color);
+    }
 
-        body.dark .service-item {
-            background-color: #2a2a2a;
-        }
-    </style>
-</head>
-<body>
+    body.dark .info-item {
+        border-bottom-color: var(--border-color);
+    }
+
+    body.dark .service-item {
+        background-color: var(--tg-theme-secondary-bg-color);
+        color: var(--tg-theme-text-color);
+    }
+
+    body.dark .action-button {
+        border-color: var(--border-color);
+        color: var(--tg-theme-text-color);
+        background-color: var(--input-bg-color);
+    }
+
+    body.dark .action-button.call {
+        background-color: var(--success-color);
+        color: white;
+    }
+
+    body.dark .action-button.directions {
+        background-color: var(--info-color);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <div class="content">
             <a href="#" class="back-button" onclick="goBackToAgencies(event)">
@@ -592,33 +592,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Telegram WebApp
-            const tg = window.Telegram && window.Telegram.WebApp;
-            
-            if (tg) {
-                console.log("WebApp initialized successfully");
-                
-                // Expand to full height
-                tg.expand();
-                
-                // Set theme based on Telegram's color scheme
-                if (tg.colorScheme === 'dark') {
-                    document.body.classList.add('dark');
-                    
-                    // Apply Telegram's theme colors to CSS variables
-                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
-                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
-                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
-                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
-                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
-                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
-                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
-                }
-            }
+            // Telegram WebApp is already initialized by base template
+            console.log("Agency detail page loaded");
             
             // Load agency details
             loadAgencyDetails();
         });
     </script>
-</body>
-</html>
+{% endblock %}

@@ -551,4 +551,88 @@ msgid "Swaziland St, Addis Ababa"
 msgstr "ስዋዚላንድ ጎዳና፣ አዲስ አበባ"
 
 msgid "Mexico Square, Addis Ababa"
-msgstr "ሜክሲኮ አደባባይ፣ አዲስ አበባ" 
+msgstr "ሜክሲኮ አደባባይ፣ አዲስ አበባ"
+
+msgid "Support Services"
+msgstr "የድጋፍ አገልግሎቶች"
+
+msgid "Find emergency support services near you"
+msgstr "አቅራቢያዎ ያሉ የአደጋ ጊዜ ድጋፍ አገልግሎቶችን ያግኙ"
+
+msgid "Using your current location"
+msgstr "የእርስዎን የአሁኑ አካባቢ በመጠቀም"
+
+msgid "Fetching location..."
+msgstr "አካባቢ በመጫን..."
+
+msgid "Use My Location"
+msgstr "የእኔን አካባቢ ይጠቀሙ"
+
+msgid "Select Location"
+msgstr "አካባቢ ይምረጡ"
+
+msgid "Select Region"
+msgstr "ክልል ይምረጡ"
+
+msgid "Select Zone"
+msgstr "ዞን ይምረጡ"
+
+msgid "Select Woreda"
+msgstr "ወረዳ ይምረጡ"
+
+msgid "Select Kebele"
+msgstr "ቀበሌ ይምረጡ"
+
+msgid "Apply Location"
+msgstr "አካባቢ ይተግብሩ"
+
+msgid "Search agencies..."
+msgstr "አገልግሎቶችን ይፈልጉ..."
+
+msgid "Loading agencies..."
+msgstr "አገልግሎቶች በመጫን..."
+
+msgid "Call"
+msgstr "ይደውሉ"
+
+msgid "Get Directions"
+msgstr "አቅጣጫ ያግኙ"
+
+msgid "No services found for the selected criteria."
+msgstr "ለተመረጠው መስፈርት አገልግሎት አልተገኘም።"
+
+msgid "services found"
+msgstr "አገልግሎቶች ተገኝተዋል"
+
+msgid "Unable to get your current location"
+msgstr "የእርስዎን የአሁኑ አካባቢ ማግኘት አልተቻለም"
+
+msgid "Location access denied. Please allow location access or select manually."
+msgstr "የአካባቢ መዳረሻ ተከልክሏል። እባክዎ የአካባቢ መዳረሻን ይፍቀዱ ወይም በእጅ ይምረጡ።"
+
+msgid "Searching for nearby services..."
+msgstr "አቅራቢያ ያሉ አገልግሎቶችን በመፈለግ..."
+
+msgid "km away"
+msgstr "ኪሎ ሜትር ርቀት"
+
+msgid "Using selected location"
+msgstr "የተመረጠውን አካባቢ በመጠቀም"
+
+msgid "Please select at least Region and Zone"
+msgstr "እባክዎ ቢያንስ ክልል እና ዞን ይምረጡ"
+
+msgid "Police Station"
+msgstr "የፖሊስ ጣቢያ"
+
+msgid "Hospital"
+msgstr "ሆስፒታል"
+
+msgid "NGO/Support Organization"
+msgstr "NGO/የድጋፍ ድርጅት"
+
+msgid "Government Office"
+msgstr "የመንግስት ቢሮ"
+
+msgid "Shelter"
+msgstr "መጠለያ" 

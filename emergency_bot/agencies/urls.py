@@ -9,6 +9,7 @@ urlpatterns = [
     path('nearby/', views.nearby_agencies, name='api_nearby_agencies'),
     path('detail/<str:agency_id>/', views.agency_detail, name='api_agency_detail'),
     path('search/', views.search_agencies, name='api_search_agencies'),
+    path('locations/regions/', views.get_regions, name='api_get_regions'),
     path('locations/zones/', views.get_zones, name='api_get_zones'),
     path('locations/woredas/', views.get_woredas, name='api_get_woredas'),
     path('locations/kebeles/', views.get_kebeles, name='api_get_kebeles'),

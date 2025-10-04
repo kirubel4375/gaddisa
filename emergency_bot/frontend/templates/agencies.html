@@ -1,86 +1,64 @@
+{% extends "base.html" %}
 {% load i18n %}
-<!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{% trans "Emergency Support Services" %}</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        :root {
-            --tg-theme-bg-color: #ffffff;
-            --tg-theme-text-color: #222222;
-            --tg-theme-hint-color: #999999;
-            --tg-theme-link-color: #2678b6;
-            --tg-theme-button-color: #50a8eb;
-            --tg-theme-button-text-color: #ffffff;
-            --primary-color: #007aff;
-            --success-color: #4caf50;
-            --info-color: #2196f3;
-            --warning-color: #ff9800;
-            --danger-color: #f44336;
-            --card-bg-color: white;
-        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--tg-theme-bg-color, #ffffff);
-            color: var(--tg-theme-text-color, #222222);
-        }
+{% block title %}{% trans "Emergency Support Services" %}{% endblock %}
 
-        .container {
-            max-width: 100%;
-            padding: 0;
-            margin: 0;
-        }
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
 
-        h1, h2 {
-            margin-top: 0;
-            font-weight: 600;
-        }
-        
-        h2 {
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
 
-        .subtitle {
-            font-size: 16px;
-            color: var(--tg-theme-hint-color);
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+    h1, h2 {
+        margin-top: 0;
+        font-weight: 600;
+        color: var(--tg-theme-text-color);
+    }
+    
+    h2 {
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
 
-        .content {
-            padding: 16px;
-        }
+    .subtitle {
+        font-size: 16px;
+        color: var(--tg-theme-hint-color);
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
 
-        .back-button {
-            background: none;
-            border: none;
-            color: var(--tg-theme-hint-color, #999999);
-            font-size: 16px;
-            cursor: pointer;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            text-decoration: none;
-        }
+    .content {
+        padding: 16px;
+    }
 
-        .back-button .material-icons {
-            margin-right: 4px;
-        }
+    .back-button {
+        background: none;
+        border: none;
+        color: var(--tg-theme-hint-color, #999999);
+        font-size: 16px;
+        cursor: pointer;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        text-decoration: none;
+    }
 
-        .location-container {
-            background-color: #f5f5f5;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
+    .back-button .material-icons {
+        margin-right: 4px;
+    }
+
+    .location-container {
+        background-color: var(--tg-theme-secondary-bg-color);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+    }
 
         .location-row {
             display: flex;
@@ -110,39 +88,39 @@
             font-size: 18px;
         }
 
-        .dropdown {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 12px;
-            background-color: white;
-            color: var(--tg-theme-text-color);
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-        }
+    .dropdown {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 12px;
+        background-color: var(--input-bg-color);
+        color: var(--tg-theme-text-color);
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 20px;
+    }
 
-        .filter-dropdown {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 12px;
-            background-color: white;
-            color: var(--tg-theme-text-color);
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-        }
+    .filter-dropdown {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 12px;
+        background-color: var(--input-bg-color);
+        color: var(--tg-theme-text-color);
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 20px;
+    }
 
         .section-title {
             font-size: 18px;
@@ -184,6 +162,26 @@
 
         .agency-icon.health {
             background-color: #e53935;
+            color: white;
+        }
+
+        .agency-icon.ngo {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .agency-icon.government {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        .agency-icon.shelter {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .agency-icon.other {
+            background-color: #607d8b;
             color: white;
         }
 
@@ -300,56 +298,56 @@
             margin-bottom: 16px;
         }
 
-        .search-input {
-            width: 100%;
-            padding: 12px 12px 12px 40px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: white;
-            color: var(--tg-theme-text-color);
-            box-sizing: border-box;
-        }
+    .search-input {
+        width: 100%;
+        padding: 12px 12px 12px 40px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: var(--input-bg-color);
+        color: var(--tg-theme-text-color);
+        box-sizing: border-box;
+    }
 
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--tg-theme-hint-color);
-        }
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+    }
 
-        /* Dark mode */
-        body.dark {
-            --card-bg-color: #333333;
-        }
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--tg-theme-hint-color);
+    }
 
-        body.dark .location-container {
-            background-color: #2a2a2a;
-        }
+    /* Dark mode specific overrides */
+    body.dark .location-container {
+        background-color: var(--tg-theme-secondary-bg-color);
+        border-color: var(--border-color);
+    }
 
-        body.dark .dropdown,
-        body.dark .filter-dropdown {
-            background-color: #2a2a2a;
-            border-color: #444444;
-        }
+    body.dark .agency-action {
+        background-color: var(--tg-theme-secondary-bg-color);
+        border-color: var(--border-color);
+        color: var(--tg-theme-text-color);
+    }
 
-        body.dark .agency-card {
-            background-color: var(--card-bg-color);
-        }
+    body.dark .agency-action.call {
+        background-color: var(--success-color);
+        color: white;
+    }
 
-        body.dark .agency-button {
-            border-color: #444444;
-            color: var(--tg-theme-button-color);
-        }
-        
-        body.dark .search-box {
-            background-color: #2a2a2a;
-            border-color: #444444;
-        }
-    </style>
-</head>
-<body>
+    body.dark .agency-action.directions {
+        background-color: var(--info-color);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
     <div class="container">
             <div class="content">
             <a href="#" class="back-button" onclick="goBackToHome(event)">
@@ -427,10 +425,20 @@
             'searching_nearby': '{% trans "Searching for nearby services..." %}',
             'km_away': '{% trans "km away" %}',
             'select_zone': '{% trans "Select Zone" %}',
-            'select_woreda': '{% trans "select_woreda" %}',
-            'select_kebele': '{% trans "select_kebele" %}',
+            'select_woreda': '{% trans "Select Woreda" %}',
+            'select_kebele': '{% trans "Select Kebele" %}',
             'using_selected_location': '{% trans "Using selected location" %}',
-            'please_select_region_zone': '{% trans "Please select at least Region and Zone" %}'
+            'please_select_region_zone': '{% trans "Please select at least Region and Zone" %}',
+            'using_current_location': '{% trans "Using your current location" %}',
+            'fetching_location': '{% trans "Fetching location..." %}',
+            'loading_agencies': '{% trans "Loading agencies..." %}',
+            'search_agencies': '{% trans "Search agencies..." %}',
+            'police_station': '{% trans "Police Station" %}',
+            'hospital': '{% trans "Hospital" %}',
+            'ngo': '{% trans "NGO/Support Organization" %}',
+            'government_office': '{% trans "Government Office" %}',
+            'shelter': '{% trans "Shelter" %}',
+            'other': '{% trans "Other" %}'
         };
         
         // Function to go back to home with language persistence
@@ -455,29 +463,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Telegram WebApp
-            const tg = window.Telegram && window.Telegram.WebApp;
-            
-            if (tg) {
-                console.log("WebApp initialized successfully");
-                
-                // Expand to full height
-                tg.expand();
-                
-                // Set theme based on Telegram's color scheme
-                if (tg.colorScheme === 'dark') {
-                    document.body.classList.add('dark');
-                    
-                    // Apply Telegram's theme colors to CSS variables
-                    document.documentElement.style.setProperty('--tg-theme-bg-color', tg.themeParams.bg_color || '#1d1d1d');
-                    document.documentElement.style.setProperty('--tg-theme-text-color', tg.themeParams.text_color || '#ffffff');
-                    document.documentElement.style.setProperty('--tg-theme-hint-color', tg.themeParams.hint_color || '#aaaaaa');
-                    document.documentElement.style.setProperty('--tg-theme-link-color', tg.themeParams.link_color || '#8cc4ff');
-                    document.documentElement.style.setProperty('--tg-theme-button-color', tg.themeParams.button_color || '#50a8eb');
-                    document.documentElement.style.setProperty('--tg-theme-button-text-color', tg.themeParams.button_text_color || '#ffffff');
-                    document.documentElement.style.setProperty('--card-bg-color', '#333333');
-                }
-            }
+            // Telegram WebApp is already initialized by base template
+            console.log("Agencies page loaded");
             
             // Global variable to store agencies data
             let agenciesData = [];
@@ -659,7 +646,7 @@
             initializeApp();
             
             // Region selection handler
-            document.getElementById('regionDropdown').addEventListener('change', function() {
+            document.getElementById('regionDropdown').addEventListener('change', async function() {
                 const region = this.value;
                 const zoneDropdown = document.getElementById('zoneDropdown');
                 
@@ -670,7 +657,29 @@
                     // Clear existing options
                     zoneDropdown.innerHTML = `<option value="" selected disabled>${translations.select_zone}</option>`;
                     
-                    // Get unique zones for this region from agency data
+                    try {
+                        // Try to get zones from API first
+                        const response = await fetch(`/api/v1/agencies/locations/zones/?region=${encodeURIComponent(region)}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            const zones = data.zones || [];
+                            
+                            // Add options from API
+                            zones.forEach(zone => {
+                                const option = document.createElement('option');
+                                option.value = zone.toLowerCase().replace(/\s+/g, '_');
+                                option.textContent = zone;
+                                zoneDropdown.appendChild(option);
+                            });
+                            
+                            console.log(`Loaded ${zones.length} zones for region ${region} from API`);
+                            return;
+                        }
+                    } catch (error) {
+                        console.warn('Failed to load zones from API, using fallback:', error);
+                    }
+                    
+                    // Fallback to client-side data
                     const zones = [...new Set(
                         agenciesData
                             .filter(agency => agency.region.toLowerCase() === region.toLowerCase())
@@ -848,22 +857,44 @@
             });
         });
         
-        // Function to populate region dropdown
-        function populateRegionDropdown() {
-            const regionSelect = document.getElementById('regionDropdown');
-            const agenciesData = getAgenciesData();
-            
-            // Get unique regions from agency data
-            const regions = [...new Set(agenciesData.map(agency => agency.region))].sort();
-            
-            // Add options
-            regions.forEach(region => {
-                const option = document.createElement('option');
-                option.value = region.toLowerCase().replace(/\s+/g, '_');
-                option.textContent = region;
-                regionSelect.appendChild(option);
-            });
-        }
+            // Function to populate region dropdown
+            async function populateRegionDropdown() {
+                const regionSelect = document.getElementById('regionDropdown');
+                
+                try {
+                    // Try to get regions from API first
+                    const response = await fetch('/api/v1/agencies/locations/regions/');
+                    if (response.ok) {
+                        const data = await response.json();
+                        const regions = data.regions || [];
+                        
+                        // Add options from API
+                        regions.forEach(region => {
+                            const option = document.createElement('option');
+                            option.value = region.name.toLowerCase().replace(/\s+/g, '_');
+                            option.textContent = `${region.name} (${region.count})`;
+                            regionSelect.appendChild(option);
+                        });
+                        
+                        console.log(`Loaded ${regions.length} regions from API`);
+                        return;
+                    }
+                } catch (error) {
+                    console.warn('Failed to load regions from API, using fallback:', error);
+                }
+                
+                // Fallback to client-side data
+                const agenciesData = getAgenciesData();
+                const regions = [...new Set(agenciesData.map(agency => agency.region))].sort();
+                
+                // Add options
+                regions.forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region.toLowerCase().replace(/\s+/g, '_');
+                    option.textContent = region;
+                    regionSelect.appendChild(option);
+                });
+            }
         
         // Function to filter agencies by type
         function filterAgenciesByType(agencies, type) {
@@ -947,19 +978,31 @@
                 const card = document.createElement('div');
                 card.className = 'agency-card';
                 
-                // Determine icon based on type
+                // Determine icon and type display based on type
                 let iconClass = 'police';
                 let iconName = 'shield';
+                let typeDisplay = translations.police_station || 'Police Station';
                 
                 if (agency.type === 'hospital') {
                     iconClass = 'health';
                     iconName = 'local_hospital';
-                } else if (agency.type === 'women_child_affair') {
-                    iconClass = 'women';
+                    typeDisplay = translations.hospital || 'Hospital';
+                } else if (agency.type === 'ngo') {
+                    iconClass = 'ngo';
                     iconName = 'people';
-                } else if (agency.type === 'legal') {
-                    iconClass = 'legal';
-                    iconName = 'gavel';
+                    typeDisplay = translations.ngo || 'NGO/Support Organization';
+                } else if (agency.type === 'government') {
+                    iconClass = 'government';
+                    iconName = 'account_balance';
+                    typeDisplay = translations.government_office || 'Government Office';
+                } else if (agency.type === 'shelter') {
+                    iconClass = 'shelter';
+                    iconName = 'home';
+                    typeDisplay = translations.shelter || 'Shelter';
+                } else if (agency.type === 'other') {
+                    iconClass = 'other';
+                    iconName = 'help';
+                    typeDisplay = translations.other || 'Other';
                 }
                 
                 card.innerHTML = `
@@ -969,6 +1012,7 @@
                         </div>
                         <div class="agency-details">
                             <h3 class="agency-name">${agency.name}</h3>
+                            <p class="agency-type" style="font-size: 12px; color: var(--tg-theme-hint-color); margin: 2px 0;">${typeDisplay}</p>
                             <p class="agency-address">${agency.address}</p>
                         </div>
                         ${agency.distance !== null && agency.distance !== undefined ? `<div class="agency-distance">${agency.distance.toFixed(1)} ${translations.km_away}</div>` : ''}
@@ -1105,5 +1149,4 @@
             window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`);
         }
     </script>
-</body>
-</html> 
+{% endblock %} 

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     
     <style>
+        /* Enhanced CSS Variables for Telegram WebApp Theme Support */
         :root {
             --tg-theme-bg-color: #ffffff;
             --tg-theme-text-color: #222222;
@@ -27,18 +28,57 @@
             --tg-theme-link-color: #2678b6;
             --tg-theme-button-color: #50a8eb;
             --tg-theme-button-text-color: #ffffff;
+            --tg-theme-secondary-bg-color: #f8f9fa;
             --primary-color: #007aff;
+            --danger-color: #f44336;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
             --card-bg-color: white;
+            --input-bg-color: white;
+            --border-color: #ddd;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark mode variables */
+        body.dark {
+            --tg-theme-bg-color: #17212b;
+            --tg-theme-text-color: #ffffff;
+            --tg-theme-hint-color: #708499;
+            --tg-theme-link-color: #6ab7ff;
+            --tg-theme-button-color: #5288c1;
+            --tg-theme-button-text-color: #ffffff;
+            --tg-theme-secondary-bg-color: #232e3c;
+            --primary-color: #6ab7ff;
+            --danger-color: #ff6b6b;
+            --success-color: #51cf66;
+            --warning-color: #ffd43b;
+            --card-bg-color: #232e3c;
+            --input-bg-color: #2a2a2a;
+            --border-color: #444444;
+            --shadow-color: rgba(0, 0, 0, 0.3);
         }
         
         body {
             background-color: var(--tg-theme-bg-color);
             color: var(--tg-theme-text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Dark mode styles */
-        body.dark {
-            --card-bg-color: #333333;
+        /* Ensure all text elements are visible */
+        body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+        body.dark p, body.dark span, body.dark div, body.dark label {
+            color: var(--tg-theme-text-color);
+        }
+        
+        body.dark a {
+            color: var(--tg-theme-link-color);
+        }
+        
+        body.dark a:hover {
+            color: var(--primary-color);
         }
     </style>
     
@@ -65,8 +105,36 @@
             tg = window.Telegram && window.Telegram.WebApp;
             if (tg) {
                 tg.expand();
-                // Set theme based on Telegram color scheme
-                document.documentElement.className = tg.colorScheme || '';
+                
+                // Enhanced theme detection and application
+                const colorScheme = tg.colorScheme || 'light';
+                const themeParams = tg.themeParams || {};
+                
+                // Apply theme class to body
+                document.body.className = colorScheme;
+                
+                // Update CSS variables with Telegram theme parameters if available
+                if (themeParams.bg_color) {
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', themeParams.bg_color);
+                }
+                if (themeParams.text_color) {
+                    document.documentElement.style.setProperty('--tg-theme-text-color', themeParams.text_color);
+                }
+                if (themeParams.hint_color) {
+                    document.documentElement.style.setProperty('--tg-theme-hint-color', themeParams.hint_color);
+                }
+                if (themeParams.link_color) {
+                    document.documentElement.style.setProperty('--tg-theme-link-color', themeParams.link_color);
+                }
+                if (themeParams.button_color) {
+                    document.documentElement.style.setProperty('--tg-theme-button-color', themeParams.button_color);
+                }
+                if (themeParams.button_text_color) {
+                    document.documentElement.style.setProperty('--tg-theme-button-text-color', themeParams.button_text_color);
+                }
+                if (themeParams.secondary_bg_color) {
+                    document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', themeParams.secondary_bg_color);
+                }
                 
                 // Store user data
                 user = {
@@ -76,6 +144,8 @@
                     username: tg.initDataUnsafe?.user?.username || '',
                     language: tg.initDataUnsafe?.user?.language_code || 'en'
                 };
+                
+                console.log('Telegram WebApp initialized with theme:', colorScheme, 'and params:', themeParams);
             } else {
                 // Fallback for testing outside Telegram
                 user = {
@@ -85,6 +155,11 @@
                     username: '',
                     language: 'en'
                 };
+                
+                // Check for dark mode preference in browser
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.className = 'dark';
+                }
             }
         } catch (error) {
             console.log('Telegram WebApp initialization error:', error);
@@ -96,6 +171,11 @@
                 username: '',
                 language: 'en'
             };
+            
+            // Check for dark mode preference in browser as fallback
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.className = 'dark';
+            }
         }
 
         // Current page language (set by Django)

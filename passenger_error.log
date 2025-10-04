@@ -4818,3 +4818,1764 @@ django.db.utils.OperationalError: no such column: accounts_userprofile.latitude
 2025-07-31 07:53:33,772 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
 2025-07-31 07:53:33,789 - django.request - WARNING - Not Found: /api/frontend/get-user-language/
 2025-07-31 07:53:33,921 - django.request - WARNING - Not Found: /api/frontend/update-language/
+2025-08-13 12:03:02,130 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:02,130 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 12:03:02,131 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 12:03:02,131 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 12:03:02,131 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 12:03:02,131 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:02,131 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 12:03:02,486 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 12:03:03,303 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:03,304 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 12:03:03,304 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 12:03:03,304 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 12:03:03,304 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 12:03:03,305 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:03,305 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 12:03:03,323 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 12:03:03,344 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:03,345 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 12:03:03,345 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 12:03:03,345 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 12:03:03,346 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 12:03:03,346 - language_ops - INFO - ================================================================================
+2025-08-13 12:03:03,346 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 12:03:03,356 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 12:03:05,962 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 12:03:09,150 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 12:03:09,161 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 12:03:10,642 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:10:54,641 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:54,642 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:10:54,642 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:10:54,642 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:10:54,643 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:10:54,643 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:54,643 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:10:55,017 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:10:55,286 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:55,286 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:10:55,287 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:10:55,287 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:10:55,287 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:10:55,287 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:55,287 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:10:55,296 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 16:10:58,074 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:58,074 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:10:58,074 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:10:58,074 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:10:58,075 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:10:58,075 - language_ops - INFO - ================================================================================
+2025-08-13 16:10:58,075 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:10:58,320 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 16:10:58,323 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:10:59,834 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:12:47,309 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:12:47,372 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 16:13:17,565 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:03,320 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,320 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:24:03,321 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:24:03,321 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:24:03,321 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:24:03,321 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,321 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:24:03,651 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:03,876 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,876 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:24:03,877 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:24:03,877 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:24:03,877 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:24:03,877 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,877 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:24:03,887 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 16:24:03,897 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,897 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 16:24:03,897 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 16:24:03,897 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 16:24:03,898 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 16:24:03,898 - language_ops - INFO - ================================================================================
+2025-08-13 16:24:03,898 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 16:24:03,918 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 16:24:11,672 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 16:24:11,681 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:11,689 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 16:24:16,401 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:20,654 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:20,663 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 16:24:22,988 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:29,289 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 16:24:29,297 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 16:24:29,302 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 16:24:30,893 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 19:50:12,738 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:12,739 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 19:50:12,739 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 19:50:12,740 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 19:50:12,740 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 19:50:12,740 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:12,740 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 19:50:13,099 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 19:50:13,294 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:13,294 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 19:50:13,294 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 19:50:13,294 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 19:50:13,295 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 19:50:13,295 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:13,295 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 19:50:13,304 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 19:50:24,450 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:24,450 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 19:50:24,451 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 19:50:24,451 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 19:50:24,451 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 19:50:24,451 - language_ops - INFO - ================================================================================
+2025-08-13 19:50:24,451 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 19:50:24,694 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 19:50:24,697 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 19:50:28,558 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:37:18,344 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:18,344 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 21:37:18,345 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 21:37:18,345 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 21:37:18,345 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 21:37:18,345 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:18,345 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 21:37:18,931 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:37:19,157 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:19,157 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 21:37:19,158 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 21:37:19,158 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 21:37:19,158 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 21:37:19,158 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:19,158 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 21:37:19,169 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 21:37:19,211 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:19,212 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-13 21:37:19,212 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-13 21:37:19,212 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-13 21:37:19,213 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-13 21:37:19,213 - language_ops - INFO - ================================================================================
+2025-08-13 21:37:19,213 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-13 21:37:19,240 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 21:37:21,108 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:37:23,590 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:37:23,609 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 21:37:25,168 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:00,342 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 21:38:00,354 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 21:38:00,355 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:03,357 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:14,388 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:14,393 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 21:38:18,949 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:34,296 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-13 21:38:34,298 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:39,175 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-13 21:38:39,184 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-13 21:38:43,103 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 04:16:08,440 - language_ops - INFO - ================================================================================
+2025-08-14 04:16:08,441 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 04:16:08,441 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 04:16:08,441 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 04:16:08,441 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 04:16:08,441 - language_ops - INFO - ================================================================================
+2025-08-14 04:16:08,441 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 04:16:08,843 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 04:16:09,079 - language_ops - INFO - ================================================================================
+2025-08-14 04:16:09,080 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 04:16:09,080 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 04:16:09,080 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 04:16:09,081 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 04:16:09,081 - language_ops - INFO - ================================================================================
+2025-08-14 04:16:09,081 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 04:16:09,090 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 04:16:38,846 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 04:16:38,848 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 04:16:40,812 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 05:03:06,134 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:06,135 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 05:03:06,135 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 05:03:06,135 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 05:03:06,135 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 05:03:06,135 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:06,136 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 05:03:13,086 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 05:03:13,120 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 05:03:41,656 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:41,657 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 05:03:41,657 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 05:03:41,657 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 05:03:41,657 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 05:03:41,657 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:41,657 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 05:03:42,020 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 05:03:42,222 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:42,222 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 05:03:42,223 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 05:03:42,223 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 05:03:42,223 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 05:03:42,223 - language_ops - INFO - ================================================================================
+2025-08-14 05:03:42,223 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 05:03:42,233 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 05:03:58,013 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 05:03:58,017 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 05:04:00,187 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 05:04:51,578 - language_ops - INFO - ================================================================================
+2025-08-14 05:04:51,579 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 05:04:51,579 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 05:04:51,579 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 05:04:51,579 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 05:04:51,579 - language_ops - INFO - ================================================================================
+2025-08-14 05:04:51,579 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 05:08:43,260 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 07:20:37,351 - language_ops - INFO - ================================================================================
+2025-08-14 07:20:37,351 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 07:20:37,352 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 07:20:37,352 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 07:20:37,352 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 07:20:37,352 - language_ops - INFO - ================================================================================
+2025-08-14 07:20:37,352 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 07:20:37,730 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 07:20:37,948 - language_ops - INFO - ================================================================================
+2025-08-14 07:20:37,948 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 07:20:37,949 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 07:20:37,949 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 07:20:37,949 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 07:20:37,949 - language_ops - INFO - ================================================================================
+2025-08-14 07:20:37,949 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 07:20:37,958 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 07:21:04,996 - language_ops - INFO - ================================================================================
+2025-08-14 07:21:04,996 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 07:21:04,997 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 07:21:04,997 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 07:21:04,997 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 07:21:04,997 - language_ops - INFO - ================================================================================
+2025-08-14 07:21:04,998 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 07:21:05,286 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 07:21:05,299 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 07:21:09,856 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 07:21:09,861 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 07:21:10,094 - language_ops - INFO - ================================================================================
+2025-08-14 07:21:10,095 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 07:21:10,095 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 07:21:10,096 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 07:21:10,096 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 07:21:10,096 - language_ops - INFO - ================================================================================
+2025-08-14 07:21:10,096 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 07:21:10,106 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 09:38:59,134 - language_ops - INFO - ================================================================================
+2025-08-14 09:38:59,136 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 09:38:59,136 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 09:38:59,136 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 09:38:59,137 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 09:38:59,137 - language_ops - INFO - ================================================================================
+2025-08-14 09:38:59,137 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 09:38:59,151 - django.request - WARNING - Not Found: /_fragment
+2025-08-14 09:48:31,497 - language_ops - INFO - ================================================================================
+2025-08-14 09:48:31,497 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 09:48:31,497 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 09:48:31,498 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 09:48:31,498 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 09:48:31,498 - language_ops - INFO - ================================================================================
+2025-08-14 09:48:31,498 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 09:48:31,901 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 09:48:31,960 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 09:48:54,892 - language_ops - INFO - ================================================================================
+2025-08-14 09:48:54,893 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 09:48:54,893 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 09:48:54,893 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 09:48:54,893 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 09:48:54,894 - language_ops - INFO - ================================================================================
+2025-08-14 09:48:54,894 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 09:49:09,492 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 09:49:16,079 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 09:49:16,127 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 09:50:41,758 - language_ops - INFO - ================================================================================
+2025-08-14 09:50:41,758 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 09:50:41,758 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 09:50:41,759 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 09:50:41,759 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 09:50:41,759 - language_ops - INFO - ================================================================================
+2025-08-14 09:50:41,759 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 09:50:42,316 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 09:50:42,354 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 09:50:54,306 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 09:50:54,312 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 09:50:56,429 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 10:44:58,404 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:58,405 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 10:44:58,405 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 10:44:58,406 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 10:44:58,406 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 10:44:58,406 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:58,406 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 10:44:58,793 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 10:44:59,051 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:59,052 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 10:44:59,052 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 10:44:59,052 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 10:44:59,052 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 10:44:59,053 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:59,053 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 10:44:59,056 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:59,056 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 10:44:59,057 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 10:44:59,057 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 10:44:59,057 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 10:44:59,057 - language_ops - INFO - ================================================================================
+2025-08-14 10:44:59,057 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 10:44:59,064 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 10:44:59,074 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-14 11:28:52,994 - language_ops - INFO - ================================================================================
+2025-08-14 11:28:52,996 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 11:28:52,996 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 11:28:52,996 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 11:28:52,996 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 11:28:52,996 - language_ops - INFO - ================================================================================
+2025-08-14 11:28:52,997 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 11:28:54,139 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 11:28:54,175 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-14 11:29:34,283 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-14 11:29:34,539 - language_ops - INFO - ================================================================================
+2025-08-14 11:29:34,540 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-14 11:29:34,540 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-14 11:29:34,540 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-14 11:29:34,540 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-14 11:29:34,540 - language_ops - INFO - ================================================================================
+2025-08-14 11:29:34,540 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-14 11:29:34,551 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-15 06:16:36,481 - language_ops - INFO - ================================================================================
+2025-08-15 06:16:36,482 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-15 06:16:36,483 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-15 06:16:36,483 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-15 06:16:36,483 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-15 06:16:36,483 - language_ops - INFO - ================================================================================
+2025-08-15 06:16:36,483 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-15 06:16:41,094 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-15 11:10:56,677 - language_ops - INFO - ================================================================================
+2025-08-15 11:10:56,678 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-15 11:10:56,678 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-15 11:10:56,678 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-15 11:10:56,679 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-15 11:10:56,679 - language_ops - INFO - ================================================================================
+2025-08-15 11:10:56,679 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-15 11:10:59,141 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-15 11:12:40,630 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-15 11:12:57,256 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-15 11:13:10,044 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-15 11:15:18,746 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-15 11:15:19,014 - language_ops - INFO - ================================================================================
+2025-08-15 11:15:19,015 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-15 11:15:19,015 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-15 11:15:19,015 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-15 11:15:19,016 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-15 11:15:19,016 - language_ops - INFO - ================================================================================
+2025-08-15 11:15:19,016 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-15 11:15:19,039 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-15 11:16:30,848 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 12:44:20,346 - language_ops - INFO - ================================================================================
+2025-08-17 12:44:20,347 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-17 12:44:20,347 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-17 12:44:20,347 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-17 12:44:20,347 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-17 12:44:20,347 - language_ops - INFO - ================================================================================
+2025-08-17 12:44:20,347 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-17 12:44:21,632 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 12:44:21,864 - language_ops - INFO - ================================================================================
+2025-08-17 12:44:21,864 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-17 12:44:21,865 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-17 12:44:21,865 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-17 12:44:21,865 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-17 12:44:21,865 - language_ops - INFO - ================================================================================
+2025-08-17 12:44:21,865 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-17 12:44:21,874 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-17 13:54:04,996 - language_ops - INFO - ================================================================================
+2025-08-17 13:54:04,997 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-17 13:54:04,997 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-17 13:54:04,997 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-17 13:54:04,998 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-17 13:54:04,998 - language_ops - INFO - ================================================================================
+2025-08-17 13:54:04,998 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-17 13:54:05,552 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 13:54:05,637 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-17 13:55:16,759 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 14:00:05,492 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 14:00:05,501 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-17 14:00:25,908 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 14:00:25,937 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-17 14:00:31,663 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 14:00:31,880 - language_ops - INFO - ================================================================================
+2025-08-17 14:00:31,880 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-17 14:00:31,880 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-17 14:00:31,881 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-17 14:00:31,881 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-17 14:00:31,881 - language_ops - INFO - ================================================================================
+2025-08-17 14:00:31,881 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-17 14:00:31,896 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-17 14:00:41,469 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-17 14:00:41,474 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 14:00:41,480 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-17 14:02:24,620 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-17 15:25:25,018 - language_ops - INFO - ================================================================================
+2025-08-17 15:25:25,019 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-17 15:25:25,019 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-17 15:25:25,019 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-17 15:25:25,019 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-17 15:25:25,019 - language_ops - INFO - ================================================================================
+2025-08-17 15:25:25,020 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 05:05:01,833 - language_ops - INFO - ================================================================================
+2025-08-18 05:05:01,833 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 05:05:01,834 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 05:05:01,834 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 05:05:01,834 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 05:05:01,834 - language_ops - INFO - ================================================================================
+2025-08-18 05:05:01,835 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 05:05:02,542 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:05:02,765 - language_ops - INFO - ================================================================================
+2025-08-18 05:05:02,766 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 05:05:02,766 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 05:05:02,766 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 05:05:02,766 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 05:05:02,766 - language_ops - INFO - ================================================================================
+2025-08-18 05:05:02,767 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 05:05:02,785 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-18 05:05:02,847 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 05:05:07,518 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:06:16,231 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:06:23,314 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:06:23,319 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-18 05:06:23,328 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 05:07:01,090 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:07:09,871 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-18 05:07:09,875 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:07:09,929 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 05:09:02,769 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:09:02,779 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 05:17:25,276 - language_ops - INFO - ================================================================================
+2025-08-18 05:17:25,276 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 05:17:25,276 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 05:17:25,276 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 05:17:25,277 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 05:17:25,277 - language_ops - INFO - ================================================================================
+2025-08-18 05:17:25,277 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 05:17:25,597 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 05:17:25,622 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 05:17:25,839 - language_ops - INFO - ================================================================================
+2025-08-18 05:17:25,840 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 05:17:25,840 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 05:17:25,840 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 05:17:25,840 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 05:17:25,840 - language_ops - INFO - ================================================================================
+2025-08-18 05:17:25,841 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 05:17:25,860 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-18 12:15:57,156 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,156 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 12:15:57,157 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 12:15:57,157 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 12:15:57,157 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 12:15:57,157 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,158 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 12:15:57,570 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 12:15:57,787 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,787 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 12:15:57,787 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 12:15:57,788 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 12:15:57,788 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 12:15:57,788 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,789 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 12:15:57,798 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-18 12:15:57,808 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,808 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 12:15:57,808 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 12:15:57,809 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 12:15:57,809 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 12:15:57,809 - language_ops - INFO - ================================================================================
+2025-08-18 12:15:57,809 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 12:15:57,833 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-08-18 12:16:00,237 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 15:44:13,924 - language_ops - INFO - ================================================================================
+2025-08-18 15:44:13,926 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-18 15:44:13,926 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-18 15:44:13,926 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-18 15:44:13,926 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-18 15:44:13,926 - language_ops - INFO - ================================================================================
+2025-08-18 15:44:13,927 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-18 15:44:15,019 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-18 15:44:33,824 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-24 00:41:19,599 - language_ops - INFO - ================================================================================
+2025-08-24 00:41:19,600 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 00:41:19,600 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 00:41:19,600 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 00:41:19,600 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 00:41:19,601 - language_ops - INFO - ================================================================================
+2025-08-24 00:41:19,601 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 00:41:21,755 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-08-24 15:46:28,252 - language_ops - INFO - ================================================================================
+2025-08-24 15:46:28,255 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 15:46:28,255 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 15:46:28,255 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 15:46:28,255 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 15:46:28,255 - language_ops - INFO - ================================================================================
+2025-08-24 15:46:28,256 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 17:11:50,748 - language_ops - INFO - ================================================================================
+2025-08-24 17:11:50,749 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 17:11:50,749 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 17:11:50,749 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 17:11:50,750 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 17:11:50,750 - language_ops - INFO - ================================================================================
+2025-08-24 17:11:50,750 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 17:11:53,807 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-24 19:37:29,030 - language_ops - INFO - ================================================================================
+2025-08-24 19:37:29,031 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 19:37:29,031 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 19:37:29,031 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 19:37:29,032 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 19:37:29,032 - language_ops - INFO - ================================================================================
+2025-08-24 19:37:29,032 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 19:37:46,017 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-24 19:37:51,523 - language_ops - INFO - ================================================================================
+2025-08-24 19:37:51,523 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 19:37:51,524 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 19:37:51,524 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 19:37:51,524 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 19:37:51,524 - language_ops - INFO - ================================================================================
+2025-08-24 19:37:51,525 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 19:37:59,941 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-24 19:38:07,932 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-24 19:38:21,144 - django.request - WARNING - Not Found: /report
+2025-08-24 19:38:21,410 - django.request - WARNING - Not Found: /webapp/#/webapp/%23
+2025-08-24 19:51:31,151 - language_ops - INFO - ================================================================================
+2025-08-24 19:51:31,152 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 19:51:31,152 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 19:51:31,152 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 19:51:31,152 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 19:51:31,153 - language_ops - INFO - ================================================================================
+2025-08-24 19:51:31,153 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 19:52:16,333 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-24 20:32:41,173 - language_ops - INFO - ================================================================================
+2025-08-24 20:32:41,173 - language_ops - INFO - ================================================================================
+2025-08-24 20:32:41,174 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 20:32:41,174 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 20:32:41,175 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 20:32:41,175 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 20:32:41,175 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 20:32:41,175 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 20:32:41,175 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 20:32:41,175 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 20:32:41,175 - language_ops - INFO - ================================================================================
+2025-08-24 20:32:41,175 - language_ops - INFO - ================================================================================
+2025-08-24 20:32:41,175 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 20:32:41,176 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 20:32:55,600 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-24 20:33:09,947 - django.request - WARNING - Not Found: /webapp/#/webapp/%23
+2025-08-24 20:33:10,823 - django.request - WARNING - Not Found: /report
+2025-08-24 20:44:00,117 - language_ops - INFO - ================================================================================
+2025-08-24 20:44:00,118 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 20:44:00,118 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 20:44:00,118 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 20:44:00,119 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 20:44:00,119 - language_ops - INFO - ================================================================================
+2025-08-24 20:44:00,119 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 20:44:00,132 - language_ops - INFO - ================================================================================
+2025-08-24 20:44:00,133 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 20:44:00,133 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 20:44:00,133 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 20:44:00,134 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 20:44:00,134 - language_ops - INFO - ================================================================================
+2025-08-24 20:44:00,134 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 20:44:33,819 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-24 21:05:20,416 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,418 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 21:05:20,419 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 21:05:20,419 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 21:05:20,419 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 21:05:20,419 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,420 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 21:05:20,451 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,452 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 21:05:20,452 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 21:05:20,453 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 21:05:20,453 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 21:05:20,453 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,453 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 21:05:20,481 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,482 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 21:05:20,482 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 21:05:20,482 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 21:05:20,482 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 21:05:20,482 - language_ops - INFO - ================================================================================
+2025-08-24 21:05:20,483 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 21:15:19,953 - language_ops - INFO - ================================================================================
+2025-08-24 21:15:19,954 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-24 21:15:19,954 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-24 21:15:19,955 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-24 21:15:19,955 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-24 21:15:19,955 - language_ops - INFO - ================================================================================
+2025-08-24 21:15:19,955 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-24 21:20:21,319 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-24 21:20:27,940 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-24 21:22:27,812 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-24 21:22:37,540 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-25 01:48:47,674 - language_ops - INFO - ================================================================================
+2025-08-25 01:48:47,675 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 01:48:47,676 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 01:48:47,676 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 01:48:47,676 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 01:48:47,676 - language_ops - INFO - ================================================================================
+2025-08-25 01:48:47,676 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-25 01:48:47,690 - django.request - WARNING - Not Found: /robots.txt
+2025-08-25 02:00:05,406 - language_ops - INFO - ================================================================================
+2025-08-25 02:00:05,406 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 02:00:05,406 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 02:00:05,407 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 02:00:05,407 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 02:00:05,407 - language_ops - INFO - ================================================================================
+2025-08-25 02:00:05,407 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-25 10:42:58,258 - language_ops - INFO - ================================================================================
+2025-08-25 10:42:58,259 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 10:42:58,260 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 10:42:58,260 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 10:42:58,260 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 10:42:58,260 - language_ops - INFO - ================================================================================
+2025-08-25 10:42:58,261 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-25 10:42:58,277 - django.request - WARNING - Not Found: /wp-login.php
+2025-08-25 20:51:57,046 - language_ops - INFO - ================================================================================
+2025-08-25 20:51:57,049 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 20:51:57,049 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 20:51:57,049 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 20:51:57,050 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 20:51:57,050 - language_ops - INFO - ================================================================================
+2025-08-25 20:51:57,050 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-25 23:25:33,066 - language_ops - INFO - ================================================================================
+2025-08-25 23:25:33,067 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 23:25:33,068 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 23:25:33,068 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 23:25:33,068 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 23:25:33,068 - language_ops - INFO - ================================================================================
+2025-08-25 23:25:33,068 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-25 23:32:52,013 - language_ops - INFO - ================================================================================
+2025-08-25 23:32:52,013 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-25 23:32:52,014 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-25 23:32:52,014 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-25 23:32:52,014 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-25 23:32:52,014 - language_ops - INFO - ================================================================================
+2025-08-25 23:32:52,014 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 10:06:18,747 - language_ops - INFO - ================================================================================
+2025-08-26 10:06:18,748 - language_ops - INFO - ================================================================================
+2025-08-26 10:06:18,750 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 10:06:18,750 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 10:06:18,751 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 10:06:18,752 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 10:06:18,752 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 10:06:18,752 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 10:06:18,752 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 10:06:18,752 - language_ops - INFO - ================================================================================
+2025-08-26 10:06:18,753 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 10:06:18,753 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 10:06:18,753 - language_ops - INFO - ================================================================================
+2025-08-26 10:06:18,754 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 10:06:41,957 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-26 10:06:55,329 - django.request - WARNING - Not Found: /webapp/#/webapp/%23
+2025-08-26 10:06:56,049 - django.request - WARNING - Not Found: /report
+2025-08-26 12:34:45,883 - language_ops - INFO - ================================================================================
+2025-08-26 12:34:45,883 - language_ops - INFO - ================================================================================
+2025-08-26 12:34:45,884 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 12:34:45,884 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 12:34:45,884 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 12:34:45,884 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 12:34:45,884 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 12:34:45,884 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 12:34:45,884 - language_ops - INFO - ================================================================================
+2025-08-26 12:34:45,884 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 12:34:45,885 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 12:34:45,885 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 12:34:45,885 - language_ops - INFO - ================================================================================
+2025-08-26 12:34:45,885 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 12:35:17,316 - django.request - WARNING - Not Found: /webapp/https:/fonts.googleapis.com/icon?family=Material+Icons/webapp/https%3A/fonts.googleapis.com/icon%3Ffamily%3DMaterial%2BIcons
+2025-08-26 12:35:20,660 - django.request - WARNING - Not Found: /webapp/#/webapp/%23
+2025-08-26 12:35:21,069 - django.request - WARNING - Not Found: /report
+2025-08-26 12:42:04,411 - language_ops - INFO - ================================================================================
+2025-08-26 12:42:04,411 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 12:42:04,411 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 12:42:04,411 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 12:42:04,411 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 12:42:04,412 - language_ops - INFO - ================================================================================
+2025-08-26 12:42:04,412 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 12:42:05,395 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-26 12:59:33,975 - language_ops - INFO - ================================================================================
+2025-08-26 12:59:33,976 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 12:59:33,977 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 12:59:33,977 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 12:59:33,977 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 12:59:33,977 - language_ops - INFO - ================================================================================
+2025-08-26 12:59:33,977 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 12:59:35,065 - django.request - WARNING - Not Found: /favicon.ico
+2025-08-26 14:55:20,230 - language_ops - INFO - ================================================================================
+2025-08-26 14:55:20,232 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 14:55:20,233 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 14:55:20,233 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 14:55:20,233 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 14:55:20,233 - language_ops - INFO - ================================================================================
+2025-08-26 14:55:20,233 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 15:21:42,453 - language_ops - INFO - ================================================================================
+2025-08-26 15:21:42,454 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 15:21:42,454 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 15:21:42,454 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 15:21:42,454 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 15:21:42,454 - language_ops - INFO - ================================================================================
+2025-08-26 15:21:42,454 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 18:42:03,811 - language_ops - INFO - ================================================================================
+2025-08-26 18:42:03,813 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 18:42:03,813 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 18:42:03,813 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 18:42:03,814 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 18:42:03,814 - language_ops - INFO - ================================================================================
+2025-08-26 18:42:03,814 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 18:42:06,699 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-26 22:22:41,468 - language_ops - INFO - ================================================================================
+2025-08-26 22:22:41,468 - language_ops - INFO - ================================================================================
+2025-08-26 22:22:41,470 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 22:22:41,470 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 22:22:41,471 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 22:22:41,471 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 22:22:41,471 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 22:22:41,471 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 22:22:41,471 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 22:22:41,471 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 22:22:41,471 - language_ops - INFO - ================================================================================
+2025-08-26 22:22:41,471 - language_ops - INFO - ================================================================================
+2025-08-26 22:22:41,471 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 22:22:41,471 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 23:26:55,912 - language_ops - INFO - ================================================================================
+2025-08-26 23:26:55,913 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-26 23:26:55,913 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-26 23:26:55,913 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-26 23:26:55,913 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-26 23:26:55,913 - language_ops - INFO - ================================================================================
+2025-08-26 23:26:55,914 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-26 23:26:56,631 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-27 07:40:24,107 - language_ops - INFO - ================================================================================
+2025-08-27 07:40:24,109 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 07:40:24,110 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 07:40:24,110 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 07:40:24,110 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 07:40:24,110 - language_ops - INFO - ================================================================================
+2025-08-27 07:40:24,111 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 12:21:17,753 - language_ops - INFO - ================================================================================
+2025-08-27 12:21:17,755 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 12:21:17,755 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 12:21:17,756 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 12:21:17,756 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 12:21:17,755 - language_ops - INFO - ================================================================================
+2025-08-27 12:21:17,756 - language_ops - INFO - ================================================================================
+2025-08-27 12:21:17,756 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 12:21:17,756 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 12:21:17,757 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 12:21:17,757 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 12:21:17,757 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 12:21:17,757 - language_ops - INFO - ================================================================================
+2025-08-27 12:21:17,758 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 13:35:28,696 - language_ops - INFO - ================================================================================
+2025-08-27 13:35:28,698 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 13:35:28,698 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 13:35:28,698 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 13:35:28,698 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 13:35:28,699 - language_ops - INFO - ================================================================================
+2025-08-27 13:35:28,699 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 13:44:32,820 - language_ops - INFO - ================================================================================
+2025-08-27 13:44:32,821 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 13:44:32,821 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 13:44:32,822 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 13:44:32,822 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 13:44:32,822 - language_ops - INFO - ================================================================================
+2025-08-27 13:44:32,823 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 14:54:43,872 - language_ops - INFO - ================================================================================
+2025-08-27 14:54:43,873 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 14:54:43,873 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 14:54:43,873 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 14:54:43,874 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 14:54:43,874 - language_ops - INFO - ================================================================================
+2025-08-27 14:54:43,874 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 15:03:13,407 - language_ops - INFO - ================================================================================
+2025-08-27 15:03:13,408 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 15:03:13,408 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 15:03:13,409 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 15:03:13,409 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 15:03:13,409 - language_ops - INFO - ================================================================================
+2025-08-27 15:03:13,410 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 17:53:50,800 - language_ops - INFO - ================================================================================
+2025-08-27 17:53:50,802 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 17:53:50,802 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 17:53:50,802 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 17:53:50,802 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 17:53:50,802 - language_ops - INFO - ================================================================================
+2025-08-27 17:53:50,803 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-27 17:53:50,818 - django.request - WARNING - Not Found: /wp-login.php
+2025-08-27 23:06:27,737 - language_ops - INFO - ================================================================================
+2025-08-27 23:06:27,738 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-27 23:06:27,739 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-27 23:06:27,739 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-27 23:06:27,739 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-27 23:06:27,740 - language_ops - INFO - ================================================================================
+2025-08-27 23:06:27,740 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 05:36:01,033 - language_ops - INFO - ================================================================================
+2025-08-28 05:36:01,035 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 05:36:01,035 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 05:36:01,035 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 05:36:01,036 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 05:36:01,036 - language_ops - INFO - ================================================================================
+2025-08-28 05:36:01,036 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 06:46:17,372 - language_ops - INFO - ================================================================================
+2025-08-28 06:46:17,373 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 06:46:17,373 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 06:46:17,373 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 06:46:17,374 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 06:46:17,374 - language_ops - INFO - ================================================================================
+2025-08-28 06:46:17,374 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 06:59:58,529 - language_ops - INFO - ================================================================================
+2025-08-28 06:59:58,529 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 06:59:58,530 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 06:59:58,530 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 06:59:58,530 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 06:59:58,530 - language_ops - INFO - ================================================================================
+2025-08-28 06:59:58,530 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 11:55:09,113 - language_ops - INFO - ================================================================================
+2025-08-28 11:55:09,116 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 11:55:09,117 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 11:55:09,117 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 11:55:09,117 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 11:55:09,118 - language_ops - INFO - ================================================================================
+2025-08-28 11:55:09,118 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 12:00:53,602 - language_ops - INFO - ================================================================================
+2025-08-28 12:00:53,603 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 12:00:53,603 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 12:00:53,603 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 12:00:53,603 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 12:00:53,604 - language_ops - INFO - ================================================================================
+2025-08-28 12:00:53,604 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 16:10:12,822 - language_ops - INFO - ================================================================================
+2025-08-28 16:10:12,822 - language_ops - INFO - ================================================================================
+2025-08-28 16:10:12,824 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 16:10:12,824 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 16:10:12,824 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 16:10:12,824 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 16:10:12,824 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 16:10:12,824 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 16:10:12,824 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 16:10:12,824 - language_ops - INFO - ================================================================================
+2025-08-28 16:10:12,824 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 16:10:12,825 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 16:10:12,825 - language_ops - INFO - ================================================================================
+2025-08-28 16:10:12,825 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 16:38:46,385 - language_ops - INFO - ================================================================================
+2025-08-28 16:38:46,386 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 16:38:46,386 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 16:38:46,386 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 16:38:46,386 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 16:38:46,387 - language_ops - INFO - ================================================================================
+2025-08-28 16:38:46,387 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 16:38:47,215 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-28 22:40:45,716 - language_ops - INFO - ================================================================================
+2025-08-28 22:40:45,718 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-28 22:40:45,718 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-28 22:40:45,719 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-28 22:40:45,719 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-28 22:40:45,719 - language_ops - INFO - ================================================================================
+2025-08-28 22:40:45,719 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-28 22:40:50,301 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-29 04:04:43,226 - language_ops - INFO - ================================================================================
+2025-08-29 04:04:43,228 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-29 04:04:43,228 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-29 04:04:43,228 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-29 04:04:43,228 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-29 04:04:43,229 - language_ops - INFO - ================================================================================
+2025-08-29 04:04:43,229 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-29 13:07:14,728 - language_ops - INFO - ================================================================================
+2025-08-29 13:07:14,730 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-29 13:07:14,730 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-29 13:07:14,730 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-29 13:07:14,730 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-29 13:07:14,731 - language_ops - INFO - ================================================================================
+2025-08-29 13:07:14,731 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-29 13:07:17,426 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-29 17:33:39,967 - language_ops - INFO - ================================================================================
+2025-08-29 17:33:39,969 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-29 17:33:39,969 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-29 17:33:39,969 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-29 17:33:39,969 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-29 17:33:39,970 - language_ops - INFO - ================================================================================
+2025-08-29 17:33:39,970 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-29 23:58:07,073 - language_ops - INFO - ================================================================================
+2025-08-29 23:58:07,075 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-29 23:58:07,075 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-29 23:58:07,075 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-29 23:58:07,075 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-29 23:58:07,075 - language_ops - INFO - ================================================================================
+2025-08-29 23:58:07,076 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-30 02:06:15,091 - language_ops - INFO - ================================================================================
+2025-08-30 02:06:15,091 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-30 02:06:15,091 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-30 02:06:15,092 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-30 02:06:15,092 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-30 02:06:15,092 - language_ops - INFO - ================================================================================
+2025-08-30 02:06:15,092 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-30 16:23:03,894 - language_ops - INFO - ================================================================================
+2025-08-30 16:23:03,896 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-30 16:23:03,896 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-30 16:23:03,896 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-30 16:23:03,897 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-30 16:23:03,897 - language_ops - INFO - ================================================================================
+2025-08-30 16:23:03,897 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-30 16:23:07,093 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-30 23:12:44,284 - language_ops - INFO - ================================================================================
+2025-08-30 23:12:44,286 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-30 23:12:44,286 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-30 23:12:44,286 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-30 23:12:44,287 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-30 23:12:44,287 - language_ops - INFO - ================================================================================
+2025-08-30 23:12:44,287 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-30 23:12:47,169 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-08-31 10:03:56,214 - language_ops - INFO - ================================================================================
+2025-08-31 10:03:56,216 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-08-31 10:03:56,216 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-08-31 10:03:56,217 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-08-31 10:03:56,217 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-08-31 10:03:56,217 - language_ops - INFO - ================================================================================
+2025-08-31 10:03:56,217 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-08-31 10:03:57,212 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-01 00:47:59,101 - language_ops - INFO - ================================================================================
+2025-09-01 00:47:59,103 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-01 00:47:59,103 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-01 00:47:59,103 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-01 00:47:59,103 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-01 00:47:59,103 - language_ops - INFO - ================================================================================
+2025-09-01 00:47:59,104 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-01 15:26:38,317 - language_ops - INFO - ================================================================================
+2025-09-01 15:26:38,319 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-01 15:26:38,319 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-01 15:26:38,320 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-01 15:26:38,320 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-01 15:26:38,320 - language_ops - INFO - ================================================================================
+2025-09-01 15:26:38,320 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-01 18:37:17,503 - language_ops - INFO - ================================================================================
+2025-09-01 18:37:17,505 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-01 18:37:17,506 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-01 18:37:17,506 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-01 18:37:17,506 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-01 18:37:17,506 - language_ops - INFO - ================================================================================
+2025-09-01 18:37:17,507 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-02 13:44:19,645 - language_ops - INFO - ================================================================================
+2025-09-02 13:44:19,647 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-02 13:44:19,648 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-02 13:44:19,648 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-02 13:44:19,648 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-02 13:44:19,648 - language_ops - INFO - ================================================================================
+2025-09-02 13:44:19,649 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-02 13:44:19,802 - django.request - WARNING - Not Found: /wp-includes/wlwmanifest.xml//wp-includes/wlwmanifest.xml
+2025-09-02 13:44:20,090 - django.request - WARNING - Not Found: /xmlrpc.php//xmlrpc.php
+2025-09-02 13:44:20,365 - django.request - WARNING - Not Found: /blog/wp-includes/wlwmanifest.xml//blog/wp-includes/wlwmanifest.xml
+2025-09-02 13:44:21,040 - django.request - WARNING - Not Found: /web/wp-includes/wlwmanifest.xml//web/wp-includes/wlwmanifest.xml
+2025-09-02 13:44:21,181 - django.request - WARNING - Not Found: /wordpress/wp-includes/wlwmanifest.xml//wordpress/wp-includes/wlwmanifest.xml
+2025-09-02 17:27:22,234 - language_ops - INFO - ================================================================================
+2025-09-02 17:27:22,236 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-02 17:27:22,236 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-02 17:27:22,237 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-02 17:27:22,237 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-02 17:27:22,237 - language_ops - INFO - ================================================================================
+2025-09-02 17:27:22,237 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-03 08:22:52,798 - language_ops - INFO - ================================================================================
+2025-09-03 08:22:52,800 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-03 08:22:52,800 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-03 08:22:52,800 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-03 08:22:52,800 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-03 08:22:52,801 - language_ops - INFO - ================================================================================
+2025-09-03 08:22:52,801 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-05 06:46:22,714 - language_ops - INFO - ================================================================================
+2025-09-05 06:46:22,716 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-05 06:46:22,717 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-05 06:46:22,717 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-05 06:46:22,717 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-05 06:46:22,717 - language_ops - INFO - ================================================================================
+2025-09-05 06:46:22,717 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-05 23:51:38,533 - language_ops - INFO - ================================================================================
+2025-09-05 23:51:38,534 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-05 23:51:38,534 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-05 23:51:38,535 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-05 23:51:38,535 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-05 23:51:38,535 - language_ops - INFO - ================================================================================
+2025-09-05 23:51:38,535 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-06 02:40:39,839 - language_ops - INFO - ================================================================================
+2025-09-06 02:40:39,839 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-06 02:40:39,840 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-06 02:40:39,840 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-06 02:40:39,840 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-06 02:40:39,840 - language_ops - INFO - ================================================================================
+2025-09-06 02:40:39,840 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-06 09:49:38,327 - language_ops - INFO - ================================================================================
+2025-09-06 09:49:38,329 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-06 09:49:38,330 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-06 09:49:38,330 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-06 09:49:38,330 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-06 09:49:38,330 - language_ops - INFO - ================================================================================
+2025-09-06 09:49:38,331 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-06 14:42:26,946 - language_ops - INFO - ================================================================================
+2025-09-06 14:42:26,948 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-06 14:42:26,948 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-06 14:42:26,949 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-06 14:42:26,949 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-06 14:42:26,949 - language_ops - INFO - ================================================================================
+2025-09-06 14:42:26,949 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-07 11:24:17,780 - language_ops - INFO - ================================================================================
+2025-09-07 11:24:17,782 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-07 11:24:17,782 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-07 11:24:17,782 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-07 11:24:17,782 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-07 11:24:17,782 - language_ops - INFO - ================================================================================
+2025-09-07 11:24:17,782 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-07 11:24:18,521 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-09-07 13:58:49,799 - language_ops - INFO - ================================================================================
+2025-09-07 13:58:49,800 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-07 13:58:49,801 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-07 13:58:49,801 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-07 13:58:49,801 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-07 13:58:49,801 - language_ops - INFO - ================================================================================
+2025-09-07 13:58:49,801 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-08 00:50:16,175 - language_ops - INFO - ================================================================================
+2025-09-08 00:50:16,176 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-08 00:50:16,176 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-08 00:50:16,176 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-08 00:50:16,177 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-08 00:50:16,177 - language_ops - INFO - ================================================================================
+2025-09-08 00:50:16,177 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-08 00:50:17,005 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-09-08 00:50:17,033 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-08 00:50:17,259 - language_ops - INFO - ================================================================================
+2025-09-08 00:50:17,260 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-08 00:50:17,260 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-08 00:50:17,260 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-08 00:50:17,260 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-08 00:50:17,261 - language_ops - INFO - ================================================================================
+2025-09-08 00:50:17,261 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-08 00:50:17,278 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-08 00:50:23,806 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-08 00:50:23,810 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-09-08 00:50:23,816 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-08 00:50:25,992 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-09 09:22:27,450 - language_ops - INFO - ================================================================================
+2025-09-09 09:22:27,452 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 09:22:27,452 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 09:22:27,453 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 09:22:27,453 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 09:22:27,453 - language_ops - INFO - ================================================================================
+2025-09-09 09:22:27,453 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 09:22:29,416 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-09 11:03:07,432 - language_ops - INFO - ================================================================================
+2025-09-09 11:03:07,434 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 11:03:07,434 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 11:03:07,434 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 11:03:07,434 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 11:03:07,435 - language_ops - INFO - ================================================================================
+2025-09-09 11:03:07,435 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 11:08:24,990 - language_ops - INFO - ================================================================================
+2025-09-09 11:08:24,990 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 11:08:24,990 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 11:08:24,991 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 11:08:24,991 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 11:08:24,991 - language_ops - INFO - ================================================================================
+2025-09-09 11:08:24,991 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 11:08:25,002 - django.request - WARNING - Not Found: /wordpress
+2025-09-09 11:10:20,532 - django.request - WARNING - Not Found: /Wordpress
+2025-09-09 11:14:54,758 - django.request - WARNING - Not Found: /WORDPRESS
+2025-09-09 11:16:47,897 - django.request - WARNING - Not Found: /WordPress
+2025-09-09 11:19:14,876 - django.request - WARNING - Not Found: /wp
+2025-09-09 11:21:05,351 - django.request - WARNING - Not Found: /Wp
+2025-09-09 11:22:04,588 - django.request - WARNING - Not Found: /WP
+2025-09-09 11:25:13,763 - language_ops - INFO - ================================================================================
+2025-09-09 11:25:13,763 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 11:25:13,764 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 11:25:13,764 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 11:25:13,764 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 11:25:13,764 - language_ops - INFO - ================================================================================
+2025-09-09 11:25:13,764 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 11:25:13,774 - django.request - WARNING - Not Found: /old
+2025-09-09 11:25:49,288 - django.request - WARNING - Not Found: /Old
+2025-09-09 11:28:43,256 - django.request - WARNING - Not Found: /OLD
+2025-09-09 11:33:24,901 - django.request - WARNING - Not Found: /oldsite
+2025-09-09 11:36:02,140 - django.request - WARNING - Not Found: /new/
+2025-09-09 11:38:20,267 - django.request - WARNING - Not Found: /New
+2025-09-09 11:40:58,603 - django.request - WARNING - Not Found: /NEW
+2025-09-09 11:42:39,627 - django.request - WARNING - Not Found: /wp-old
+2025-09-09 11:45:40,130 - django.request - WARNING - Not Found: /2022
+2025-09-09 11:48:40,659 - django.request - WARNING - Not Found: /2023
+2025-09-09 11:50:13,143 - django.request - WARNING - Not Found: /2024
+2025-09-09 11:54:39,522 - django.request - WARNING - Not Found: /2017
+2025-09-09 11:55:50,326 - django.request - WARNING - Not Found: /2020
+2025-09-09 11:59:15,000 - language_ops - INFO - ================================================================================
+2025-09-09 11:59:15,000 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 11:59:15,001 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 11:59:15,001 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 11:59:15,001 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 11:59:15,001 - language_ops - INFO - ================================================================================
+2025-09-09 11:59:15,002 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 11:59:15,016 - django.request - WARNING - Not Found: /2019
+2025-09-09 12:01:32,179 - django.request - WARNING - Not Found: /2018
+2025-09-09 12:04:16,772 - django.request - WARNING - Not Found: /backup
+2025-09-09 12:06:07,009 - language_ops - INFO - ================================================================================
+2025-09-09 12:06:07,010 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 12:06:07,010 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 12:06:07,010 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 12:06:07,010 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 12:06:07,011 - language_ops - INFO - ================================================================================
+2025-09-09 12:06:07,011 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 12:06:07,021 - django.request - WARNING - Not Found: /test
+2025-09-09 12:08:33,874 - django.request - WARNING - Not Found: /Test
+2025-09-09 12:09:32,067 - django.request - WARNING - Not Found: /TEST
+2025-09-09 12:11:16,620 - django.request - WARNING - Not Found: /demo
+2025-09-09 12:12:59,220 - django.request - WARNING - Not Found: /bc
+2025-09-09 12:15:28,022 - django.request - WARNING - Not Found: /www
+2025-09-09 12:18:01,284 - django.request - WARNING - Not Found: /WWW
+2025-09-09 12:18:31,205 - django.request - WARNING - Not Found: /Www
+2025-09-09 12:21:13,088 - django.request - WARNING - Not Found: /2021
+2025-09-09 12:22:30,028 - django.request - WARNING - Not Found: /main
+2025-09-09 12:24:38,201 - django.request - WARNING - Not Found: /old-site
+2025-09-09 12:26:13,815 - django.request - WARNING - Not Found: /bk
+2025-09-09 12:27:25,012 - django.request - WARNING - Not Found: /Backup
+2025-09-09 12:30:19,749 - django.request - WARNING - Not Found: /BACKUP
+2025-09-09 12:31:58,056 - django.request - WARNING - Not Found: /SHOP
+2025-09-09 12:34:31,597 - django.request - WARNING - Not Found: /Shop
+2025-09-09 12:38:25,776 - django.request - WARNING - Not Found: /shop
+2025-09-09 12:39:09,425 - django.request - WARNING - Not Found: /bak
+2025-09-09 12:41:44,284 - django.request - WARNING - Not Found: /sitio
+2025-09-09 12:43:57,626 - language_ops - INFO - ================================================================================
+2025-09-09 12:43:57,627 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 12:43:57,627 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 12:43:57,628 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 12:43:57,628 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 12:43:57,628 - language_ops - INFO - ================================================================================
+2025-09-09 12:43:57,628 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 12:43:57,641 - django.request - WARNING - Not Found: /bac
+2025-09-09 12:45:27,920 - django.request - WARNING - Not Found: /sito
+2025-09-09 12:47:08,887 - language_ops - INFO - ================================================================================
+2025-09-09 12:47:08,887 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 12:47:08,887 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 12:47:08,888 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 12:47:08,888 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 12:47:08,888 - language_ops - INFO - ================================================================================
+2025-09-09 12:47:08,888 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 12:47:08,898 - django.request - WARNING - Not Found: /site
+2025-09-09 12:48:44,738 - django.request - WARNING - Not Found: /Site
+2025-09-09 12:51:55,476 - django.request - WARNING - Not Found: /SITE
+2025-09-09 12:53:54,214 - django.request - WARNING - Not Found: /blog
+2025-09-09 12:57:13,543 - language_ops - INFO - ================================================================================
+2025-09-09 12:57:13,544 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 12:57:13,544 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 12:57:13,544 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 12:57:13,544 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 12:57:13,544 - language_ops - INFO - ================================================================================
+2025-09-09 12:57:13,544 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 12:57:13,557 - django.request - WARNING - Not Found: /BLOG
+2025-09-09 12:59:23,753 - django.request - WARNING - Not Found: /Blog
+2025-09-09 17:49:52,344 - language_ops - INFO - ================================================================================
+2025-09-09 17:49:52,346 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 17:49:52,346 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 17:49:52,346 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 17:49:52,346 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 17:49:52,347 - language_ops - INFO - ================================================================================
+2025-09-09 17:49:52,347 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 18:13:48,373 - language_ops - INFO - ================================================================================
+2025-09-09 18:13:48,373 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-09 18:13:48,373 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-09 18:13:48,373 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-09 18:13:48,374 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-09 18:13:48,374 - language_ops - INFO - ================================================================================
+2025-09-09 18:13:48,374 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-09 18:13:49,535 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-09 18:13:51,126 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-10 06:18:14,144 - language_ops - INFO - ================================================================================
+2025-09-10 06:18:14,145 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-10 06:18:14,145 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-10 06:18:14,145 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-10 06:18:14,146 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-10 06:18:14,146 - language_ops - INFO - ================================================================================
+2025-09-10 06:18:14,146 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-10 06:18:14,156 - django.request - WARNING - Not Found: /robots.txt
+2025-09-10 09:32:28,009 - language_ops - INFO - ================================================================================
+2025-09-10 09:32:28,011 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-10 09:32:28,012 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-10 09:32:28,012 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-10 09:32:28,012 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-10 09:32:28,012 - language_ops - INFO - ================================================================================
+2025-09-10 09:32:28,012 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-10 15:54:19,021 - language_ops - INFO - ================================================================================
+2025-09-10 15:54:19,022 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-10 15:54:19,022 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-10 15:54:19,022 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-10 15:54:19,022 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-10 15:54:19,022 - language_ops - INFO - ================================================================================
+2025-09-10 15:54:19,022 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-10 15:54:20,075 - django.request - WARNING - Not Found: /wordpress/
+2025-09-10 20:50:31,530 - language_ops - INFO - ================================================================================
+2025-09-10 20:50:31,531 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-10 20:50:31,531 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-10 20:50:31,531 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-10 20:50:31,531 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-10 20:50:31,532 - language_ops - INFO - ================================================================================
+2025-09-10 20:50:31,532 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-11 13:27:05,455 - language_ops - INFO - ================================================================================
+2025-09-11 13:27:05,456 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-11 13:27:05,456 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-11 13:27:05,457 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-11 13:27:05,457 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-11 13:27:05,457 - language_ops - INFO - ================================================================================
+2025-09-11 13:27:05,457 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-11 13:27:06,305 - django.request - WARNING - Not Found: /wordpress/
+2025-09-12 12:48:21,688 - language_ops - INFO - ================================================================================
+2025-09-12 12:48:21,690 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-12 12:48:21,690 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-12 12:48:21,690 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-12 12:48:21,690 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-12 12:48:21,691 - language_ops - INFO - ================================================================================
+2025-09-12 12:48:21,691 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-12 12:48:21,934 - django.request - WARNING - Not Found: /webapp/favicon.ico
+2025-09-13 09:28:14,710 - language_ops - INFO - ================================================================================
+2025-09-13 09:28:14,711 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-13 09:28:14,711 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-13 09:28:14,712 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-13 09:28:14,712 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-13 09:28:14,712 - language_ops - INFO - ================================================================================
+2025-09-13 09:28:14,712 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-14 13:39:23,823 - language_ops - INFO - ================================================================================
+2025-09-14 13:39:23,825 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-14 13:39:23,825 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-14 13:39:23,825 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-14 13:39:23,826 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-14 13:39:23,826 - language_ops - INFO - ================================================================================
+2025-09-14 13:39:23,826 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-15 05:39:58,779 - language_ops - INFO - ================================================================================
+2025-09-15 05:39:58,780 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-15 05:39:58,780 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-15 05:39:58,780 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-15 05:39:58,781 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-15 05:39:58,781 - language_ops - INFO - ================================================================================
+2025-09-15 05:39:58,781 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-15 16:49:53,518 - language_ops - INFO - ================================================================================
+2025-09-15 16:49:53,519 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-15 16:49:53,520 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-15 16:49:53,520 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-15 16:49:53,520 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-15 16:49:53,520 - language_ops - INFO - ================================================================================
+2025-09-15 16:49:53,521 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-15 17:44:08,656 - language_ops - INFO - ================================================================================
+2025-09-15 17:44:08,657 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-15 17:44:08,657 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-15 17:44:08,657 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-15 17:44:08,657 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-15 17:44:08,657 - language_ops - INFO - ================================================================================
+2025-09-15 17:44:08,658 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-15 20:27:15,264 - language_ops - INFO - ================================================================================
+2025-09-15 20:27:15,265 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-15 20:27:15,266 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-15 20:27:15,266 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-15 20:27:15,266 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-15 20:27:15,266 - language_ops - INFO - ================================================================================
+2025-09-15 20:27:15,267 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-16 06:12:28,563 - language_ops - INFO - ================================================================================
+2025-09-16 06:12:28,564 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-16 06:12:28,565 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-16 06:12:28,565 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-16 06:12:28,565 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-16 06:12:28,565 - language_ops - INFO - ================================================================================
+2025-09-16 06:12:28,566 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-17 12:20:28,615 - language_ops - INFO - ================================================================================
+2025-09-17 12:20:28,616 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-17 12:20:28,617 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-17 12:20:28,617 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-17 12:20:28,617 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-17 12:20:28,617 - language_ops - INFO - ================================================================================
+2025-09-17 12:20:28,618 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-17 12:20:33,116 - django.request - WARNING - Not Found: /wp-content/plugins/hellopress/wp_filemanager.php
+2025-09-17 12:20:33,703 - django.request - WARNING - Not Found: /tcp.php
+2025-09-17 12:20:34,337 - django.request - WARNING - Not Found: /nc4.php
+2025-09-17 12:20:34,820 - django.request - WARNING - Not Found: /ahax.php
+2025-09-17 12:20:35,373 - django.request - WARNING - Not Found: /akc.php
+2025-09-17 12:20:35,959 - django.request - WARNING - Not Found: /v2.php
+2025-09-17 12:20:36,526 - django.request - WARNING - Not Found: /CLA.php
+2025-09-17 12:20:37,090 - django.request - WARNING - Not Found: /aa17.php
+2025-09-17 12:20:37,570 - django.request - WARNING - Not Found: /wander.php
+2025-09-17 12:20:38,085 - django.request - WARNING - Not Found: /filei.php
+2025-09-17 12:20:38,566 - django.request - WARNING - Not Found: /ot.php
+2025-09-17 12:20:39,036 - django.request - WARNING - Not Found: /gfile.php
+2025-09-17 12:20:39,502 - django.request - WARNING - Not Found: /ol.php
+2025-09-17 12:20:39,971 - django.request - WARNING - Not Found: /rak.php
+2025-09-17 12:20:40,692 - django.request - WARNING - Not Found: /cfile.php
+2025-09-17 12:20:41,161 - django.request - WARNING - Not Found: /ee.php
+2025-09-17 12:20:41,733 - django.request - WARNING - Not Found: /ffile.php
+2025-09-17 12:20:42,256 - django.request - WARNING - Not Found: /gold.php
+2025-09-17 12:20:42,717 - django.request - WARNING - Not Found: /bless2.php
+2025-09-17 12:20:43,265 - django.request - WARNING - Not Found: /lc.php
+2025-09-17 12:20:43,907 - django.request - WARNING - Not Found: /222.php
+2025-09-17 12:20:44,446 - django.request - WARNING - Not Found: /xhouf.php
+2025-09-17 12:20:45,028 - django.request - WARNING - Not Found: /num.php
+2025-09-17 12:20:45,511 - django.request - WARNING - Not Found: /slo.php
+2025-09-17 12:20:45,977 - django.request - WARNING - Not Found: /ava.php
+2025-09-17 12:20:46,497 - django.request - WARNING - Not Found: /public/wsr2.php
+2025-09-17 12:20:47,006 - django.request - WARNING - Not Found: /sad.php
+2025-09-17 12:20:47,808 - django.request - WARNING - Not Found: /gg.php
+2025-09-17 12:20:48,288 - django.request - WARNING - Not Found: /file1.php
+2025-09-17 12:20:48,820 - django.request - WARNING - Not Found: /an.php
+2025-09-17 12:20:49,291 - django.request - WARNING - Not Found: /great.php
+2025-09-17 12:20:49,928 - django.request - WARNING - Not Found: /makeasmtp.php
+2025-09-17 12:20:50,393 - django.request - WARNING - Not Found: /mo.php
+2025-09-17 12:20:50,886 - django.request - WARNING - Not Found: /slo.php
+2025-09-17 12:20:51,356 - django.request - WARNING - Not Found: /r4f_1.php
+2025-09-17 12:20:52,099 - django.request - WARNING - Not Found: /ar.php
+2025-09-17 12:20:52,561 - django.request - WARNING - Not Found: /goods.php
+2025-09-17 12:20:53,293 - django.request - WARNING - Not Found: /aaaa.php
+2025-09-19 20:24:19,135 - language_ops - INFO - ================================================================================
+2025-09-19 20:24:19,135 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-19 20:24:19,136 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-19 20:24:19,136 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-19 20:24:19,136 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-19 20:24:19,136 - language_ops - INFO - ================================================================================
+2025-09-19 20:24:19,136 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-19 20:24:20,407 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-19 20:24:21,584 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-28 23:45:29,593 - language_ops - INFO - ================================================================================
+2025-09-28 23:45:29,595 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-28 23:45:29,595 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-28 23:45:29,595 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-28 23:45:29,595 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-28 23:45:29,595 - language_ops - INFO - ================================================================================
+2025-09-28 23:45:29,596 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-30 14:27:49,740 - language_ops - INFO - ================================================================================
+2025-09-30 14:27:49,742 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-30 14:27:49,742 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-30 14:27:49,742 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-30 14:27:49,743 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-30 14:27:49,743 - language_ops - INFO - ================================================================================
+2025-09-30 14:27:49,743 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-30 14:27:50,705 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-09-30 14:27:51,525 - django.request - WARNING - Not Found: /favicon.ico
+2025-09-30 14:28:23,068 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-09-30 14:28:23,316 - language_ops - INFO - ================================================================================
+2025-09-30 14:28:23,317 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-09-30 14:28:23,317 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-09-30 14:28:23,318 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-09-30 14:28:23,318 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-09-30 14:28:23,318 - language_ops - INFO - ================================================================================
+2025-09-30 14:28:23,319 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-09-30 14:28:23,338 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:45:11,208 - language_ops - INFO - ================================================================================
+2025-10-01 10:45:11,209 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 10:45:11,209 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 10:45:11,209 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 10:45:11,209 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 10:45:11,210 - language_ops - INFO - ================================================================================
+2025-10-01 10:45:11,210 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 10:45:11,947 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:45:12,815 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 10:48:15,343 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:49:55,418 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:50:11,868 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 10:50:12,123 - language_ops - INFO - ================================================================================
+2025-10-01 10:50:12,124 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 10:50:12,124 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 10:50:12,124 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 10:50:12,125 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 10:50:12,125 - language_ops - INFO - ================================================================================
+2025-10-01 10:50:12,125 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 10:50:12,146 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:51:13,457 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:51:13,518 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 10:52:08,660 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:52:36,582 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:54:27,501 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:54:33,320 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 10:54:33,334 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 10:56:23,580 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 10:56:23,785 - language_ops - INFO - ================================================================================
+2025-10-01 10:56:23,786 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 10:56:23,786 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 10:56:23,786 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 10:56:23,786 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 10:56:23,786 - language_ops - INFO - ================================================================================
+2025-10-01 10:56:23,787 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 10:56:23,805 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:17:01,952 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:01,953 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 12:17:01,953 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 12:17:01,953 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 12:17:01,953 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 12:17:01,954 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:01,954 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 12:17:02,253 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:17:02,490 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:02,490 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 12:17:02,491 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 12:17:02,491 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 12:17:02,491 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 12:17:02,492 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:02,492 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 12:17:02,501 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 12:17:18,324 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:17:18,328 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:17:18,337 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 12:17:47,050 - django.request - WARNING - Not Found: /api/frontend/save-location/
+2025-10-01 12:17:47,052 - django.request - WARNING - Not Found: /api/frontend/save-location/
+2025-10-01 12:17:47,329 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:47,330 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 12:17:47,330 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 12:17:47,331 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 12:17:47,331 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 12:17:47,331 - language_ops - INFO - ================================================================================
+2025-10-01 12:17:47,331 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 12:17:47,346 - django.request - WARNING - Not Found: /api/frontend/save-location/
+2025-10-01 12:17:49,115 - root - ERROR - Encryption error: Fernet key must be 32 url-safe base64-encoded bytes.. Storing text unencrypted.
+2025-10-01 12:17:51,599 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:17:54,084 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:17:54,091 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:17:58,644 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:18:03,535 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:18:03,537 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:18:06,262 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:18:14,145 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:18:14,153 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:18:14,155 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 12:18:33,588 - django.request - WARNING - Not Found: /api/frontend/save-location/
+2025-10-01 12:18:44,817 - root - ERROR - Encryption error: Fernet key must be 32 url-safe base64-encoded bytes.. Storing text unencrypted.
+2025-10-01 12:18:47,080 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:19:01,207 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:19:01,241 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 12:19:02,306 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:19:02,315 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:19:04,680 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:19:07,682 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:19:07,693 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 12:22:06,589 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 12:22:06,591 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 14:02:46,955 - language_ops - INFO - ================================================================================
+2025-10-01 14:02:46,956 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 14:02:46,957 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 14:02:46,957 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 14:02:46,957 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 14:02:46,957 - language_ops - INFO - ================================================================================
+2025-10-01 14:02:46,958 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 14:08:30,799 - language_ops - INFO - ================================================================================
+2025-10-01 14:08:30,799 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 14:08:30,799 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 14:08:30,800 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 14:08:30,800 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 14:08:30,800 - language_ops - INFO - ================================================================================
+2025-10-01 14:08:30,800 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 14:08:32,013 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 14:08:39,357 - language_ops - INFO - ================================================================================
+2025-10-01 14:08:39,358 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 14:08:39,358 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 14:08:39,358 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 14:08:39,358 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 14:08:39,359 - language_ops - INFO - ================================================================================
+2025-10-01 14:08:39,359 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 14:09:30,276 - django.request - WARNING - Not Found: /webapp/admin
+2025-10-01 16:00:28,216 - language_ops - INFO - ================================================================================
+2025-10-01 16:00:28,217 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 16:00:28,217 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 16:00:28,217 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 16:00:28,217 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 16:00:28,217 - language_ops - INFO - ================================================================================
+2025-10-01 16:00:28,218 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 16:00:28,517 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 16:00:28,563 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 16:09:08,891 - language_ops - INFO - ================================================================================
+2025-10-01 16:09:08,892 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 16:09:08,892 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 16:09:08,892 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 16:09:08,892 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 16:09:08,893 - language_ops - INFO - ================================================================================
+2025-10-01 16:09:08,893 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 16:09:09,214 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 16:09:09,225 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 16:26:15,270 - language_ops - INFO - ================================================================================
+2025-10-01 16:26:15,271 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 16:26:15,271 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 16:26:15,271 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 16:26:15,271 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 16:26:15,271 - language_ops - INFO - ================================================================================
+2025-10-01 16:26:15,272 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 16:26:15,692 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 16:26:15,727 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 16:43:32,473 - language_ops - INFO - ================================================================================
+2025-10-01 16:43:32,473 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 16:43:32,473 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 16:43:32,474 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 16:43:32,474 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 16:43:32,474 - language_ops - INFO - ================================================================================
+2025-10-01 16:43:32,474 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 16:43:38,611 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 16:43:38,741 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 16:43:56,656 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-01 16:43:56,660 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-01 16:43:56,911 - language_ops - INFO - ================================================================================
+2025-10-01 16:43:56,911 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 16:43:56,911 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 16:43:56,911 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 16:43:56,912 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 16:43:56,912 - language_ops - INFO - ================================================================================
+2025-10-01 16:43:56,912 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 16:43:56,930 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-01 17:09:30,447 - language_ops - INFO - ================================================================================
+2025-10-01 17:09:30,448 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 17:09:30,448 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 17:09:30,448 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 17:09:30,448 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 17:09:30,448 - language_ops - INFO - ================================================================================
+2025-10-01 17:09:30,449 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 17:14:38,812 - language_ops - INFO - ================================================================================
+2025-10-01 17:14:38,812 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 17:14:38,812 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 17:14:38,813 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 17:14:38,813 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 17:14:38,813 - language_ops - INFO - ================================================================================
+2025-10-01 17:14:38,813 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 17:14:38,831 - django.request - WARNING - Not Found: /webapp/call.html
+2025-10-01 17:15:10,991 - language_ops - INFO - ================================================================================
+2025-10-01 17:15:10,992 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-01 17:15:10,992 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-01 17:15:10,992 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-01 17:15:10,992 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-01 17:15:10,992 - language_ops - INFO - ================================================================================
+2025-10-01 17:15:10,993 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-01 17:15:11,012 - django.request - WARNING - Not Found: /webapp/call.html
+2025-10-01 17:15:11,275 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-02 00:00:17,831 - language_ops - INFO - ================================================================================
+2025-10-02 00:00:17,832 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-02 00:00:17,832 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-02 00:00:17,832 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-02 00:00:17,832 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-02 00:00:17,832 - language_ops - INFO - ================================================================================
+2025-10-02 00:00:17,833 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-02 00:00:18,261 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-02 00:00:18,267 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-02 00:00:18,509 - language_ops - INFO - ================================================================================
+2025-10-02 00:00:18,510 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-02 00:00:18,510 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-02 00:00:18,510 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-02 00:00:18,510 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-02 00:00:18,511 - language_ops - INFO - ================================================================================
+2025-10-02 00:00:18,511 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-02 00:00:18,536 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-02 14:21:15,646 - language_ops - INFO - ================================================================================
+2025-10-02 14:21:15,647 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-02 14:21:15,647 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-02 14:21:15,648 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-02 14:21:15,648 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-02 14:21:15,648 - language_ops - INFO - ================================================================================
+2025-10-02 14:21:15,648 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-02 22:24:00,803 - language_ops - INFO - ================================================================================
+2025-10-02 22:24:00,805 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-02 22:24:00,805 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-02 22:24:00,805 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-02 22:24:00,805 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-02 22:24:00,805 - language_ops - INFO - ================================================================================
+2025-10-02 22:24:00,805 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 11:49:59,903 - language_ops - INFO - ================================================================================
+2025-10-03 11:49:59,904 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 11:49:59,904 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 11:49:59,904 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 11:49:59,904 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 11:49:59,905 - language_ops - INFO - ================================================================================
+2025-10-03 11:49:59,905 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 11:50:00,245 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 11:50:00,256 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 11:50:42,887 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 11:50:43,124 - language_ops - INFO - ================================================================================
+2025-10-03 11:50:43,124 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 11:50:43,124 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 11:50:43,125 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 11:50:43,125 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 11:50:43,125 - language_ops - INFO - ================================================================================
+2025-10-03 11:50:43,125 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 11:50:43,140 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:06:48,480 - language_ops - INFO - ================================================================================
+2025-10-03 12:06:48,480 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 12:06:48,481 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 12:06:48,481 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 12:06:48,481 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 12:06:48,481 - language_ops - INFO - ================================================================================
+2025-10-03 12:06:48,481 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 12:06:52,425 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:06:52,470 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 12:19:53,154 - language_ops - INFO - ================================================================================
+2025-10-03 12:19:53,155 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 12:19:53,155 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 12:19:53,155 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 12:19:53,155 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 12:19:53,155 - language_ops - INFO - ================================================================================
+2025-10-03 12:19:53,156 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 12:19:53,218 - django.request - ERROR - Internal Server Error: /index.html
+Traceback (most recent call last):
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/gaddisa/emergency_bot/frontend/views.py", line 139, in index
+    return render(request, 'index.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "/home/hdmsofob/virtualenv/gaddisa/3.12/lib/python3.12/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+2025-10-03 12:19:53,716 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 12:27:57,841 - language_ops - INFO - ================================================================================
+2025-10-03 12:27:57,842 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 12:27:57,842 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 12:27:57,842 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 12:27:57,842 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 12:27:57,842 - language_ops - INFO - ================================================================================
+2025-10-03 12:27:57,842 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 12:27:58,293 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 12:27:58,537 - language_ops - INFO - ================================================================================
+2025-10-03 12:27:58,538 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 12:27:58,538 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 12:27:58,539 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 12:27:58,539 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 12:27:58,539 - language_ops - INFO - ================================================================================
+2025-10-03 12:27:58,539 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 12:27:58,557 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:28:07,922 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:28:50,976 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:28:50,979 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 12:28:58,373 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:29:00,578 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:35:22,996 - language_ops - INFO - ================================================================================
+2025-10-03 12:35:22,996 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 12:35:22,996 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 12:35:22,997 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 12:35:22,997 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 12:35:22,997 - language_ops - INFO - ================================================================================
+2025-10-03 12:35:22,997 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 12:35:23,296 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 12:35:23,339 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 12:35:31,995 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 13:32:43,470 - language_ops - INFO - ================================================================================
+2025-10-03 13:32:43,471 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 13:32:43,471 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 13:32:43,471 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 13:32:43,472 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 13:32:43,472 - language_ops - INFO - ================================================================================
+2025-10-03 13:32:43,472 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 13:32:43,874 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 13:32:44,772 - language_ops - INFO - ================================================================================
+2025-10-03 13:32:44,773 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 13:32:44,773 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 13:32:44,773 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 13:32:44,773 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 13:32:44,774 - language_ops - INFO - ================================================================================
+2025-10-03 13:32:44,774 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 13:32:44,785 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 13:32:48,575 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 13:33:35,338 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 13:33:40,175 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 13:33:51,675 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 15:12:36,618 - language_ops - INFO - ================================================================================
+2025-10-03 15:12:36,621 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 15:12:36,621 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 15:12:36,621 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 15:12:36,622 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 15:12:36,622 - language_ops - INFO - ================================================================================
+2025-10-03 15:12:36,622 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 15:12:37,033 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 15:12:37,117 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 15:12:45,277 - language_ops - INFO - ================================================================================
+2025-10-03 15:12:45,278 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 15:12:45,279 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 15:12:45,279 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 15:12:45,280 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 15:12:45,280 - language_ops - INFO - ================================================================================
+2025-10-03 15:12:45,280 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 15:12:45,304 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 15:12:47,930 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 15:12:48,883 - django.request - WARNING - Not Found: /api/frontend/get-location-status/
+2025-10-03 15:12:48,886 - django.request - WARNING - Not Found: /api/accounts/verify/
+2025-10-03 17:28:37,047 - language_ops - INFO - ================================================================================
+2025-10-03 17:28:37,049 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 17:28:37,049 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 17:28:37,049 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 17:28:37,049 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 17:28:37,049 - language_ops - INFO - ================================================================================
+2025-10-03 17:28:37,050 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 17:28:37,436 - django.request - WARNING - Not Found: /favicon.ico
+2025-10-03 17:28:37,686 - language_ops - INFO - ================================================================================
+2025-10-03 17:28:37,687 - language_ops - INFO - LANGUAGE DEBUG LOGGING INITIALIZED
+2025-10-03 17:28:37,687 - language_ops - INFO - Operations log: /home/hdmsofob/gaddisa/logs/language_operations.log
+2025-10-03 17:28:37,687 - language_ops - INFO - Error log: /home/hdmsofob/gaddisa/logs/language_errors.log
+2025-10-03 17:28:37,688 - language_ops - INFO - Debug log: /home/hdmsofob/gaddisa/logs/language_debug.log
+2025-10-03 17:28:37,688 - language_ops - INFO - ================================================================================
+2025-10-03 17:28:37,688 - language_ops.emergency_bot.telegram_bot.language_bridge - INFO - Language bridge module initialized with debug logging
+2025-10-03 17:28:37,704 - django.request - WARNING - Not Found: /api/accounts/verify/

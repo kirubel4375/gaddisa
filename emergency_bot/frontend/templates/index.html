@@ -88,6 +88,16 @@
         margin-bottom: 80px;
     }
 
+    .info-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--tg-theme-text-color, #222);
+    }
+
+    .info-list li {
+        margin-bottom: 8px;
+    }
+
     .nearby-service-card {
         background-color: var(--card-bg-color, white);
         border-radius: 12px;
@@ -285,7 +295,7 @@
     
     <!-- Nearby Services Section -->
     <div class="nearby-services-section" id="nearbyServicesSection" style="display: none;">
-        <h3 style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
+        <h3 id="nearbyServicesHeader" style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
             <i class="material-icons" style="margin-right: 8px;">location_on</i>
             {% trans "Nearby Services" %}
         </h3>
@@ -295,6 +305,15 @@
                 <p style="margin-top: 10px; color: var(--tg-theme-hint-color, #999);">{% trans "Finding nearby services..." %}</p>
             </div>
         </div>
+    </div>
+
+    <!-- Important Informations Section -->
+    <div class="nearby-services-section" id="infoSection" style="display: none;">
+        <h3 id="infoHeader" style="margin-bottom: 16px; font-size: 20px; display: flex; align-items: center;">
+            <i class="material-icons" style="margin-right: 8px;">favorite</i>
+            {% trans "Important Informations" %}
+        </h3>
+        <div id="infoContent"></div>
     </div>
 </div>
 
@@ -390,7 +409,14 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 console.log(`Service button clicked: ${id} (${type})`);
-                showNearbyServices(type);
+                if (type === 'marriage') {
+                    showImportantInformation();
+                } else {
+                    // Hide info section if visible when switching categories
+                    const infoSection = document.getElementById('infoSection');
+                    if (infoSection) infoSection.style.display = 'none';
+                    showNearbyServices(type);
+                }
             });
             console.log(`Event listener attached to ${id}`);
         } else {
@@ -617,6 +643,129 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('nearbyServicesSection').scrollIntoView({ behavior: 'smooth' });
     }
+
+    function showImportantInformation() {
+        // Hide nearby services section and show info section
+        const nearbySection = document.getElementById('nearbyServicesSection');
+        const infoSection = document.getElementById('infoSection');
+        if (nearbySection) nearbySection.style.display = 'none';
+        if (infoSection) {
+            // Render localized content
+            const lang = localStorage.getItem('mini_app_language') || 'en';
+            renderInfoSection(lang);
+            infoSection.style.display = 'block';
+            infoSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function renderInfoSection(language) {
+        const infoContentByLang = {
+            'en': `
+                <div class="nearby-service-card">
+                    <div class="service-type-icon hospital">
+                        <i class="material-icons">shield</i>
+                    </div>
+                    <div class="service-info">
+                        <h4 class="service-name" style="margin: 0 0 6px 0;">{% trans "Safety resources for women facing abuse" %}</h4>
+                        <ul class="info-list">
+                            <li>
+                                {% trans "Recognize warning signs and patterns of abuse. See WHO factsheet:" %}
+                                <a href="https://www.who.int/news-room/fact-sheets/detail/violence-against-women" target="_blank" rel="noopener">{% trans "WHO – Violence against women" %}</a>
+                            </li>
+                            <li>
+                                {% trans "Create a personal safety plan (trusted contacts, emergency bag, code words)." %}
+                                {% trans "Practical guide:" %} <a href="https://www.thehotline.org/plan-for-safety/create-your-safety-plan/" target="_blank" rel="noopener">{% trans "Safety planning" %}</a>
+                            </li>
+                            <li>
+                                {% trans "Document incidents securely (photos, dates, messages) and learn about legal options." %}
+                                {% trans "Overview:" %} <a href="https://www.unwomen.org/en/what-we-do/ending-violence-against-women" target="_blank" rel="noopener">{% trans "UN Women – Ending violence against women" %}</a>
+                            </li>
+                            <li>
+                                {% trans "Seek confidential support from local services (women lawyers associations, shelters, hotlines) listed in Women & Social Affairs." %}
+                            </li>
+                        </ul>
+                        <p class="service-address" style="margin-top: 8px;">{% trans "If you're in immediate danger, please use the Emergency Help button below or call local emergency services." %}</p>
+                        <div class="service-actions" style="margin-top: 10px;">
+                            <button class="service-action-btn" onclick="(function(){ document.getElementById('infoSection').style.display='none'; document.getElementById('nearbyServicesSection').style.display='block'; showNearbyServices('women'); })()">
+                                <i class="material-icons">search</i> {% trans "View Women & Social Affairs services" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'am': `
+                <div class="nearby-service-card">
+                    <div class="service-type-icon hospital">
+                        <i class="material-icons">shield</i>
+                    </div>
+                    <div class="service-info">
+                        <h4 class="service-name" style="margin: 0 0 6px 0;">የጥቃት የሚጋጥሙ ሴቶች ለደህንነት ሀብቶች</h4>
+                        <ul class="info-list">
+                            <li>
+                                የጥቃት ምልክቶችን እና ስርዓቶችን ይለዩ። የWHO መረጃ ገጽ ይመልከቱ፡ 
+                                <a href="https://www.who.int/news-room/fact-sheets/detail/violence-against-women" target="_blank" rel="noopener">WHO – ጥቃት በሴቶች ላይ</a>
+                            </li>
+                            <li>
+                                የግል የደህንነት እቅድ ይዘጋጁ (የሚታመኑ ግንኙነቶች፣ አደጋ ቦርሳ፣ የምልክት ቃላት)।
+                                ተግባራዊ መመሪያ፡ <a href="https://www.thehotline.org/plan-for-safety/create-your-safety-plan/" target="_blank" rel="noopener">የደህንነት እቅድ</a>
+                            </li>
+                            <li>
+                                ክስተቶችን በእርግጥ ይመዝግቡ (ፎቶዎች፣ ቀኖች፣ መልዕክቶች) እና የህግ አማራጮችን ይወቁ።
+                                አጠቃላይ እይታ፡ <a href="https://www.unwomen.org/en/what-we-do/ending-violence-against-women" target="_blank" rel="noopener">UN Women – ጥቃት በሴቶች ላይ መያቆም</a>
+                            </li>
+                            <li>
+                                በአካባቢ አገልግሎቶች (የሴቶች ጠበቃ ማህበሮች፣ ጥበቃ ቤቶች፣ ህይወት መስመሮች) የሚሰጥ የምስጢር ድጋፍ ይፈልጉ፤ በ“ሴቶች እና ማህበራዊ ጉዳዮች” ዝርዝር ይገኛሉ።
+                            </li>
+                        </ul>
+                        <p class="service-address" style="margin-top: 8px;">አስቸኳይ አደጋ ካለ፣ ከዚህ በታች ያለውን “የአደጋ እርዳታ” ቁልፍ ይጠቀሙ ወይም የአካባቢ አደጋ አገልግሎት ይደውሉ።</p>
+                        <div class="service-actions" style="margin-top: 10px;">
+                            <button class="service-action-btn" onclick="(function(){ document.getElementById('infoSection').style.display='none'; document.getElementById('nearbyServicesSection').style.display='block'; showNearbyServices('women'); })()">
+                                <i class="material-icons">search</i> የ“ሴቶች እና ማህበራዊ ጉዳዮች” አገልግሎቶች ይመልከቱ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'om': `
+                <div class="nearby-service-card">
+                    <div class="service-type-icon hospital">
+                        <i class="material-icons">shield</i>
+                    </div>
+                    <div class="service-info">
+                        <h4 class="service-name" style="margin: 0 0 6px 0;">Qabeenya nageenyaa dubartoota miidhaa qunnamanitti</h4>
+                        <ul class="info-list">
+                            <li>
+                                Mallattoo fi amala miidhaa adda baasi. Fuula WHO ilaali: 
+                                <a href="https://www.who.int/news-room/fact-sheets/detail/violence-against-women" target="_blank" rel="noopener">WHO – Miidhaa dubartoota irratti</a>
+                            </li>
+                            <li>
+                                Tartiiba nageenyaa dhuunfaa qopheessi (qunnamtoota amanamoo, borsa muddamaa, jechoota iccitii).
+                                Qajeelfama itti fayyadamaa: <a href="https://www.thehotline.org/plan-for-safety/create-your-safety-plan/" target="_blank" rel="noopener">Karoora nageenyaa</a>
+                            </li>
+                            <li>
+                                Taateewwan ittiin galmeessi (suuraalee, guyyaa, ergaa) fi filannoowwan seeraa baradhu.
+                                Xinxala waliigalaa: <a href="https://www.unwomen.org/en/what-we-do/ending-violence-against-women" target="_blank" rel="noopener">UN Women – Miidhaa dubartoota irratti dhaabuu</a>
+                            </li>
+                            <li>
+                                Deeggarsa iccitii qabaatu tajaajila naannoo irraa barbaadi (waldaa abbootii seeraa dubartootaa, bakka qubsummaa, lakkoofsa bilbilaa); “Dhimma Dubartootaa fi Hawaasaa” jalatti tarreeffame.
+                            </li>
+                        </ul>
+                        <p class="service-address" style="margin-top: 8px;">Yoo balaa yeroo ammaa jiru keessa jirtan, gulaala “Gargaarsa Muddamaa” gadi jiru fayyadamaa yookaan tajaajila muddamaa naannoo bilbila.</p>
+                        <div class="service-actions" style="margin-top: 10px;">
+                            <button class="service-action-btn" onclick="(function(){ document.getElementById('infoSection').style.display='none'; document.getElementById('nearbyServicesSection').style.display='block'; showNearbyServices('women'); })()">
+                                <i class="material-icons">search</i> Tajaajila “Dhimma Dubartootaa fi Hawaasaa” ilaali
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        const container = document.getElementById('infoContent');
+        if (container) {
+            container.innerHTML = infoContentByLang[language] || infoContentByLang['en'];
+        }
+    }
     
     // Distance calculation function (Haversine formula)
     function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -781,7 +930,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Mental health support', 'Any related informations', 'Lawyers and legal support'
             ]},
             { selector: '.emergency-button', key: 'Emergency Help' },
-            { selector: 'h3', key: 'Nearby Services' }
+            { selector: '#nearbyServicesHeader', key: 'Nearby Services' },
+            { selector: '#infoHeader', key: 'Important Informations' }
         ];
         
         // Apply translations
@@ -807,6 +957,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Re-render info section content if visible
+        const infoSectionVisible = document.getElementById('infoSection') && document.getElementById('infoSection').style.display !== 'none';
+        if (infoSectionVisible) {
+            renderInfoSection(language);
+        }
         console.log('Language applied successfully:', language);
     }
 });

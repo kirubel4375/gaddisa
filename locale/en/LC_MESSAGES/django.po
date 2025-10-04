@@ -289,4 +289,89 @@ msgid "failed_to_upload_voice_recording"
 msgstr "Failed to upload voice recording. Please try again."
 
 msgid "uploading"
-msgstr "Uploading..." 
+msgstr "Uploading..."
+
+msgid "Support Services"
+msgstr "Support Services"
+
+msgid "Find emergency support services near you"
+msgstr "Find emergency support services near you"
+
+msgid "Using your current location"
+msgstr "Using your current location"
+
+msgid "Fetching location..."
+msgstr "Fetching location..."
+
+msgid "Use My Location"
+msgstr "Use My Location"
+
+msgid "Select Location"
+msgstr "Select Location"
+
+msgid "Select Region"
+msgstr "Select Region"
+
+msgid "Select Zone"
+msgstr "Select Zone"
+
+msgid "Select Woreda"
+msgstr "Select Woreda"
+
+msgid "Select Kebele"
+msgstr "Select Kebele"
+
+msgid "Apply Location"
+msgstr "Apply Location"
+
+msgid "Search agencies..."
+msgstr "Search agencies..."
+
+msgid "Loading agencies..."
+msgstr "Loading agencies..."
+
+
+msgid "Call"
+msgstr "Call"
+
+msgid "Get Directions"
+msgstr "Get Directions"
+
+msgid "No services found for the selected criteria."
+msgstr "No services found for the selected criteria."
+
+msgid "services found"
+msgstr "services found"
+
+msgid "Unable to get your current location"
+msgstr "Unable to get your current location"
+
+msgid "Location access denied. Please allow location access or select manually."
+msgstr "Location access denied. Please allow location access or select manually."
+
+msgid "Searching for nearby services..."
+msgstr "Searching for nearby services..."
+
+msgid "km away"
+msgstr "km away"
+
+msgid "Using selected location"
+msgstr "Using selected location"
+
+msgid "Please select at least Region and Zone"
+msgstr "Please select at least Region and Zone"
+
+msgid "Police Station"
+msgstr "Police Station"
+
+msgid "Hospital"
+msgstr "Hospital"
+
+msgid "NGO/Support Organization"
+msgstr "NGO/Support Organization"
+
+msgid "Government Office"
+msgstr "Government Office"
+
+msgid "Shelter"
+msgstr "Shelter" 

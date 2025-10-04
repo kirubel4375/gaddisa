@@ -551,4 +551,88 @@ msgid "Swaziland St, Addis Ababa"
 msgstr "Daandii Swaziland, Finfinnee"
 
 msgid "Mexico Square, Addis Ababa"
-msgstr "Oromtoo Mexico, Finfinnee" 
+msgstr "Oromtoo Mexico, Finfinnee"
+
+msgid "Support Services"
+msgstr "Tajaajila Deeggarsaa"
+
+msgid "Find emergency support services near you"
+msgstr "Tajaajila deeggarsaa muddaa dhihoo keessan argadhu"
+
+msgid "Using your current location"
+msgstr "Bakki ammaa keessan fayyadamuun"
+
+msgid "Fetching location..."
+msgstr "Bakki argachuu..."
+
+msgid "Use My Location"
+msgstr "Bakki Koo Fayyadami"
+
+msgid "Select Location"
+msgstr "Bakki Filadhu"
+
+msgid "Select Region"
+msgstr "Naannoo Filadhu"
+
+msgid "Select Zone"
+msgstr "Godina Filadhu"
+
+msgid "Select Woreda"
+msgstr "Aanaa Filadhu"
+
+msgid "Select Kebele"
+msgstr "Gandaa Filadhu"
+
+msgid "Apply Location"
+msgstr "Bakki Taphadhu"
+
+msgid "Search agencies..."
+msgstr "Tajaajila Barbaadi..."
+
+msgid "Loading agencies..."
+msgstr "Tajaajila argachuu..."
+
+msgid "Call"
+msgstr "Bilbili"
+
+msgid "Get Directions"
+msgstr "Qajeelfama Argadhu"
+
+msgid "No services found for the selected criteria."
+msgstr "Tajaajila filannoo filatamanii hin argamne."
+
+msgid "services found"
+msgstr "tajaajila argame"
+
+msgid "Unable to get your current location"
+msgstr "Bakki ammaa keessan argachuu hin dandeenye"
+
+msgid "Location access denied. Please allow location access or select manually."
+msgstr "Fayyadama bakkaa dhaabbate. Maaloo fayyadama bakkaa haa dhiyeessan ykn qabaan filadhu."
+
+msgid "Searching for nearby services..."
+msgstr "Tajaajila dhihoo barbaachuu..."
+
+msgid "km away"
+msgstr "kiiloo meetira fagaatee"
+
+msgid "Using selected location"
+msgstr "Bakki filatame fayyadamuun"
+
+msgid "Please select at least Region and Zone"
+msgstr "Maaloo yoo xinnaan Naannoo fi Godina filadhu"
+
+msgid "Police Station"
+msgstr "Tulluu Poolisii"
+
+msgid "Hospital"
+msgstr "Hospitaala"
+
+msgid "NGO/Support Organization"
+msgstr "NGO/Tajaajila Deeggarsaa"
+
+msgid "Government Office"
+msgstr "Biroo Mootummaa"
+
+msgid "Shelter"
+msgstr "Mana Ijaaruu" 
